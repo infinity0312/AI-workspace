@@ -1,0 +1,343 @@
+{
+  "date": "2026-11-12",
+  "quality_suite": "Windows Edge, isolated PGlite, real DeepSeek, v2 Workspace canary",
+  "browser_workflows": 7,
+  "targeted_rechecks": [
+    "hash",
+    "paper"
+  ],
+  "cases": [
+    {
+      "case": "curie",
+      "seconds": 19.75,
+      "terminal": "COMPLETED",
+      "missing": [
+        "诺贝尔奖官网来源与署名照片",
+        "相关的署名许可图片"
+      ],
+      "legacy_coverage": {
+        "requested": 5,
+        "supported": 4
+      },
+      "required": {
+        "answer": {
+          "total": 1,
+          "completed": 1
+        },
+        "artifact": {
+          "total": 1,
+          "completed": 1
+        },
+        "evidence": {
+          "total": 1,
+          "completed": 1
+        },
+        "retrieval": {
+          "total": 1,
+          "completed": 1
+        }
+      },
+      "gate": "pass_with_disclosed_gaps",
+      "revision": 2,
+      "accepted_artifact_audited": true,
+      "math": [],
+      "evidence": [
+        {
+          "title": "Marie Curie · Nobel Prize",
+          "url": "https://api.nobelprize.org/2.1/laureate/6",
+          "page": null
+        },
+        {
+          "title": "Marie Curie · Nobel Prize",
+          "url": "https://api.nobelprize.org/2.1/laureate/6",
+          "page": null
+        },
+        {
+          "title": "Henri Becquerel : découverte de la radioactivité",
+          "url": "https://doi.org/10.4000/bibnum.848",
+          "page": null
+        },
+        {
+          "title": "Antoine Henri Becquerel (1852–1908), Discoverer of Natural Radioactivity",
+          "url": "https://doi.org/10.1333/s00897082116a",
+          "page": null
+        },
+        {
+          "title": "Marie Curie – A Pioneer of Radiochemistry and Dual Nobel Prize Laureate",
+          "url": "https://doi.org/10.1071/ch11118",
+          "page": null
+        }
+      ],
+      "usage": {
+        "calls": 6,
+        "input": 13627,
+        "output": 2481
+      },
+      "manual_status": "partial",
+      "manual_observation": "Official award facts and reasons cited; collaborator attribution incomplete and no credited licensed portrait."
+    },
+    {
+      "case": "hash",
+      "seconds": 18.428,
+      "terminal": "COMPLETED",
+      "missing": [
+        "两种算法标准出处",
+        "构造与输出位数"
+      ],
+      "legacy_coverage": {
+        "requested": 4,
+        "supported": 2
+      },
+      "required": {
+        "answer": {
+          "total": 2,
+          "completed": 2
+        },
+        "artifact": {
+          "total": 2,
+          "completed": 2
+        },
+        "evidence": {
+          "total": 2,
+          "completed": 2
+        },
+        "retrieval": {
+          "total": 2,
+          "completed": 2
+        }
+      },
+      "gate": "pass_with_disclosed_gaps",
+      "revision": 2,
+      "accepted_artifact_audited": true,
+      "math": [],
+      "evidence": [
+        {
+          "title": "NIST FIPS 180-4",
+          "url": "https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.180-4.pdf",
+          "page": 26
+        },
+        {
+          "title": "NIST FIPS 202",
+          "url": "https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.202.pdf",
+          "page": 9
+        },
+        {
+          "title": "NIST FIPS 202",
+          "url": "https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.202.pdf",
+          "page": 28
+        },
+        {
+          "title": "NIST FIPS 202",
+          "url": "https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.202.pdf",
+          "page": 9
+        },
+        {
+          "title": "NIST FIPS 180-4",
+          "url": "https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.180-4.pdf",
+          "page": 4
+        }
+      ],
+      "usage": {
+        "calls": 5,
+        "input": 17331,
+        "output": 2390
+      },
+      "manual_status": "partial",
+      "manual_observation": "Two original standards cited; SHA3 operation and hash/MAC included, but the comparative construction of SHA-256 remains incomplete and the digest equivalence wording is too categorical."
+    },
+    {
+      "case": "conditions",
+      "seconds": 6.127,
+      "terminal": "COMPLETED",
+      "legacy_coverage": {
+        "requested": 4,
+        "supported": 4
+      },
+      "required": {
+        "answer": {
+          "total": 4,
+          "completed": 4
+        },
+        "artifact": {
+          "total": 4,
+          "completed": 4
+        },
+        "evidence": {
+          "total": 4,
+          "completed": 4
+        },
+        "retrieval": {
+          "total": 4,
+          "completed": 4
+        }
+      },
+      "gate": "pass",
+      "revision": 2,
+      "accepted_artifact_audited": true,
+      "math": [],
+      "evidence": [
+        {
+          "title": "指定英文实验记录",
+          "url": null,
+          "page": null
+        }
+      ],
+      "usage": {
+        "calls": 3,
+        "input": 2736,
+        "output": 711
+      },
+      "manual_status": "pass",
+      "manual_observation": "Both temperatures, measured reductions and same-heat resistance baseline preserved; no cross-model ranking or extrapolation to freezing."
+    },
+    {
+      "case": "paper",
+      "seconds": 12.196,
+      "terminal": "COMPLETED",
+      "legacy_coverage": {
+        "requested": 4,
+        "supported": 4
+      },
+      "required": {
+        "answer": {
+          "total": 1,
+          "completed": 1
+        },
+        "artifact": {
+          "total": 1,
+          "completed": 1
+        },
+        "evidence": {
+          "total": 1,
+          "completed": 1
+        },
+        "retrieval": {
+          "total": 1,
+          "completed": 1
+        }
+      },
+      "gate": "pass",
+      "revision": 2,
+      "accepted_artifact_audited": true,
+      "image_decoded": true,
+      "image": "CC BY-SA 3.0",
+      "math": [
+        {
+          "latex": "1.0\\times 10^{-21}",
+          "exponent": -21,
+          "mantissa": "1.0"
+        }
+      ],
+      "evidence": [
+        {
+          "title": "Observation of Gravitational Waves from a Binary Black Hole Merger",
+          "url": "https://doi.org/10.1103/physrevlett.116.061102",
+          "page": null
+        },
+        {
+          "title": "GW150914",
+          "url": "https://zh.wikipedia.org/wiki/GW150914",
+          "page": null
+        },
+        {
+          "title": "THE INTERPLANETARY NETWORK RESPONSE TO LIGO GW150914",
+          "url": "https://doi.org/10.3847/2041-8205/829/1/l12",
+          "page": null
+        },
+        {
+          "title": "LIGO measurement of gravitational waves(zh-hans)",
+          "url": "https://commons.wikimedia.org/wiki/File:LIGO_measurement_of_gravitational_waves(zh-hans).png",
+          "page": null
+        }
+      ],
+      "usage": {
+        "calls": 3,
+        "input": 6245,
+        "output": 1269
+      },
+      "manual_status": "pass",
+      "manual_observation": "Exact original DOI cited, signal and theory distinguished, credited licensed illustration decoded, exponent represented as a math inline. An earlier run was blocked by transient DOI retrieval."
+    },
+    {
+      "case": "absent",
+      "seconds": 3.091,
+      "terminal": "FAILED",
+      "warning": "ANALYSIS_NO_EVIDENCE",
+      "accepted_artifact_audited": false,
+      "usage": {
+        "calls": 1,
+        "input": 169,
+        "output": 197
+      },
+      "manual_status": "pass",
+      "manual_observation": "No applicable proposal without evidence."
+    },
+    {
+      "case": "cited_edit",
+      "manual_status": "pass",
+      "unsafe_rewrite": "AI_EDIT_EVIDENCE",
+      "accepted_revision": 2,
+      "evidence_preserved": true,
+      "rewrite": "恒定室内温度下，本研究对住宅空气源热泵进行了一次现场测试。"
+    },
+    {
+      "case": "cancel_reload",
+      "manual_status": "pass",
+      "status": "CANCELLED",
+      "revision": 1,
+      "event_count": 2,
+      "replayed": true
+    }
+  ],
+  "api": "45/45",
+  "browser_e2e": "8/8",
+  "windows_webview2": "passed",
+  "android": {
+    "api": 36,
+    "artifact": "debug APK",
+    "offline_restart_resync": true,
+    "physical_device": false
+  },
+  "postgres": {
+    "version": "17.11",
+    "independent_pools": 2,
+    "queued": 48,
+    "elapsed_ms": 234,
+    "duplicate_idempotent": true,
+    "expired_lease_reclaimed": true,
+    "pgvector": false
+  },
+  "object_store": {
+    "endpoint": "S3rver on loopback",
+    "put_get_hash_match": true,
+    "missing_key_rejected": true,
+    "copy_roundtrip": true
+  },
+  "official_poc": {
+    "version": "0.2.2-rc.2",
+    "session_format": 4,
+    "derived_roles": [
+      "user",
+      "assistant",
+      "tool"
+    ],
+    "agent_loop_imported": true,
+    "model_calls": 0
+  },
+  "shadow": {
+    "case": "synthetic calibration",
+    "persisted": false,
+    "legacy": {
+      "elapsed_ms": 1639,
+      "calls": 2,
+      "input": 1166,
+      "output": 104
+    },
+    "sse": {
+      "elapsed_ms": 2019,
+      "calls": 2,
+      "input": 1164,
+      "output": 102
+    }
+  }
+}

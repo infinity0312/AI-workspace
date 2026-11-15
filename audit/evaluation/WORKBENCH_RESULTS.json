@@ -1,0 +1,237 @@
+{
+  "date": "2026-11-12",
+  "platform": "Windows, Edge, isolated PGlite, real DeepSeek, Harness canary",
+  "automated_browser_flows": {
+    "passed": 7,
+    "failed": 0,
+    "quality_assessed_separately": true
+  },
+  "cases": [
+    {
+      "case": "curie",
+      "measured_seconds": 16.734,
+      "run_status": "COMPLETED",
+      "coverage": {
+        "requested": 5,
+        "supported": 1
+      },
+      "missing": [
+        "官方获奖理由",
+        "放射性的发现归属",
+        "钋和镭的发现与分离",
+        "署名许可照片"
+      ],
+      "artifact_revision": 2,
+      "proposal_created": true,
+      "evidence": [
+        {
+          "title": "Marie Curie – A Pioneer of Radiochemistry and Dual Nobel Prize Laureate",
+          "url": "https://doi.org/10.1071/ch11118",
+          "pdf_page": null
+        },
+        {
+          "title": "Marie Curie · Nobel Prize",
+          "url": "https://api.nobelprize.org/2.1/laureate/6",
+          "pdf_page": null
+        },
+        {
+          "title": "Marie Curie · Nobel Prize",
+          "url": "https://api.nobelprize.org/2.1/laureate/6",
+          "pdf_page": null
+        }
+      ],
+      "model": {
+        "responses": 5,
+        "input_tokens": 12591,
+        "output_tokens": 1893
+      },
+      "source_discovery": {
+        "found": 9,
+        "primary": 1,
+        "channels": 10,
+        "eligible": 10,
+        "web_enabled": false,
+        "institutional": 0,
+        "failed_channels": 2
+      },
+      "manual_status": "partial",
+      "manual_observation": "Both award years, categories and official reasons were cited. The requested joint-work attribution and licensed portrait were incomplete."
+    },
+    {
+      "case": "hash",
+      "measured_seconds": 18.341,
+      "run_status": "COMPLETED",
+      "coverage": {
+        "requested": 4,
+        "supported": 1
+      },
+      "missing": [
+        "Standard sources",
+        "Why not interchangeable",
+        "Hash vs MAC"
+      ],
+      "artifact_revision": 2,
+      "proposal_created": true,
+      "evidence": [
+        {
+          "title": "NIST FIPS 180-4",
+          "url": "https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.180-4.pdf",
+          "pdf_page": 26
+        },
+        {
+          "title": "NIST FIPS 202",
+          "url": "https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.202.pdf",
+          "pdf_page": 9
+        }
+      ],
+      "model": {
+        "responses": 5,
+        "input_tokens": 14015,
+        "output_tokens": 2210
+      },
+      "source_discovery": {
+        "found": 8,
+        "primary": 2,
+        "channels": 10,
+        "eligible": 10,
+        "web_enabled": false,
+        "institutional": 0,
+        "failed_channels": 3
+      },
+      "manual_status": "partial",
+      "manual_observation": "Both official NIST PDFs were cited with page locators and the digest lengths were preserved. The comparison did not explain the constructions, incompatibility or MAC distinction."
+    },
+    {
+      "case": "conditions",
+      "measured_seconds": 6.136,
+      "run_status": "COMPLETED",
+      "coverage": {
+        "requested": 4,
+        "supported": 4
+      },
+      "artifact_revision": 2,
+      "proposal_created": true,
+      "evidence": [
+        {
+          "title": "指定英文实验记录",
+          "url": null,
+          "pdf_page": null
+        }
+      ],
+      "model": {
+        "responses": 3,
+        "input_tokens": 2524,
+        "output_tokens": 751
+      },
+      "manual_status": "pass",
+      "manual_observation": "Both model, temperature, resistance-heating baseline and measured reduction combinations are present. Direct comparison and freezing-temperature extrapolation are excluded."
+    },
+    {
+      "case": "paper",
+      "measured_seconds": 25.794,
+      "run_status": "COMPLETED",
+      "coverage": {
+        "requested": 5,
+        "supported": 4
+      },
+      "missing": [
+        "Original 2016 paper"
+      ],
+      "artifact_revision": 2,
+      "proposal_created": true,
+      "evidence": [
+        {
+          "title": "Observation of Gravitational Waves from a Binary Black Hole Merger",
+          "url": "https://doi.org/10.1103/physrevlett.116.061102",
+          "pdf_page": null
+        },
+        {
+          "title": "激光干涉引力波天文台",
+          "url": "https://zh.wikipedia.org/wiki/%E6%BF%80%E5%85%89%E5%B9%B2%E6%B6%89%E5%BC%95%E5%8A%9B%E6%B3%A2%E5%A4%A9%E6%96%87%E5%8F%B0",
+          "pdf_page": null
+        },
+        {
+          "title": "THE INTERPLANETARY NETWORK RESPONSE TO LIGO GW150914",
+          "url": "https://doi.org/10.3847/2041-8205/829/1/l12",
+          "pdf_page": null
+        }
+      ],
+      "model": {
+        "responses": 5,
+        "input_tokens": 16617,
+        "output_tokens": 2138
+      },
+      "source_discovery": {
+        "found": 12,
+        "primary": 0,
+        "channels": 11,
+        "eligible": 12,
+        "web_enabled": false,
+        "institutional": 1,
+        "failed_channels": 2
+      },
+      "manual_status": "partial",
+      "manual_observation": "The exact DOI now supports signal and waveform claims. Secondary sources remain separate. The final run has no image; a previous image passed browser decoding and had credit and license. The extracted scientific notation loses its exponent formatting."
+    },
+    {
+      "case": "absent",
+      "measured_seconds": 3.078,
+      "run_status": "FAILED",
+      "warning": "ANALYSIS_NO_EVIDENCE",
+      "proposal_created": false,
+      "model": {
+        "responses": 1,
+        "input_tokens": 169,
+        "output_tokens": 194
+      },
+      "manual_status": "pass",
+      "manual_observation": "The fabricated claim without evidence did not produce an applicable proposal."
+    },
+    {
+      "case": "cited_edit",
+      "manual_status": "pass",
+      "adverse": "FAILED",
+      "adverse_warning": "AI_EDIT_EVIDENCE",
+      "before_accept": 1,
+      "concise": "COMPLETED",
+      "result": "在恒定室内温度下，本研究对一栋住宅的空气源热泵做了一次现场测试。",
+      "artifact_revision": 2,
+      "evidence_preserved": true,
+      "prior_scope_rejection": "AI_EDIT_SCOPE"
+    },
+    {
+      "case": "cancel_reload",
+      "manual_status": "pass",
+      "status": "CANCELLED",
+      "revision": 1,
+      "event_count": 2,
+      "replayed": true
+    }
+  ],
+  "historical_observations": {
+    "real_tool_reads": 2,
+    "decoded_research_image": true,
+    "image": [
+      {
+        "title": "LIGO measurement of gravitational waves(zh-hans)",
+        "credit": "B. P. Abbott et al. (LIGO Scientific Collaboration and Virgo Collaboration)",
+        "license": "CC BY-SA 3.0",
+        "license_url": "https://creativecommons.org/licenses/by-sa/3.0"
+      }
+    ],
+    "prior_numeric_coverage_false_positive": {
+      "requested": 4,
+      "supported": 4
+    },
+    "controlled_conditions_successful_runs": 2
+  },
+  "other_tests": {
+    "api": "43/43",
+    "web_e2e": "8/8",
+    "live_deepseek_legacy": "4/4",
+    "windows_webview2": "passed",
+    "android": "debug APK built, device not tested",
+    "typecheck": "passed",
+    "lint": "passed"
+  }
+}

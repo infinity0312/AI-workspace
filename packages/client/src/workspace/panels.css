@@ -1,0 +1,23 @@
+@media (min-width: 1071px) {
+  .app .shell.with-inspector {
+    grid-template-columns: var(--left-column, var(--sidebar-width, 218px)) minmax(0, 1fr) var(--right-column, var(--inspector-width, 312px));
+  }
+  .shell.with-inspector .sidebar { grid-column: 1; grid-row: 1; }
+  .shell.with-inspector .canvas { grid-column: 2; grid-row: 1; }
+  .shell.with-inspector .inspector { grid-column: 3; grid-row: 1; }
+  .shell.left-collapsed { --left-column: 0px; }
+  .shell.right-collapsed { --right-column: 0px; }
+  .shell.left-collapsed .sidebar, .shell.right-collapsed .inspector { display: none; }
+  .top .desktop-panel-toggle, .top .inspector-toggle { display: inline-block; }
+}
+@media (max-width: 1070px) {
+  .top .desktop-panel-toggle { display: none; }
+}
+.outline { margin: 1rem 0; }
+.outline ul { padding-left: 0; list-style: none; display: grid; gap: 0.3rem; }
+.outline button { white-space: normal; text-align: left; width: 100%; padding: 0.35rem 0.5rem; }
+.reference-token { display: inline-block; color: var(--accent); background: var(--soft); border-radius: 0.25rem; padding: 0 0.2rem; }
+.pdf-page { overflow: auto; max-height: 65vh; border: 1px solid var(--line); background: #e9edf5; } .pdf-page canvas { display: block; max-width: none; } .pdf-page canvas[hidden] { display: none; }
+.selection-toolbar { position: fixed; z-index: 6; padding: 0.3rem; background: var(--paper); border: 1px solid var(--line); border-radius: 8px; box-shadow: 0 5px 22px #21223824; } .selection-toolbar button { padding: 0.25rem 0.4rem; }
+.block-actions { flex-wrap: wrap; } .block-drag { cursor: grab; user-select: none; font-size: 0.8rem; padding: 0.35rem; } .block-drag:active { cursor: grabbing; } .footnote-text { display: inline-block; white-space: pre-wrap; }
+.image-with-marks { position: relative; width: fit-content; max-width: 100%; } .analysis-image[data-fit='cover'] .image-with-marks { width: 100%; } .image-with-marks[data-markable="true"] img { cursor: crosshair; } .image-mark { position: absolute; transform: translate(-50%,-50%); border: 2px solid white; background: #253aab; color: white; font-weight: 700; width: 1.55rem; height: 1.55rem; display: grid; place-items: center; border-radius: 50%; pointer-events: none; box-shadow: 0 1px 6px #191c4e; } .image-notes { margin: 0; padding-left: 1.5rem; }

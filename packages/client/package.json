@@ -1,0 +1,21 @@
+{
+  "name": "@akw/client",
+  "version": "0.1.0",
+  "private": true,
+  "exports": {
+    ".": "./src/index.ts",
+    "./styles.css": "./src/styles.css"
+  },
+  "dependencies": {
+    "@akw/contracts": "*",
+    "@tiptap/core": "^3.11.0",
+    "@tiptap/react": "^3.11.0",
+    "@tiptap/starter-kit": "^3.11.0",
+    "@xyflow/react": "^12.12.1",
+    "katex": "^0.19.1",
+    "pdfjs-dist": "^5.4.296",
+    "react": "^19.2.0",
+    "react-markdown": "^10.1.0",
+    "remark-gfm": "^4.0.1"
+  }
+}

@@ -1,0 +1,40 @@
+{
+  "name": "ai-knowledge-workspace",
+  "version": "0.1.0",
+  "private": true,
+  "engines": {
+    "node": ">=22"
+  },
+  "workspaces": [
+    "apps/*",
+    "packages/*"
+  ],
+  "scripts": {
+    "dev": "concurrently -k -n api,web \"npm run dev -w @akw/api\" \"npm run dev -w @akw/web\"",
+    "build": "npm run build -w @akw/api && npm run build -w @akw/web",
+    "start": "concurrently -k -n api,web \"npm run start -w @akw/api\" \"npm run start -w @akw/web\"",
+    "typecheck": "npm run typecheck -w @akw/api && npm run typecheck -w @akw/web && npm run typecheck -w @akw/windows && npm run typecheck -w @akw/mobile",
+    "lint": "eslint apps/api/src apps/web/app apps/windows/src packages/contracts/src packages/client/src",
+    "test": "npm run test -w @akw/api",
+    "migrate": "npm run migrate -w @akw/api",
+    "worker": "npm run worker -w @akw/api",
+    "test:e2e": "playwright test",
+    "test:deepseek": "npm exec -w @akw/api -- tsx tests/deepseek-live.ts",
+    "dev:windows": "npm run tauri -w @akw/windows -- dev",
+    "build:windows": "npm run tauri -w @akw/windows -- build",
+    "test:windows": "cargo test --manifest-path apps/windows/src-tauri/Cargo.toml",
+    "test:windows:ui": "node scripts/windows-smoke.mjs",
+    "test:windows:learning": "node scripts/windows-learning-smoke.mjs",
+    "test:windows:productivity": "node scripts/windows-productivity-smoke.mjs",
+    "start:windows": "node scripts/windows-local.mjs",
+    "build:android": "npm run build -w @akw/mobile && npm run capacitor -w @akw/mobile -- sync android && npm run gradle:debug -w @akw/mobile"
+  },
+  "devDependencies": {
+    "@eslint/js": "^9.39.0",
+    "@playwright/test": "^1.65.0",
+    "concurrently": "^9.2.0",
+    "eslint": "^9.39.0",
+    "typescript": "~5.9.0",
+    "typescript-eslint": "^8.48.0"
+  }
+}

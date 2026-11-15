@@ -1,0 +1,142 @@
+{
+  "environment": "Windows isolated local DeepSeek browser acceptance",
+  "date": "2026-11-14",
+  "analysisWorkflow": 17,
+  "source": ".data/upgrade-v1/acceptance",
+  "notes": [
+    "Scenarios are single runs and do not estimate production accuracy or p95.",
+    "webEnabled refers to optional general web search, while primary, academic and media connectors can still run.",
+    "Usage is counted from analysis job events only."
+  ],
+  "cases": {
+    "curie": {
+      "status": "COMPLETED",
+      "seconds": 18.229,
+      "coverage": {
+        "requested": 4,
+        "supported": 4
+      },
+      "gate": "pass",
+      "asset": [
+        {
+          "title": "Portrait of Marie Curie (1867 - 1934), Polish chemist",
+          "credit": "Henri Manuel",
+          "license": "CC BY 4.0"
+        }
+      ],
+      "imageDecoded": true,
+      "webEnabled": false,
+      "usage": {
+        "calls": 5,
+        "tokens": 16724
+      },
+      "revision": 2,
+      "citedUrls": [
+        "https://api.nobelprize.org/2.1/laureate/6",
+        "https://www.nobelprize.org/prizes/themes/marie-and-pierre-curie-and-the-discovery-of-polonium-and-radium/",
+        "https://www.nobelprize.org/uploads/2018/06/pierre-curie-lecture.pdf",
+        "https://commons.wikimedia.org/wiki/File:Portrait_of_Marie_Curie_(1867_-_1934),_Polish_chemist_Wellcome_M0000113.jpg"
+      ]
+    },
+    "hash": {
+      "status": "COMPLETED",
+      "seconds": 12.183,
+      "coverage": {
+        "requested": 3,
+        "supported": 3
+      },
+      "gate": "pass",
+      "asset": [],
+      "webEnabled": false,
+      "usage": {
+        "calls": 3,
+        "tokens": 10308
+      },
+      "revision": 2,
+      "citedUrls": [
+        "https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.180-4.pdf",
+        "https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.202.pdf",
+        "https://csrc.nist.gov/projects/message-authentication-codes"
+      ]
+    },
+    "conditions": {
+      "status": "COMPLETED",
+      "seconds": 6.105,
+      "coverage": {
+        "requested": 4,
+        "supported": 4
+      },
+      "gate": "pass",
+      "asset": [],
+      "usage": {
+        "calls": 3,
+        "tokens": 3233
+      },
+      "revision": 2,
+      "citedUrls": []
+    },
+    "paper": {
+      "status": "COMPLETED",
+      "seconds": 15.169,
+      "coverage": {
+        "requested": 4,
+        "supported": 4
+      },
+      "gate": "pass",
+      "asset": [
+        {
+          "title": "LIGO measurement of gravitational waves(zh-hans)",
+          "credit": "B. P. Abbott et al. (LIGO Scientific Collaboration and Virgo Collaboration)",
+          "license": "CC BY-SA 3.0"
+        }
+      ],
+      "imageDecoded": true,
+      "webEnabled": false,
+      "usage": {
+        "calls": 3,
+        "tokens": 9436
+      },
+      "revision": 2,
+      "citedUrls": [
+        "https://doi.org/10.1103/physrevlett.116.061102",
+        "https://zh.wikipedia.org/wiki/GW150914",
+        "https://commons.wikimedia.org/wiki/File:LIGO_measurement_of_gravitational_waves(zh-hans).png"
+      ]
+    },
+    "absent": {
+      "status": "FAILED",
+      "seconds": 4.6,
+      "warning": "ANALYSIS_NO_EVIDENCE",
+      "asset": [],
+      "usage": {
+        "calls": 2,
+        "tokens": 694
+      },
+      "citedUrls": []
+    },
+    "cancel": {
+      "status": "CANCELLED",
+      "asset": [],
+      "usage": {
+        "calls": 0,
+        "tokens": 0
+      },
+      "revision": 1,
+      "events": 2,
+      "citedUrls": [],
+      "resumed": true
+    },
+    "edit": {
+      "asset": [],
+      "usage": {
+        "calls": 0,
+        "tokens": 0
+      },
+      "citedUrls": [],
+      "adverse": "AI_EDIT_EVIDENCE",
+      "style": "COMPLETED",
+      "before": 1,
+      "final": 2
+    }
+  }
+}

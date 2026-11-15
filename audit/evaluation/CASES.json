@@ -1,0 +1,173 @@
+{
+  "version": 1,
+  "cases": [
+    {
+      "id": "C01",
+      "topic": "即时回答",
+      "input": "本机合成短问答",
+      "expected": "终态成功且不写正文",
+      "verification": "audit/scripts/phase-00-diagnostic.ts"
+    },
+    {
+      "id": "C02",
+      "topic": "选段精确修改",
+      "input": "LEFT old RIGHT",
+      "expected": "采纳前版本不变，采纳后仅选段变化",
+      "verification": "audit/scripts/compare-harness-transport.ts"
+    },
+    {
+      "id": "C03",
+      "topic": "官方来源与归因",
+      "input": "居里夫人两次获奖",
+      "expected": "两类准确理由和署名媒体",
+      "verification": "workbench:curie"
+    },
+    {
+      "id": "C04",
+      "topic": "标准比较",
+      "input": "SHA-256 与 SHA3-256",
+      "expected": "两个指定原标准各有事实引用",
+      "verification": "workbench:hash"
+    },
+    {
+      "id": "C05",
+      "topic": "条件与数值",
+      "input": "24 ℃、38 ℃ 双组热泵",
+      "expected": "数据、基线及限制不串线",
+      "verification": "workbench:conditions"
+    },
+    {
+      "id": "C06",
+      "topic": "证据不足",
+      "input": "空工作空间核查虚构节电",
+      "expected": "不生成可写入提案",
+      "verification": "workbench:absent"
+    },
+    {
+      "id": "C07",
+      "topic": "编辑语义",
+      "input": "室内恒温现场试验",
+      "expected": "缩短后保留室内与现场",
+      "verification": "workbench:edit"
+    },
+    {
+      "id": "C08",
+      "topic": "模型格式",
+      "input": "空白 JSON",
+      "expected": "明确拒绝并允许有限修复",
+      "verification": "core:task contracts block changed input"
+    },
+    {
+      "id": "C09",
+      "topic": "流截断",
+      "input": "缺失 [DONE]",
+      "expected": "明确中断，不接受半截模型输出",
+      "verification": "harness:stream reassembles"
+    },
+    {
+      "id": "C10",
+      "topic": "限流",
+      "input": "HTTP 429",
+      "expected": "分类可重试",
+      "verification": "harness:adapter distinguishes"
+    },
+    {
+      "id": "C11",
+      "topic": "引用约束",
+      "input": "模型伪造引用 ID",
+      "expected": "无分析提案",
+      "verification": "core:document analysis creates a gated proposal"
+    },
+    {
+      "id": "C12",
+      "topic": "数值一致",
+      "input": "不支持的值和单位",
+      "expected": "拒绝并局部修复",
+      "verification": "core:numeric gate rejects"
+    },
+    {
+      "id": "C13",
+      "topic": "来源撤回",
+      "input": "已定位来源被撤回",
+      "expected": "重新标记依赖结论和检索",
+      "verification": "core:source withdrawal"
+    },
+    {
+      "id": "C14",
+      "topic": "作用域",
+      "input": "关联项目与敏感来源",
+      "expected": "默认隔离，仅授权路径召回",
+      "verification": "core:workspace retrieval recalls"
+    },
+    {
+      "id": "C15",
+      "topic": "跨语种",
+      "input": "中文检索英文固定资料",
+      "expected": "可召回并关联覆盖项",
+      "verification": "core:planned English facets"
+    },
+    {
+      "id": "C16",
+      "topic": "长摘录",
+      "input": "长引用压缩与按需工具",
+      "expected": "完整引文仍可读取",
+      "verification": "harness:canary preserves evidence"
+    },
+    {
+      "id": "C17",
+      "topic": "重领",
+      "input": "阶段中断后 lease 过期",
+      "expected": "已完成起草不重复",
+      "verification": "harness:canary preserves evidence"
+    },
+    {
+      "id": "C18",
+      "topic": "用户取消",
+      "input": "等待中的流式模型",
+      "expected": "取消传播且无晚到提案",
+      "verification": "harness:canary cancellation"
+    },
+    {
+      "id": "C19",
+      "topic": "工具权限",
+      "input": "陌生 evidence ID",
+      "expected": "严格 schema 与 scope 拒绝",
+      "verification": "harness:loop pairs authorized"
+    },
+    {
+      "id": "C20",
+      "topic": "提示注入面",
+      "input": "网页隐藏或活动内容",
+      "expected": "不进入可读正文",
+      "verification": "core:web text drops hidden"
+    },
+    {
+      "id": "C21",
+      "topic": "PDF",
+      "input": "文本页混合扫描页",
+      "expected": "页码与 OCR 回归",
+      "verification": "office:mixed PDF"
+    },
+    {
+      "id": "C22",
+      "topic": "表格与结构",
+      "input": "Word、Slides、XLSX",
+      "expected": "文本、顺序、单元格位置保留",
+      "verification": "office:Office extraction"
+    },
+    {
+      "id": "C23",
+      "topic": "知识图谱和时间线",
+      "input": "同一实体在多视图出现",
+      "expected": "稳定 ID 和范围",
+      "verification": "core:knowledge projections share canonical nodes"
+    },
+    {
+      "id": "C24",
+      "topic": "回滚与离线",
+      "input": "关闭试点及重开文档",
+      "expected": "新任务旧路径，已有事件仍可读",
+      "verification": "harness:missing primary source"
+    }
+  ]
+}

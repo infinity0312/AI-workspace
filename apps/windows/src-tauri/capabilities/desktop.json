@@ -1,0 +1,7 @@
+{
+  "$schema": "../gen/schemas/desktop-schema.json",
+  "identifier": "desktop-local",
+  "description": "Local desktop workspace and artifact windows",
+  "windows": ["main", "artifact-*"],
+  "permissions": ["core:event:allow-listen", "core:event:allow-unlisten"]
+}
