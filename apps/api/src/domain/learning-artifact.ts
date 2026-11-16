@@ -23,6 +23,16 @@ export async function compileLearning(sql:Sql,actor:Actor,scope:Scope,options:{
   const citations=(indexes:number[])=>[...new Set(indexes.flatMap(index=>ids.get(index) ?? []))].map(id=>({ type:'citation',attrs:{ evidence_id:id } }));
   const selectedViews=learningGoalAttrs.safeParse(prior && learningHeader(prior)?.attrs);
   const views=new Set([...(selectedViews.success ? selectedViews.data.views : []),...plan.views,'evidence_network']);
+  const requestedViews = [
+    ['graph_embed', /知识图谱|关系图谱|knowledge graph|relationship graph/i],
+    ['mindmap', /思维导图|mind map/i],
+    ['timeline', /时间脉络|时间线|timeline/i],
+  ] as const;
+  for (const [type,pattern] of requestedViews) {
+    if (pattern.test(question ?? goal)) views.add(type);
+    else if (prior && !prior.blocks.some(block=>block.type===type && block.attrs?.learning_view===true)) views.delete(type);
+  }
+  const includeConcepts=views.has('graph_embed') || views.has('mindmap');
   const lessonIds=new Map(lessons.map(lesson=>[lesson.index,randomUUID()]));
   if (prior) {
     const old=learningHeader(prior);
@@ -53,7 +63,7 @@ export async function compileLearning(sql:Sql,actor:Actor,scope:Scope,options:{
     blocks.push({ id,type:'learning_lesson',attrs:{ version:1,title:lesson.title,objective:lesson.objective,prerequisites,
       math:lesson.math,practice:lesson.practice,ai_claim:true,claim_id:claimId },
       children:[{ type:'text',text:lesson.explanation },...refs] });
-    if (!views.has('graph_embed')) continue;
+    if (!includeConcepts) continue;
     await node(id,lesson.title,'learning_topic',lesson.objective,null,null);
     for (const prerequisite of prerequisites) {
       const edge=randomUUID();
@@ -62,11 +72,11 @@ export async function compileLearning(sql:Sql,actor:Actor,scope:Scope,options:{
       await event(sql,actor,scope.workspace_id,'KnowledgeEdgeConfirmed','knowledge_edge',edge);
     }
   }
-  const visibleNodes=new Set(prior?.blocks.filter(block=>block.type==='graph_embed' && block.attrs?.learning_view===true)
+  const visibleNodes=new Set(prior?.blocks.filter(block=>(block.type==='graph_embed' || block.type==='mindmap') && block.attrs?.learning_view===true)
     .flatMap(block=>Array.isArray(block.attrs?.node_ids) ? block.attrs.node_ids : []) ?? []);
   const lead=prior?.blocks.filter(block=>block.type==='learning_lesson' && visibleNodes.has(block.id)).at(-1);
   const added=lessons[0] && lessonIds.get(lessons[0].index);
-  if (lead && added && views.has('graph_embed')) {
+  if (lead && added && includeConcepts) {
     const link=randomUUID();
     await sql.all(`INSERT INTO knowledge_edges(id,workspace_id,from_node_id,to_node_id,relation_type,status,created_by)
       VALUES($1,$2,$3,$4,'related_to','confirmed',$5)`,[link,scope.workspace_id,added,lead.id,actor.user]);
@@ -94,7 +104,7 @@ export async function compileLearning(sql:Sql,actor:Actor,scope:Scope,options:{
     ] })));
   }
   const initialIds=[...lessonIds.values()];
-  const upsertView=(type:'graph_embed'|'timeline',title:string,newIds:string[],extra:Block['attrs']={})=>{
+  const upsertView=(type:'graph_embed'|'mindmap'|'timeline',title:string,newIds:string[],extra:Block['attrs']={})=>{
     if (!newIds.length) return;
     const old=prior?.blocks.find(block=>block.type===type && block.attrs?.learning_view===true);
     const existing=Array.isArray(old?.attrs?.node_ids) ? old.attrs.node_ids : [];
@@ -104,6 +114,7 @@ export async function compileLearning(sql:Sql,actor:Actor,scope:Scope,options:{
     else blocks.push(block);
   };
   if (views.has('graph_embed')) upsertView('graph_embed','概念与先修关系',initialIds);
+  if (views.has('mindmap')) upsertView('mindmap','主题思维导图',initialIds);
   upsertView('timeline','文献时间线',timeline,{ paper_urls:[...relatedPapers] });
   if (views.has('table') && lessons.length>1) blocks.push({ id:randomUUID(),type:'table',attrs:{ table_version:1,title:'学习路径与先修要求',
     rows:[['主题','学习后能做到','先修主题'],...lessons.map(lesson=>[lesson.title,lesson.objective,

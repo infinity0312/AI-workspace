@@ -44,7 +44,7 @@ try {
   browser=await chromium.connectOverCDP(debug,{ timeout:12000 });
   const context=browser.contexts()[0];
   page=context.pages()[0] ?? await context.waitForEvent('page');
-  await page.getByRole('textbox',{ name:'你想查什么、完成什么或学会什么？' }).fill('我想系统学习图神经网络，并了解它在晶体材料物性预测中的应用。');
+  await page.getByRole('textbox',{ name:'你想查什么、完成什么或学会什么？' }).fill('我想系统学习图神经网络，并了解它在晶体材料物性预测中的应用。请附一张思维导图。');
   const manual=page.getByText('手动组织项目与文档',{ exact:true });
   await expect(manual).toBeVisible();
   await expect(page.getByRole('textbox',{ name:'文档标题' })).toBeHidden();
@@ -62,16 +62,14 @@ try {
   const goalJob=runList.changes.find(event=>event.event_type==='RunQueued' && event.payload.kind==='learning');
   const learningRun=await request('/learning-runs/'+goalJob.aggregate_id);
   await writeFile(join(dir,'initial.json'),JSON.stringify({ firstElapsed,before,projection,learningRun },null,2));
-  const views=page.getByRole('group',{ name:'工作区视图' });
-  await views.getByRole('button',{ name:'时间脉络',exact:true }).click();
   await expect(page.getByRole('heading',{ name:'文献时间线',exact:true })).toBeVisible({ timeout:10000 });
   await expect(page.getByRole('button',{ name:'日期证据' }).first()).toBeVisible();
   await page.getByRole('button',{ name:'日期证据' }).first().click();
   await expect(page.getByRole('heading',{ name:'原文证据' })).toBeVisible();
-  await views.getByRole('button',{ name:'关系图谱',exact:true }).click();
   await expect(page.getByRole('heading',{ name:'概念与先修关系',exact:true })).toBeVisible({ timeout:10000 });
+  await expect(page.getByRole('region',{ name:'主题思维导图',exact:true })).toBeVisible();
+  await expect(page.getByRole('group',{ name:'工作区视图' })).toHaveCount(0);
   assert.ok(projection.edges.some(edge=>edge.relation_type==='depends_on'));
-  await views.getByRole('button',{ name:'正文',exact:true }).click();
   await expect(page.locator('.artifact-content .katex').first()).toBeVisible();
   await expect(page.getByRole('heading',{ name:'入门教材',exact:true })).toBeVisible();
   const lesson=before.revision.content_json.blocks.find(block=>block.type==='learning_lesson' && block.attrs.practice?.length);

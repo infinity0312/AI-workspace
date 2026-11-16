@@ -8,7 +8,7 @@ export const learningRequest=z.object({
 export const learningFollowup=z.object({ question:text(1000),background:text(500).optional(),base_revision_id:id,allow_external:z.literal(true) }).strict();
 export const learningGoalAttrs=z.object({
   version:z.literal(1),goal:text(1600),foundation:text(600),basis:z.enum(['provided','inferred','unknown']),
-  diagnostic:text(400),views:z.array(z.enum(['graph_embed','timeline','table','evidence_network'])).max(4),
+  diagnostic:text(400),views:z.array(z.enum(['graph_embed','mindmap','timeline','table','evidence_network'])).max(5),
 }).passthrough();
 export const learningQuestion=z.object({
   question:text(380),options:z.array(text(240)).length(3).refine(values=>new Set(values).size===3),

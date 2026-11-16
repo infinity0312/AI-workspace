@@ -18,7 +18,7 @@ test('create, edit offline, sync, and verify narrow layout', async ({ page, cont
   await context.setOffline(true);
   await expect(page.getByText('离线',{ exact:true })).toBeVisible();
   await page.getByRole('button',{ name:'编辑模式' }).click();
-  await page.getByRole('button',{ name:'添加内容块' }).click();
+  await page.getByRole('button',{ name:'＋ 添加内容块',exact:true }).click();
   await page.getByRole('textbox',{ name:'内容', exact:true }).fill('保存在本机的研究记录。');
   await page.getByRole('button',{ name:'保存内容块' }).click();
   await expect(page.getByText('保存在本机的研究记录。',{ exact:true })).toBeVisible();
@@ -168,7 +168,7 @@ test('compose diagrams, a dated view and LaTeX in one saved document',async ({ p
   await page.getByRole('button',{ name:'编辑模式' }).click();
 
   async function block(kind:string,label:string,value:string) {
-    await page.getByRole('button',{ name:'添加内容块' }).click();
+    await page.getByRole('button',{ name:'＋ 添加内容块',exact:true }).click();
     await page.getByLabel('内容类型').selectOption({ label:kind });
     await page.getByLabel(label,{ exact:true }).fill(value);
     await page.getByRole('button',{ name:'保存内容块' }).click();
@@ -196,13 +196,17 @@ test('compose diagrams, a dated view and LaTeX in one saved document',async ({ p
   await page.reload();
   await expect(body.getByRole('region',{ name:'研究历程' }).locator('time')).toHaveText(['2020','2021-03-05']);
   await expect(body.locator('.katex')).toHaveCount(2);
-  const tabs = page.getByRole('group',{ name:'工作区视图' });
-  await tabs.getByRole('button',{ name:'时间脉络',exact:true }).click();
-  await expect(body.locator('time')).toHaveText(['2020','2021-03-05']);
-  await expect(body.locator('.katex')).toHaveCount(0);
-  await page.reload();
-  await expect(tabs.getByRole('button',{ name:'时间脉络',exact:true })).toHaveAttribute('aria-pressed','true');
-  await tabs.getByRole('button',{ name:'正文',exact:true }).click();
+  await expect(page.getByRole('group',{ name:'工作区视图' })).toHaveCount(0);
+  await page.getByRole('button',{ name:'编辑模式',exact:true }).click();
+  await timeline.locator('..').getByRole('button',{ name:'删除内容块' }).click();
+  await expect(timeline).toHaveCount(0);
+  const mapBlock=map.locator('..');
+  await mapBlock.getByRole('button',{ name:'在此后添加内容块' }).click();
+  await mapBlock.getByLabel('内容类型').selectOption('timeline');
+  await mapBlock.getByLabel('视图标题').fill('补充时间线');
+  await mapBlock.getByRole('button',{ name:'保存内容块' }).click();
+  await expect(mapBlock.locator('xpath=following-sibling::section[1]').getByRole('region',{ name:'补充时间线' })).toBeVisible();
+  await expect(body.getByRole('region',{ name:'研究关系' })).toBeVisible();
   await expect(body.locator('.katex')).toHaveCount(2);
 });
 
@@ -253,10 +257,7 @@ test('workspace data, references, PDF, dependency graph and revision export work
   await page.getByText('文档目录',{ exact:true }).click();
   await page.getByRole('navigation',{ name:'文档目录' }).getByRole('button',{ name:'试验记录' }).click();
   await expect(page.locator('#block-'+heading.id)).toBeFocused();
-  const tabs = page.getByRole('group',{ name:'工作区视图' });
-  await tabs.getByRole('button',{ name:'依赖图',exact:true }).click();
   await expect(page.locator('.artifact-content .react-flow')).toBeVisible();
-  await tabs.getByRole('button',{ name:'证据网络',exact:true }).click();
   const network = page.getByRole('region',{ name:'证据网络' });
   await expect(network.getByText('Trial 2 measured a value of 25 units.')).toBeVisible();
   await network.getByRole('button',{ name:'标定实验原始报告 · 第 2 页' }).click();
@@ -265,7 +266,6 @@ test('workspace data, references, PDF, dependency graph and revision export work
   await page.getByRole('button',{ name:'上一页' }).click();
   await expect(page.locator('canvas[aria-label="PDF 第 1 页"]')).toBeVisible();
   await network.getByRole('button',{ name:'正文引用 1' }).click();
-  await expect(tabs.getByRole('button',{ name:'正文' })).toHaveAttribute('aria-pressed','true');
   await page.getByRole('button',{ name:'编辑模式',exact:true }).click();
   await page.getByRole('checkbox',{ name:'完成校准' }).click();
   await expect(page.getByText(/版本 2 · 已同步/)).toBeVisible();
@@ -273,7 +273,6 @@ test('workspace data, references, PDF, dependency graph and revision export work
   await page.getByRole('textbox',{ name:'表格 3 行 2 列' }).fill('31');
   await page.getByRole('button',{ name:'保存内容块' }).click();
   await expect(page.getByText(/版本 3 · 已同步/)).toBeVisible();
-  await tabs.getByRole('button',{ name:'科学图表',exact:true }).click();
   const visual = page.getByRole('region',{ name:'标定趋势' });
   await visual.getByText('查看图表数据').click();
   await expect(visual.getByRole('cell',{ name:'31',exact:true })).toBeVisible();
@@ -326,7 +325,7 @@ test('split and merge paragraphs, preserve an inline footnote and save a figure 
   await page.getByRole('button',{ name:'保存内容块' }).click();
   await page.getByRole('button',{ name:'脚注',exact:true }).click();
   await expect(page.getByText('对测量条件的补充说明。')).toBeVisible();
-  await page.getByRole('button',{ name:'添加内容块' }).click();
+  await page.getByRole('button',{ name:'＋ 添加内容块',exact:true }).click();
   await page.getByLabel('内容类型').selectOption('image');
   await page.getByLabel('图片文件').setInputFiles('apps/api/tests/fixtures/ocr-atlas.png');
   await page.getByLabel('使用权利').selectOption('user_owned');
@@ -350,19 +349,16 @@ test('evidence network refreshes after a document revision adds a citation',asyn
   const details=await (await request.get('/api/v1/sources/'+source.id)).json();
   const passage=details.passages[0];
   const evidence=await post('/sources/'+source.id+'/evidence',{ passage_id:passage.id,start_utf16:0,end_utf16:passage.content.length });
-  const artifact=await post('/artifacts',{ workspace_id:ws.id,title:'引用刷新文档' });
+  const artifact=await post('/artifacts',{ workspace_id:ws.id,title:'引用刷新文档',content:{ schema_version:'1.0',relations:{ source_ids:[],knowledge_node_ids:[] },blocks:[{ id:crypto.randomUUID(),type:'evidence_network',attrs:{ view_version:1,node_ids:[] } }] } });
   await page.goto('/?workspace='+ws.id+'&artifact='+artifact.id);
-  const tabs=page.getByRole('group',{ name:'工作区视图' });
-  await tabs.getByRole('button',{ name:'证据网络',exact:true }).click();
   const network=page.getByRole('region',{ name:'证据网络' });
   await expect(network.getByText('没有符合条件的引用。',{ exact:false })).toBeVisible();
   await page.getByRole('button',{ name:'编辑模式',exact:true }).click();
-  await page.getByRole('button',{ name:'添加内容块' }).click();
+  await page.getByRole('button',{ name:'＋ 添加内容块',exact:true }).click();
   await page.getByLabel('内容类型').selectOption('evidence_reference');
   await page.getByRole('combobox',{ name:'证据引用',exact:true }).selectOption(evidence.id);
   await page.getByRole('button',{ name:'保存内容块' }).click();
   await expect(page.getByText(/版本 2 · 已同步/)).toBeVisible();
-  await tabs.getByRole('button',{ name:'证据网络',exact:true }).click();
   await expect(network.getByText(passage.content,{ exact:true })).toBeVisible();
   await expect(network.getByRole('button',{ name:'正文引用 1',exact:true })).toBeVisible();
 });

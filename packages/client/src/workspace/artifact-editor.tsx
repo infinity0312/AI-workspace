@@ -168,6 +168,7 @@ export function ArtifactEditor({ content,editable,projection,workspace,project,o
 }) {
   const [editing,setEditing] = useState<string | null>(null);
   const [adding,setAdding] = useState(false);
+  const [after,setAfter] = useState<string>();
   const [newType,setNewType] = useState('paragraph');
   const [newText,setNewText] = useState('');
   const [saving,setSaving] = useState(false);
@@ -188,13 +189,34 @@ export function ArtifactEditor({ content,editable,projection,workspace,project,o
     const at=blocks.findIndex(item => item.id === target);
     if (at >= 0) { blocks.splice(at,0,source); void save(blocks); }
   }
+  function insertBlock(block:Block) {
+    const index=after ? content.blocks.findIndex(item => item.id === after) : -1;
+    const blocks=[...content.blocks];
+    blocks.splice(index<0 ? blocks.length : index+1,0,block);
+    void save(blocks);
+  }
   function add() {
     const isView = isProjectionType(newType);
     const attrs = isView ? { view_version:1,node_ids:[],title:newText.trim() } : newType === 'heading' ? { level:2 } : newType === 'math_block' ? { latex:newText } : newType === 'markdown' ? { markdown:newText } : {};
     const children = isView || ['math_block','markdown','divider'].includes(newType) ? [] :
       ['bullet_list','ordered_list'].includes(newType) ? newText.split(/\r?\n/).filter(line => line.trim()).map(text => ({ type:'text',text })) : [{ type:'text',text:newText }];
-    void save([...content.blocks,{ id:crypto.randomUUID(),type:newType,attrs:attrs as NonNullable<Block['attrs']>,children }]);
+    insertBlock({ id:crypto.randomUUID(),type:newType,attrs:attrs as NonNullable<Block['attrs']>,children });
   }
+  const addForm=editable && adding ? <div className="block-edit">
+      <label>内容类型<select value={newType} onChange={event => setNewType(event.target.value)}>
+        <option value="paragraph">段落</option><option value="heading">标题</option><option value="quote">引用</option><option value="code_block">代码</option><option value="math_block">公式</option><option value="bullet_list">无序列表</option><option value="ordered_list">有序列表</option><option value="markdown">Markdown</option>
+        <option value="callout">提示块</option><option value="divider">分隔线</option>
+        {Object.entries(structuredTypes).map(([id,label]) => <option key={id} value={id}>{label}</option>)}
+        {Object.entries(projectionLabels).map(([id,label]) => <option key={id} value={id}>{label}</option>)}
+      </select></label>
+      {Object.hasOwn(structuredTypes,newType) ? <StructuredEditor key={newType} block={{ id:'new',type:newType }} blocks={content.blocks}
+        graph={projection?.graph} workspace={workspace} close={() => setAdding(false)} save={value => insertBlock({ ...value,id:crypto.randomUUID() })} /> :
+      <form className="stack" onSubmit={event => { event.preventDefault(); if (!saving) add(); }}>
+      {isProjectionType(newType) ? <label>视图标题<input autoFocus value={newText} maxLength={160} onChange={event => setNewText(event.target.value)} /></label> :
+        newType !== 'divider' && <label>内容<textarea autoFocus value={newText} onChange={event => setNewText(event.target.value)} /></label>}
+      {newType === 'math_block' && newText.trim() && <Latex display source={newText} />}
+      <div className="button-row"><button className="primary" disabled={saving}>保存内容块</button><button type="button" onClick={() => setAdding(false)}>取消</button></div>
+    </form>}</div> : null;
   return <div className="artifact-content">
     {!content.blocks.length && <p className="muted">文档暂无正文。使用「AI 生成分析」整理参考资料，或切换编辑模式添加内容。</p>}
     {content.blocks.map((block,index) => {
@@ -220,7 +242,8 @@ export function ArtifactEditor({ content,editable,projection,workspace,project,o
           : <>{block.attrs?.user_edited === true && <small className="muted">用户编辑</small>}<ArtifactBlockView block={block} context={{ ...links,mode:'document',onEvidence,onSelection,projection,learning,blocks:content.blocks,onUpdate:editable && !saving ? saveBlock : undefined }} />
             {editable && <div className="block-actions">
               {canEdit && <button disabled={saving} onClick={() => setEditing(block.id)}>编辑</button>}
-              <button onClick={() => onInspect(block.id)}>属性</button>
+              {!isView && <button onClick={() => onInspect(block.id)}>属性</button>}
+              <button disabled={saving || adding} onClick={() => { setAfter(block.id); setEditing(null); setAdding(true); }}>在此后添加内容块</button>
               <span className="block-drag" draggable={!saving} title="拖到目标内容块上方" aria-hidden="true"
                 onDragStart={event => { event.dataTransfer.setData('text/plain',block.id); event.dataTransfer.effectAllowed='move'; setDragged(block.id); }}
                 onDragEnd={() => setDragged('')}>拖动</span>
@@ -242,23 +265,11 @@ export function ArtifactEditor({ content,editable,projection,workspace,project,o
                 void save(content.blocks.filter(item => item.id !== block.id));
               }}>删除</button>
             </div>}</>}
+        {after === block.id && addForm}
       </section>;
     })}
-    {editable && (adding ? <div className="block-edit">
-      <label>内容类型<select value={newType} onChange={event => setNewType(event.target.value)}>
-        <option value="paragraph">段落</option><option value="heading">标题</option><option value="quote">引用</option><option value="code_block">代码</option><option value="math_block">公式</option><option value="bullet_list">无序列表</option><option value="ordered_list">有序列表</option><option value="markdown">Markdown</option>
-        <option value="callout">提示块</option><option value="divider">分隔线</option>
-        {Object.entries(structuredTypes).map(([id,label]) => <option key={id} value={id}>{label}</option>)}
-        {Object.entries(projectionLabels).map(([id,label]) => <option key={id} value={id}>{label}</option>)}
-      </select></label>
-      {Object.hasOwn(structuredTypes,newType) ? <StructuredEditor key={newType} block={{ id:'new',type:newType }} blocks={content.blocks}
-        graph={projection?.graph} workspace={workspace} close={() => setAdding(false)} save={value => void save([...content.blocks,{ ...value,id:crypto.randomUUID() }])} /> :
-      <form className="stack" onSubmit={event => { event.preventDefault(); if (!saving) add(); }}>
-      {isProjectionType(newType) ? <label>视图标题<input autoFocus value={newText} maxLength={160} onChange={event => setNewText(event.target.value)} /></label> :
-        newType !== 'divider' && <label>内容<textarea autoFocus value={newText} onChange={event => setNewText(event.target.value)} /></label>}
-      {newType === 'math_block' && newText.trim() && <Latex display source={newText} />}
-      <div className="button-row"><button className="primary" disabled={saving}>保存内容块</button><button type="button" onClick={() => setAdding(false)}>取消</button></div>
-    </form>}</div> : <button className="add-block" onClick={() => setAdding(true)}>＋ 添加内容块</button>)}
+    {!after && addForm}
+    {editable && !adding && <button className="add-block" onClick={() => { setAfter(undefined); setAdding(true); }}>＋ 添加内容块</button>}
   </div>;
 }
 

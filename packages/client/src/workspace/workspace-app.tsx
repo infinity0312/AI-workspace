@@ -12,7 +12,7 @@ import { canUseModel,LearningJourney } from './learning-experience';
 import { ForecastActions,TaskStart } from './task-experience';
 import { Research } from './research-page';
 import { Sources } from './sources-page';
-import { DocumentCanvas,isCanvasView,type CanvasView } from './document-canvas';
+import { DocumentCanvas } from './document-canvas';
 import { aiPresets,SelectionProposals } from './selection-proposals';
 import { useDesktop } from './use-desktop';
 import { DocumentAnalysis, isAnalysisPatch } from './document-analysis';
@@ -47,7 +47,6 @@ export function WorkspaceApp() {
   const [patches,setPatches] = useState<Patch[]>([]);
   const [aiJob,setAiJob] = useState<Job | null>(null);
   const [edit,setEdit] = useState(false);
-  const [canvasView,setCanvasView] = useState<CanvasView>('document');
   const [panels,setPanels] = useState<PanelLayout>({ left:218,right:312,leftOpen:true,rightOpen:true });
   const [inspectedBlock,setInspectedBlock] = useState('');
   const [floatingAI,setFloatingAI] = useState<{ left:number;top:number }>();
@@ -59,13 +58,13 @@ export function WorkspaceApp() {
   const [instruction,setInstruction] = useState('');
   useEffect(() => { setPanels(readPanels()); },[]);
   useEffect(() => {
-    if (!jumpTarget || canvasView !== 'document') return;
+    if (!jumpTarget) return;
     const frame=requestAnimationFrame(() => {
       const element=document.getElementById('block-' + jumpTarget);
       element?.scrollIntoView({ block:'center' }); element?.focus({ preventScroll:true }); setJumpTarget('');
     });
     return () => cancelAnimationFrame(frame);
-  },[canvasView,jumpTarget]);
+  },[jumpTarget]);
   const [showAnalysis,setShowAnalysis] = useState(false);
   const [showHistory,setShowHistory] = useState(false);
   const [showComments,setShowComments] = useState(false);
@@ -109,8 +108,6 @@ export function WorkspaceApp() {
     if (selectedArtifact.current === id) setPatches(result);
   },[]);
   const openArtifact = useCallback((id: string, analysis = false) => {
-    const rememberedView = localStorage.getItem('akw-canvas-view:' + id) ?? '';
-    setCanvasView(analysis || !isCanvasView(rememberedView) ? 'document' : rememberedView);
     setReader(''); setInstruction(''); setInspectedBlock(''); setFloatingAI(undefined);
     setShowAnalysis(analysis);
     setMastery([]);
@@ -126,15 +123,11 @@ export function WorkspaceApp() {
     setNav(false);
     setNotice('');
   },[]);
-  function chooseCanvasView(next:CanvasView) {
-    setFloatingAI(undefined); setCanvasView(next);
-    if (artifactId) localStorage.setItem('akw-canvas-view:' + artifactId,next);
-  }
   function updatePanels(fields:Partial<PanelLayout>) {
     setPanels(previous => { const next={ ...previous,...fields }; savePanels(next); return next; });
   }
   function showInspector() { setInspector(true); updatePanels({ rightOpen:true }); }
-  function jumpToBlock(id:string) { chooseCanvasView('document'); setJumpTarget(id); }
+  function jumpToBlock(id:string) { setFloatingAI(undefined); setJumpTarget(id); }
   function inspectSource(id:string) { setReader(id); setReaderPage(null); setEvidence(null); showInspector(); }
   function inspectNode(id:string) { navigate('knowledge'); setInitialNode(id); }
   function navigate(target: Page) {
@@ -567,7 +560,7 @@ export function WorkspaceApp() {
                   {!archived && !isLearning && !isWeather && !isInformation && workspace.role !== 'viewer' && <button className="primary" aria-expanded={showAnalysis} onClick={() => setShowAnalysis(!showAnalysis)}>
                     {patches.some(patch => patch.status === 'proposed' && isAnalysisPatch(patch)) ? '查看 AI 分析' : 'AI 生成分析'}
                   </button>}
-                  {!archived && <button onClick={() => { chooseCanvasView('document'); setEdit(canvasView === 'document' ? !edit : true); }}>{edit && canvasView === 'document' ? '阅读模式' : '编辑模式'}</button>}
+                  {!archived && <button onClick={() => { setFloatingAI(undefined); setEdit(!edit); }}>{edit ? '阅读模式' : '编辑模式'}</button>}
                   {!archived && <button aria-expanded={showComments} onClick={() => setShowComments(!showComments)}>批注</button>}
                   {!archived && <button aria-expanded={showHistory} onClick={() => setShowHistory(!showHistory)}>版本记录</button>}
                   {platform.capabilities.separateWindows && <button onClick={separateWindow}>独立窗口</button>}
@@ -597,7 +590,7 @@ export function WorkspaceApp() {
               projection={projection} onEvidence={id => void loadEvidence(id)} synced={localStatus === 'synced' && online && !backendOffline} onUpdate={updateCurrent} onTrash={trashCurrent} report={report} />}
             {!archived && showComments && <Comments key={'comments-' + doc.server.id} artifact={doc.server} editable={workspace.role !== 'viewer'} owner={workspace.role === 'owner'}
               synced={localStatus === 'synced' && online && !backendOffline} report={report} />}
-            {floatingAI && canvasView === 'document' && <div className="selection-toolbar button-row" role="group" aria-label="选区快捷操作" style={floatingAI}
+            {floatingAI && <div className="selection-toolbar button-row" role="group" aria-label="选区快捷操作" style={floatingAI}
               onKeyDown={event => { if (event.key === 'Escape') setFloatingAI(undefined); }}>
               {Object.entries(aiPresets).slice(0,5).map(([label,preset]) => <button key={label} onClick={() => {
                 setInstruction(preset); setFloatingAI(undefined); showInspector();
@@ -605,7 +598,7 @@ export function WorkspaceApp() {
               <button onClick={() => { setFloatingAI(undefined); showInspector(); }}>更多</button>
               <button onClick={() => setFloatingAI(undefined)} aria-label="关闭选区工具栏">×</button>
             </div>}
-            <DocumentCanvas doc={doc} canvasView={canvasView} onView={chooseCanvasView} projection={projection} workspace={workspaceId} report={report}
+            <DocumentCanvas doc={doc} projection={projection} workspace={workspaceId} report={report}
               links={{ onNode:id=>{ if (isLearning && doc.draft.blocks.some(block=>block.id===id)) jumpToBlock(id);else inspectNode(id); },
                 onSource:inspectSource,onArtifact:openArtifact,onBlock:jumpToBlock }}
               learning={isLearning ? { artifact:doc.server,mastery,onGraded:recordMastery,
