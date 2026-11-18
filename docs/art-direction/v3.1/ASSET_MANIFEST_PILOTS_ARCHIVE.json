@@ -1,0 +1,135 @@
+[
+  {
+    "id": "aa_learning_botanical_01",
+    "module": "learning",
+    "category": "specimen",
+    "display_role": "分支与知识生长",
+    "source_format": "png",
+    "source_file": "assets/originals/aa_learning_botanical_01.png",
+    "original_generated_file": "exec-f7d8543e-c457-4129-840b-823d8e5627bf.png",
+    "width": 1254,
+    "height": 1254,
+    "transparent": true,
+    "alpha_min": 0,
+    "alpha_max": 255,
+    "recommended_display_width": 200,
+    "prompt_file": "prompts/botanical.md",
+    "alt": "",
+    "semantic_role": "decorative conceptual illustration, not research evidence",
+    "tool": "built-in image_gen.imagegen",
+    "generated_date": "2026-11-16",
+    "status": "pilot / visual direction approval pending",
+    "usage": [
+      "Lab A Home specimen margin",
+      "Lab A/B/C Document margins",
+      "Lab C Document title (desktop)"
+    ],
+    "rights": "Generated for this project; no third-party reference image embedded or copied. Not a representation of authenticated research material.",
+    "variants": [
+      {
+        "width": 192,
+        "file": "lab/public/assets/botanical-192.webp",
+        "bytes": 16488
+      },
+      {
+        "width": 384,
+        "file": "lab/public/assets/botanical-384.webp",
+        "bytes": 49236
+      },
+      {
+        "width": 768,
+        "file": "lab/public/assets/botanical-768.webp",
+        "bytes": 156432
+      }
+    ]
+  },
+  {
+    "id": "aa_graph_mineral_01",
+    "module": "graph",
+    "category": "specimen",
+    "display_role": "领域与结构",
+    "source_format": "png",
+    "source_file": "assets/originals/aa_graph_mineral_01.png",
+    "original_generated_file": "exec-f5b8f6a7-d1a9-490d-8884-e5641da1c248.png",
+    "width": 1254,
+    "height": 1254,
+    "transparent": true,
+    "alpha_min": 0,
+    "alpha_max": 255,
+    "recommended_display_width": 150,
+    "prompt_file": "prompts/mineral.md",
+    "alt": "",
+    "semantic_role": "decorative conceptual illustration, not research evidence",
+    "tool": "built-in image_gen.imagegen",
+    "generated_date": "2026-11-16",
+    "status": "pilot / visual direction approval pending",
+    "usage": [
+      "Lab A/B/C Home recent research",
+      "Lab C Home object plinth",
+      "Lab A/C Graph context notes"
+    ],
+    "rights": "Generated for this project; no third-party reference image embedded or copied. Not a representation of authenticated research material.",
+    "variants": [
+      {
+        "width": 192,
+        "file": "lab/public/assets/mineral-192.webp",
+        "bytes": 8038
+      },
+      {
+        "width": 384,
+        "file": "lab/public/assets/mineral-384.webp",
+        "bytes": 23116
+      },
+      {
+        "width": 768,
+        "file": "lab/public/assets/mineral-768.webp",
+        "bytes": 86942
+      }
+    ]
+  },
+  {
+    "id": "aa_home_compass_01",
+    "module": "home",
+    "category": "specimen",
+    "display_role": "探索入口",
+    "source_format": "png",
+    "source_file": "assets/originals/aa_home_compass_01.png",
+    "original_generated_file": "exec-7b791cb2-7bf5-49fc-843d-e529abdc6401.png",
+    "width": 1254,
+    "height": 1254,
+    "transparent": true,
+    "alpha_min": 0,
+    "alpha_max": 255,
+    "recommended_display_width": 150,
+    "prompt_file": "prompts/compass.md",
+    "alt": "",
+    "semantic_role": "decorative conceptual illustration, not research evidence",
+    "tool": "built-in image_gen.imagegen",
+    "generated_date": "2026-11-16",
+    "status": "pilot / visual direction approval pending",
+    "usage": [
+      "Lab B Home exploration margin",
+      "Lab B Graph scope register",
+      "Lab Timeline period notes (desktop)",
+      "Lab A Timeline title (desktop)"
+    ],
+    "rights": "Generated for this project; no third-party reference image embedded or copied. Not a representation of authenticated research material.",
+    "variants": [
+      {
+        "width": 192,
+        "file": "lab/public/assets/compass-192.webp",
+        "bytes": 7146
+      },
+      {
+        "width": 384,
+        "file": "lab/public/assets/compass-384.webp",
+        "bytes": 19028
+      },
+      {
+        "width": 768,
+        "file": "lab/public/assets/compass-768.webp",
+        "bytes": 66446
+      }
+    ]
+  }
+]

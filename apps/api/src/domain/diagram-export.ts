@@ -34,14 +34,16 @@ function graphScene(block:Block,data:WorkspaceProjection):ChartScene {
     if (detail) labels.push({ x:x+12,y:y+18,text:short(detail,Math.floor(width/13)-2),size:12,color:'#43536c' });
   };
   if (block.type === 'mindmap') {
-    let row=0;
+    let row=0;const used=new Set<string>();
     function branch(item:MindMapBranch,depth=0,parent?:{ x:number;y:number }) {
+      if(item.edge)used.add(item.edge.id);
       const x = 32+depth*97,y = 82+row++*56;
       if (parent) line(parent.x+15,parent.y+25,x+8,y-22);
       card(x,y,Math.min(430,1010-x),item.node.title,item.edge?.relation_type || item.node.type);
       item.children.forEach(child => branch(child,depth+1,{ x,y }));
     }
-    mindMapForest(nodes,edges,settings.root_id).forEach(item => branch(item));
+    mindMapForest(nodes,edges.filter(edge=>edge.relation_type==='is_a').map(edge=>({...edge,from_node_id:edge.to_node_id,to_node_id:edge.from_node_id})),settings.root_id).forEach(item => branch(item));
+    for(const edge of edges.filter(item=>!used.has(item.id))){const from=nodes.find(node=>node.id===edge.from_node_id),to=nodes.find(node=>node.id===edge.to_node_id);labels.push({x:32,y:82+row++*56,text:short('交叉关系 / '+from?.title+' → '+edge.relation_type+' → '+to?.title,90),size:13});}
     scene.height = Math.max(140,92+row*56);
   } else if (block.type === 'timeline') {
     const events = nodes.filter(node => node.event_date).sort((a,b) => a.event_date!.localeCompare(b.event_date!));
@@ -73,7 +75,7 @@ function graphScene(block:Block,data:WorkspaceProjection):ChartScene {
     if (rows.length>100) labels.push({ x:36,y:92+100*56,text:'共 '+rows.length+' 条，图中显示前 100 条。',size:13 });
     scene.height = Math.max(140,118+Math.min(100,rows.length)*56);
   } else {
-    const selected = block.type === 'dependency_graph' ? edges.filter(edge => ['depends_on','derived_from'].includes(edge.relation_type)) : edges;
+    const selected = block.type === 'dependency_graph' ? edges.filter(edge => edge.relation_type === 'depends_on') : edges;
     const positions = new Map(nodes.map((node,index) => [node.id,{ x:42+(index%4)*266,y:84+Math.floor(index/4)*100 }]));
     for (const edge of selected) {
       const from = positions.get(edge.from_node_id)!,to = positions.get(edge.to_node_id)!;

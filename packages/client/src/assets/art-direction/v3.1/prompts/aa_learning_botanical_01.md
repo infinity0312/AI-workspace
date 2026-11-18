@@ -1,0 +1,9 @@
+# aa_learning_botanical_01
+
+Generated 2026-11-16 using built-in image_gen.imagegen.
+
+# botanical · Art Direction v3.1 pilot
+
+Tool: built-in image_gen.imagegen. Generated 2026-11-16. Status: pilot, awaiting in-page visual direction selection.
+
+Use case: illustration-story. Asset: aa_learning_botanical_01, independent reusable UI specimen for Atelier Atlas. Create ONE isolated elegant maidenhair fern frond, stem and distributed fan-shaped leaflets, complete natural silhouette. Fine copperplate engraved linework with restrained translucent lichen-green wash and graphite contours, subtle natural texture, sophisticated contemporary museum catalogue refinement. Carefully observed coherent stem and leaflet attachments; not a scientifically authenticated herbarium record. Square composition, subject occupies about 72 percent of canvas, generous transparent negative space. Actual transparent background. Small collectible atlas illustration, intended display 120–220px wide, legible outline and delicate internal detail. No paper rectangle, no ground shadow, no label, no border, no writing, no watermark, no collage, no other objects, no UI, no complete scene, no neon, no glossy 3D, no cartoon. Do not imitate any specific published image or artist. Original generic botanical editorial ornament.

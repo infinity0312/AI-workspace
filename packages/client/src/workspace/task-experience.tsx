@@ -4,6 +4,7 @@ import { ApiError,api,errorText,post,type Job } from '../lib/api';
 import { ExternalLink } from './native-actions';
 import { activeRun } from './workflow-status';
 import { canUseModel } from './learning-experience';
+import { EditorialEmpty } from './editorial-image';
 
 const phase:Record<string,string>={ forecast:'正在查询当地预报…',plan:'正在识别任务并准备检索…',evidence:'正在查找相关来源…',
   draft:'正在组织答案…',reviewed:'正在核对答案与来源…' };
@@ -46,12 +47,12 @@ function useTask(id:string|undefined) {
   return { row,pending,error };
 }
 
-export function TaskStart({ workspace,online,onOpen,onSettings }:{
-  workspace:WorkspaceSummary;online:boolean;onOpen:(id:string)=>void;onSettings:()=>void;
+export function TaskStart({ workspace,online,onOpen,onSettings,onSources }:{
+  workspace:WorkspaceSummary;online:boolean;onOpen:(id:string)=>void;onSettings:()=>void;onSources?:()=>void;
 }) {
   const key='akw-task:'+workspace.id;
   const [id,setId]=useState(()=>typeof window==='undefined' ? '' : localStorage.getItem(key) ?? localStorage.getItem('akw-learning-run:'+workspace.id) ?? '');
-  const [goal,setGoal]=useState('');
+  const [goal,setGoal]=useState(()=>{ try { return localStorage.getItem('akw-intent:'+workspace.id) ?? ''; } catch { return ''; } });
   const [location,setLocation]=useState<string>();
   const [allowed,setAllowed]=useState(false);
   const [busy,setBusy]=useState(false);
@@ -62,6 +63,7 @@ export function TaskStart({ workspace,online,onOpen,onSettings }:{
   const task=useTask(id || undefined);
   const working=task.pending && !task.error;
   const enabled=canUseModel(workspace);
+  useEffect(()=>{ try { localStorage.setItem('akw-intent:'+workspace.id,goal); } catch { /* Draft storage is optional. */ } },[workspace.id,goal]);
   async function search() {
     if (!online || !allowed || !enabled || busy || !goal.trim()) return;
     setBusy(true);setError('');setFeedback('');setBrowse(undefined);setSelected([]);
@@ -98,10 +100,11 @@ export function TaskStart({ workspace,online,onOpen,onSettings }:{
       setError(problem instanceof ApiError ? taskWarnings[problem.code] ?? problem.message : errorText(problem));
     } finally { setBusy(false); }
   }
-  return <section className="panel stack" aria-label="开始任务">
-    <form className="stack" onSubmit={event=>void submit(event)}>
+  return <section className="intent-composer stack" aria-label="开始任务">
+    <div className="section-heading"><h2>今天，想探索什么？</h2><span className="eyebrow">INTENT → ARTIFACT</span></div>
+    <form className="stack" aria-busy={busy || working} onSubmit={event=>void submit(event)}>
       <label>你想查什么、完成什么或学会什么？<textarea required rows={3} maxLength={1600} value={goal}
-        placeholder="例如：北京未来三天天气，或 Windows 11 如何截图？" onChange={event=>{ setGoal(event.target.value);setLocation(undefined); }}
+        placeholder="输入问题、研究目标，或粘贴一个网页地址…" onChange={event=>{ setGoal(event.target.value);setLocation(undefined); }}
         disabled={workspace.role==='viewer' || working} /></label>
       {enabled ? <label className="check"><input type="checkbox" required checked={allowed} onChange={event=>setAllowed(event.target.checked)} />
         允许本次使用外部模型和公开检索</label>
@@ -109,9 +112,13 @@ export function TaskStart({ workspace,online,onOpen,onSettings }:{
           {workspace.role==='owner' && <button type="button" onClick={onSettings}>设置数据权限</button>}</div>}
       <div className="button-row"><button className="primary" disabled={!online || !allowed || !enabled || working || busy || !goal.trim() || workspace.role==='viewer'}>{selected.length ? '基于所选来源生成' : '开始任务'}</button>
         <button type="button" disabled={!online || !allowed || !enabled || working || busy || !goal.trim()} onClick={()=>void search()}>浏览来源</button>
+        {onSources && <button type="button" onClick={onSources}>添加文件与资料</button>}
       </div>
       {!online && <p className="muted">离线时可打开已有产物。联网后可以查询或刷新。</p>}
     </form>
+    <div className="intent-examples" aria-label="任务示例">{[
+      ['找资料','寻找图神经网络入门的权威来源'],['比较分析','比较太阳能与风能的适用条件、成本和限制'],['学习新知识','为零基础学习概率论设计学习路径与练习'],['处理资料','请根据我提供的网页资料整理核心观点与来源'],
+    ].map(([label,example])=><button key={label} type="button" disabled={working || workspace.role==='viewer'} onClick={()=>{ setGoal(example!);setLocation(undefined); }}>{label}<span aria-hidden="true"> ↗</span></button>)}</div>
     {browse && <section className="stack" aria-label="网页结果">
       <div className="section-heading"><h2>网页结果</h2>
         <span className="muted">{browse.coverage==='web' ? '网页搜索' : '公开资料目录与链接'}</span></div>
@@ -124,12 +131,14 @@ export function TaskStart({ workspace,online,onOpen,onSettings }:{
             <label className="check"><input type="checkbox" checked={selected.some(row=>row.url===item.url)}
               onChange={event=>setSelected(rows=>event.target.checked ? [...rows,item] : rows.filter(row=>row.url!==item.url))} />加入选集</label></>}
         </div>
-      </li>)}</ol> : <p>没有返回合适结果。可换一组关键词或粘贴网页地址。</p>}
+      </li>)}</ol> : <EditorialEmpty asset="search-empty" title="没有返回合适结果。"><p>可换一组关键词或粘贴网页地址。</p></EditorialEmpty>}
       {selected.length>0 && <button disabled={busy} onClick={()=>void saveCollection()}>保存 {selected.length} 个来源为产物</button>}
     </section>}
     {feedback && <p role="status">{feedback}</p>}
     {(busy || working && !task.row) && <p role="status">正在提交请求…</p>}
     {!busy && !browse && task.row && <p role="status">{status(task.row)}</p>}
+    {!busy && !browse && Boolean(task.row?.steps?.length) && <details><summary>查看任务计划</summary><ol>{task.row!.steps!.map((step,index)=><li key={index}>{step.goal}</li>)}</ol><small className="muted">计划来自任务服务，各步骤状态以执行结果为准。</small></details>}
+    {!busy && !browse && Boolean(task.row?.result?.gaps?.length) && <ul className="task-gap" aria-label="未完成部分">{task.row!.result!.gaps!.map((gap,index)=><li key={index}><strong>{gap.goal}</strong><p>{taskWarnings[gap.code] ?? gap.code}</p></li>)}</ul>}
     {!busy && !browse && task.row?.result?.options?.length ? <ul aria-label="可能的地点">{task.row.result.options.map(option=><li key={option}>
       <button aria-pressed={location===option} onClick={()=>{ setGoal(task.row!.goal);setLocation(option); }}>{option}</button>
     </li>)}</ul> : null}

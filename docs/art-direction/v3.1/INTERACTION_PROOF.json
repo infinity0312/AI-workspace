@@ -1,0 +1,11 @@
+{
+  "phone_event_inspector": true,
+  "event_to_evidence_handoff": true,
+  "local_document_edit": {
+    "text_saved": true,
+    "toolbar": "本页实验 Revision 2 · 编辑模式\n回到阅读",
+    "feedback": "已保存到本页实验文稿；未写入正式工作区。\n关闭"
+  },
+  "intent_saved_locally": true,
+  "notes": "All content is synthetic; no backend service is configured. Saving is component-local only."
+}

@@ -1,12 +1,16 @@
+import {ActiveFilterTokens,EmptyFilterResult,FacetBar,FacetPopover,PrimarySearch,ResultSummary} from './explorer-controls';
 import { useEffect, useState, type FormEvent } from 'react';
 import type { ArtifactDetail,RunSummary,WorkspaceSummary } from '@akw/contracts';
 import { api,errorText,post,workspaceApi,type Job,type Project,type RunEvent,type Source } from '../lib/api';
 import { RuntimeTimeline } from './runtime-timeline';
 import { activeRun,statusLabel } from './workflow-status';
+import { EditorialImage } from './editorial-image';
 
 export function Research({ ws, projects, sources, openArtifact, report,initialGoal = '' }: { report:(message:string)=>void;
   ws: WorkspaceSummary; initialGoal?:string; projects: Project[]; sources: Source[]; openArtifact: (id: string) => void;
 }) {
+  const [search,setSearch]=useState(''),[runStates,setRunStates]=useState<string[]>([]);
+  const [loadError,setLoadError]=useState(''),[loadEpoch,setLoadEpoch]=useState(0);
   const [runs,setRuns] = useState<RunSummary[]>([]);
   const [selected,setSelected] = useState('');
   const [events,setEvents] = useState<RunEvent[]>([]);
@@ -24,17 +28,17 @@ export function Research({ ws, projects, sources, openArtifact, report,initialGo
     const refresh = async () => {
       try {
         const list = await workspaceApi.runs(ws.id);
-        if (mounted) setRuns(list);
+        if (mounted){setRuns(list);setLoadError('');}
         if (selected) {
           const detail = await api<{ events: RunEvent[] }>('/research-runs/' + selected + '/events');
           if (mounted) setEvents(detail.events);
         }
-      } catch (error) { if (mounted && navigator.onLine) report(errorText(error)); }
+      } catch (error) { if (mounted){report(errorText(error));setLoadError(errorText(error));} }
     };
     void refresh();
     const interval = window.setInterval(() => void refresh(),2500);
     return () => { mounted = false; window.clearInterval(interval); };
-  },[ws.id,selected,report]);
+  },[ws.id,selected,report,loadEpoch]);
   async function start(event: FormEvent) {
     event.preventDefault();
     setBusy(true);
@@ -60,8 +64,8 @@ export function Research({ ws, projects, sources, openArtifact, report,initialGo
     finally { setSaving(false); }
   }
   return <div className="workflow">
-    <header className="page-heading"><h1>研究</h1><p>你想学习、研究或解决什么问题？</p></header>
-    <form className="panel stack" onSubmit={start}>
+    <header className="page-heading research-art-heading"><div><p className="eyebrow">RESEARCH / AN OPEN QUESTION</p><h1>研究</h1><p>让执行阶段、资料覆盖与形成的成果各有位置。</p></div><EditorialImage asset="research-process" className="research-process-art" /></header>
+    <details className="task-form-disclosure" open={initialGoal?true:undefined}><summary>开始一次研究</summary><form className="panel stack" onSubmit={start}>
       <label>研究目标<textarea required maxLength={3000} value={goal} onChange={event => setGoal(event.target.value)} placeholder="你想弄清楚什么？" /></label>
       <div className="field-grid">
         <label>任务模式<select value={mode} onChange={event => setMode(event.target.value === 'simple' ? 'simple' : event.target.value==='learn' ? 'learn' : 'research')}><option value="research">深度研究</option><option value="learn">系统学习</option><option value="simple">快速了解</option></select></label>
@@ -81,14 +85,16 @@ export function Research({ ws, projects, sources, openArtifact, report,initialGo
       <label className="check"><input type="checkbox" checked={useWorkspace} onChange={event => setUseWorkspace(event.target.checked)} />检索当前项目和共享资料</label>
       {ws.policy.externalProviderAllowed && <label className="check"><input type="checkbox" checked={external} onChange={event => setExternal(event.target.checked)} />允许本次任务使用已配置的外部服务</label>}
       <div><button className="primary" disabled={busy}>开始任务</button></div>
-    </form>
+    </form></details>
     <div className="panel stack">
-      <h2>任务记录</h2>
-      {!runs.length && <p className="muted">这里会显示你的研究任务。</p>}
-      {runs.map(item => <div key={item.id} className="list-item">
+      <h2>任务记录</h2><PrimarySearch value={search} onChange={setSearch} label="搜索研究任务"/><FacetBar><FacetPopover label="执行状态" values={runStates} onChange={setRunStates} options={[...new Set(runs.map(item=>item.status))].map(value=>({value,label:statusLabel(value),count:runs.filter(item=>item.status===value).length}))}/></FacetBar><ActiveFilterTokens tokens={[...(search?[{key:'q',label:'搜索：'+search,remove:()=>setSearch('')}]:[]),...runStates.map(value=>({key:value,label:'执行：'+statusLabel(value),remove:()=>setRunStates(runStates.filter(item=>item!==value))}))]} onClear={()=>{setSearch('');setRunStates([]);}}/><ResultSummary>{runs.filter(item=>(!runStates.length||runStates.includes(item.status))&&item.goal.toLocaleLowerCase().includes(search.toLocaleLowerCase())).length} / {runs.length} 个研究任务 · 此处为执行状态，证据支持状态见产物</ResultSummary>
+      {loadError&&<div role="alert"><p>研究记录暂不可读取：{loadError}</p><button onClick={()=>setLoadEpoch(value=>value+1)}>重试研究记录</button></div>}
+      {!loadError&&!runs.length && <p className="muted">这里会显示你的研究任务。</p>}
+      {runs.filter(item=>(!runStates.length||runStates.includes(item.status))&&item.goal.toLocaleLowerCase().includes(search.toLocaleLowerCase())).map(item => <div key={item.id} className="list-item">
         <button className={selected === item.id ? 'selected' : ''} onClick={() => { setEvents([]); setSelected(item.id); }}>{item.goal}</button>
         <span>{statusLabel(item.status)}</span>
       </div>)}
+      {runs.length>0&&!runs.some(item=>(!runStates.length||runStates.includes(item.status))&&item.goal.toLocaleLowerCase().includes(search.toLocaleLowerCase()))&&<EmptyFilterResult empty={false} onClear={()=>{setSearch('');setRunStates([]);}} subject="研究任务"/>}
       {run && <div className="detail stack">
         <h3>{run.goal}</h3>
         {run.result?.response && <p>{run.result.response}</p>}

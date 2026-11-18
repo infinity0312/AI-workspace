@@ -7,6 +7,7 @@ import { statusLabel } from './workflow-status';
 export function Knowledge({ ws, projects, editable, initialNode, openEvidence, openArtifact, report }: { report:(message:string)=>void;
   ws:string; projects:Project[]; editable:boolean; initialNode?:string; openEvidence:(id:string)=>void; openArtifact:(id:string)=>void;
 }) {
+  const [graphState,setGraphState]=useState<'loading'|'ready'|'error'>('loading');
   const [graph,setGraph] = useState<Graph>({ nodes:[],edges:[] });
   const [title,setTitle] = useState('');
   const [project,setProject] = useState('');
@@ -22,7 +23,7 @@ export function Knowledge({ ws, projects, editable, initialNode, openEvidence, o
   const query = '?workspace_id=' + encodeURIComponent(ws);
   useEffect(() => {
     let mounted = true;
-    void api<Graph>('/knowledge/graph' + query).then(value => { if (mounted) setGraph(value); }).catch(error => { if (mounted) report(errorText(error)); });
+    void api<Graph>('/knowledge/graph' + query).then(value => { if (mounted) {setGraph(value);setGraphState('ready');} }).catch(error => { if (mounted) {report(errorText(error));setGraphState('error');} });
     return () => { mounted = false; };
   },[query,report]);
   async function action(path: string, body: unknown, after?: () => void) {
@@ -40,7 +41,8 @@ export function Knowledge({ ws, projects, editable, initialNode, openEvidence, o
   const nodeTitle = (id: string) => graph.nodes.find(node => node.id === id)?.title ?? '未知节点';
   return <div className="workflow">
     <header className="page-heading"><h1>知识关系</h1><p>维护主题节点与经过审核的关系。</p></header>
-    <GraphExplorer key={initialNode ?? ''} graph={graph} projects={projects} initialNode={initialNode} openEvidence={openEvidence} onFocus={setFocusedNode} />
+    {graphState!=='ready' && <p role="status">{graphState==='loading'?'正在加载知识关系…':'知识关系暂不可用，请检查连接后重试。'}</p>}
+    {graphState==='ready' && <GraphExplorer key={initialNode ?? ''} graph={graph} projects={projects} initialNode={initialNode} openEvidence={openEvidence} onFocus={setFocusedNode} />}
     {focusedNode && backlinks?.node === focusedNode && <section className="panel stack" aria-label="文档反向链接">
       <h2>引用此节点的文档</h2>
       {backlinks.items.map(item => <button key={item.id} onClick={() => openArtifact(item.id)}>{item.title}</button>)}
@@ -48,7 +50,7 @@ export function Knowledge({ ws, projects, editable, initialNode, openEvidence, o
     </section>}
     <ProjectionBlock block={{ id:'workspace-timeline',type:'timeline',attrs:{ view_version:1,node_ids:[] } }}
       projection={{ graph:{ version:1,...graph },status:'ready' }} onEvidence={openEvidence} />
-    {editable && <form className="panel stack" onSubmit={event => {
+    {editable && <details className="task-form-disclosure"><summary>新建知识节点或关系</summary><form className="panel stack" onSubmit={event => {
       event.preventDefault();
       const form = event.currentTarget;
       const fields = new FormData(form);
@@ -65,8 +67,8 @@ export function Knowledge({ ws, projects, editable, initialNode, openEvidence, o
       <label>日期证据 ID（可选）<input name="date-evidence" maxLength={36} /></label>
       <label>节点描述<textarea name="description" maxLength={4000} /></label>
       <div><button className="primary">创建节点</button></div>
-    </form>}
-    {editable && graph.nodes.length > 0 && <section className="panel stack">
+    </form></details>}
+    {editable && graph.nodes.length > 0 && <details className="task-form-disclosure"><summary>编辑知识节点</summary><section className="panel stack">
       <h2>编辑知识节点</h2>
       <label>要编辑的节点<select value={nodeToEdit} onChange={event => setNodeToEdit(event.target.value)}>
         <option value="">选择节点</option>{graph.nodes.map(node => <option key={node.id} value={node.id}>{node.title}</option>)}
@@ -85,8 +87,8 @@ export function Knowledge({ ws, projects, editable, initialNode, openEvidence, o
         <label>日期证据 ID<input name="node-evidence" maxLength={36} defaultValue={selectedNode.event_evidence_id ?? ''} /></label>
         <div><button>保存节点</button></div>
       </form>}
-    </section>}
-    {editable && <form className="panel stack" onSubmit={event => { event.preventDefault(); const fields = new FormData(event.currentTarget); void action('/knowledge/edges/suggestions',{ workspace_id:ws,from_node_id:from,to_node_id:to,relation_type:relation === 'custom' ? fields.get('custom-relation') : relation,evidence_id:fields.get('evidence') || undefined }); }}>
+    </section></details>}
+    {editable && <details className="task-form-disclosure"><summary>提出与审核关系</summary><form className="panel stack" onSubmit={event => { event.preventDefault(); const fields = new FormData(event.currentTarget); void action('/knowledge/edges/suggestions',{ workspace_id:ws,from_node_id:from,to_node_id:to,relation_type:relation === 'custom' ? fields.get('custom-relation') : relation,evidence_id:fields.get('evidence') || undefined }); }}>
       <h2>关系建议</h2><div className="field-grid">
         <label>起点<select required value={from} onChange={event => setFrom(event.target.value)}><option value="">选择节点</option>{graph.nodes.map(node => <option key={node.id} value={node.id}>{node.title}</option>)}</select></label>
         <label>关系类型<select value={relation} onChange={event => setRelation(event.target.value)}>{Object.entries(relations).map(([id,label]) => <option key={id} value={id}>{label}</option>)}<option value="custom">自定义关系</option></select></label>
@@ -100,8 +102,8 @@ export function Knowledge({ ws, projects, editable, initialNode, openEvidence, o
           <button type="button" onClick={() => void action('/knowledge/reviews/' + edge.id + '/resolve',{ decision:'confirmed' })}>确认</button>
           <button type="button" onClick={() => void action('/knowledge/reviews/' + edge.id + '/resolve',{ decision:'rejected' })}>拒绝</button>
         </div>}</div>)}
-    </form>}
-    {editable && <section className="panel stack"><h2>维护已确认关系</h2>
+    </form></details>}
+    {editable && <details className="task-form-disclosure"><summary>维护已确认关系</summary><section className="panel stack"><h2>维护已确认关系</h2>
       <label>选择关系<select value={edgeToEdit} onChange={event => setEdgeToEdit(event.target.value)}>
         <option value="">选择关系</option>{graph.edges.filter(edge => edge.status === 'confirmed').map(edge =>
           <option key={edge.id} value={edge.id}>{nodeTitle(edge.from_node_id)} → {relations[edge.relation_type] ?? edge.relation_type} → {nodeTitle(edge.to_node_id)}</option>)}
@@ -120,6 +122,6 @@ export function Knowledge({ ws, projects, editable, initialNode, openEvidence, o
           </div>
         </form>;
       })}
-    </section>}
+    </section></details>}
   </div>;
 }

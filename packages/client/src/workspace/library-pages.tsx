@@ -1,3 +1,4 @@
+import {ActiveFilterTokens,FacetBar,FacetPopover,PrimarySearch} from './explorer-controls';
 import { useEffect, useState, type FormEvent } from 'react';
 import { assetMimeForName, fileExtensions, type ArtifactDetail, type ArtifactRevision, type CaptureAction, type CaptureItem, type ClaimReview } from '@akw/contracts';
 import { api, errorText, post, type ArtifactSummary, type Project } from '../lib/api';
@@ -91,9 +92,7 @@ export function CaptureInbox({ workspace,projects,capture,editable,refresh,openA
       <div><button className="primary" disabled={busy}>保存到收件箱</button></div>
     </form>}
     <section className="panel stack">
-      <div className="field-grid"><label>收件箱状态<select value={filter} onChange={event => setFilter(event.target.value as CaptureItem['status'])}>
-        <option value="inbox">待整理</option><option value="processed">已处理</option><option value="dismissed">暂时移开</option>
-      </select></label>
+      <div className="capture-controls"><FacetBar><FacetPopover clearable={false} multiple={false} label="收件箱状态" values={[filter]} onChange={values=>setFilter((values.at(-1)||'inbox') as CaptureItem['status'])} options={[{value:'inbox',label:'待整理'},{value:'processed',label:'已整理'},{value:'dismissed',label:'已移开'}]}/></FacetBar>
       {filter === 'inbox' && editable && <label>整理到项目<select value={project} onChange={event => setProject(event.target.value)}><option value="">工作空间共享</option>{projects.map(item => <option value={item.id} key={item.id}>{item.name}</option>)}</select></label>}</div>
       {items.filter(item => item.status === filter).map(item => <article className="detail stack" key={item.id}>
         <h2>{item.title}</h2>
@@ -174,7 +173,8 @@ export function Maintenance({ workspace,editable,initialClaim,claimEvidence,open
     } catch (error) { report(errorText(error)); }
     finally { setBusy(false); }
   }
-  const visible = summary?.claims.filter(item => filter === 'all' || ['proposed','needs_review'].includes(item.status));
+  const [claimQuery,setClaimQuery]=useState('');
+  const visible = summary?.claims.filter(item=>item.statement.toLocaleLowerCase().includes(claimQuery.toLocaleLowerCase())).filter(item => filter === 'all' || ['proposed','needs_review'].includes(item.status));
   return <div className="workflow">
     <header className="page-heading"><h1>知识维护</h1><p>复核证据、来源变化和关系建议。</p></header>
     {editable && draft && <form className="panel stack" onSubmit={event => void createClaim(event)}>
@@ -191,7 +191,7 @@ export function Maintenance({ workspace,editable,initialClaim,claimEvidence,open
       {Boolean(summary?.pending_edges) && <div><button onClick={openKnowledge}>审核 {summary?.pending_edges} 条关系建议</button></div>}
     </section>
     <section className="panel stack">
-      <div className="section-heading"><h2>结论</h2><label>状态<select value={filter} onChange={event => setFilter(event.target.value)}><option value="pending">待复核</option><option value="all">全部</option></select></label></div>
+      <h2>结论</h2><PrimarySearch value={claimQuery} onChange={setClaimQuery} label="搜索待维护结论"/><FacetBar><FacetPopover label="复核范围" values={filter==='all'?[]:['pending']} onChange={values=>setFilter(values.length?'pending':'all')} options={[{value:'pending',label:'待复核'}]}/></FacetBar><ActiveFilterTokens tokens={[...(claimQuery?[{key:'q',label:'搜索：'+claimQuery,remove:()=>setClaimQuery('')}]:[]),...(filter==='pending'?[{key:'pending',label:'待复核',remove:()=>setFilter('all')}]:[])]} onClear={()=>{setClaimQuery('');setFilter('all');}}/>
       {visible?.map(item => <div className="list-item" key={item.id}>
         <button onClick={() => void open(item.id)}>{item.statement}</button><span>{claimLabel(item.status)} · {item.evidence_count} 条证据</span>
       </div>)}

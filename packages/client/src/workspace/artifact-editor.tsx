@@ -239,7 +239,7 @@ export function ArtifactEditor({ content,editable,projection,workspace,project,o
             : rich ? <RichText block={block} graph={projection?.graph} workspace={workspace} project={project} close={() => setEditing(null)} save={saveBlock}
               split={block.type === 'paragraph' ? (before,after) => void save(content.blocks.flatMap(item => item.id === block.id ? [before,after] : [item])) : undefined} />
             : <InlineFields block={block} close={() => setEditing(null)} save={saveBlock} />
-          : <>{block.attrs?.user_edited === true && <small className="muted">用户编辑</small>}<ArtifactBlockView block={block} context={{ ...links,mode:'document',onEvidence,onSelection,projection,learning,blocks:content.blocks,onUpdate:editable && !saving ? saveBlock : undefined }} />
+          : <>{block.attrs?.user_edited === true && <small className="muted">用户编辑</small>}<ArtifactBlockView block={block} context={{ ...links,workspaceId:workspace,mode:'document',onEvidence,onSelection,projection,learning,blocks:content.blocks,onUpdate:editable && !saving ? saveBlock : undefined }} />
             {editable && <div className="block-actions">
               {canEdit && <button disabled={saving} onClick={() => setEditing(block.id)}>编辑</button>}
               {!isView && <button onClick={() => onInspect(block.id)}>属性</button>}
@@ -278,7 +278,7 @@ export function EvidencePanel({ evidence, close, propose, insert, read, report }
 }) {
   useEffect(() => {
     if (!evidence) return;
-    function dismiss(event: KeyboardEvent) { if (event.key === 'Escape') close(); }
+    function dismiss(event: KeyboardEvent) { if(event.key==='Escape'&&!event.defaultPrevented&&!document.querySelector('dialog[open]'))close(); }
     window.addEventListener('keydown',dismiss);
     return () => window.removeEventListener('keydown',dismiss);
   },[evidence,close]);

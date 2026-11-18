@@ -1,0 +1,5 @@
+# aa_global_cartographic_ornament_01
+
+Generated 2026-11-16 using built-in image_gen.imagegen.
+
+Create ONE small original engraved cartographic ornament for Atelier Atlas, Direction A Archive Editorial. Subject is a single elegant eight-point wind-rose rosette, drawn as a flat printed engraving in graphite with a very restrained matte brass wash. Only one compact connected ornament, clean silhouette, spare fine hatching, no labels, no North/South letters, no numerals, no geographic data, no other objects. Intended display 60–120px on a research archive page. Transparent background, surrounding pixels completely empty alpha. No telescope, no instrument body, no plants, no leaves, no paper rectangle, no collage, no scene, no cast shadow, no glow or blur, no background wash, no logo, no copied historical design, no watermark, no UI.

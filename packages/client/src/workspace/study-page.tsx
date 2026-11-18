@@ -1,3 +1,5 @@
+import {AtlasArt} from './atlas-art';
+import {ActiveFilterTokens,EmptyFilterResult,FacetBar,FacetPopover,PrimarySearch,ResultSummary} from './explorer-controls';
 import { useEffect, useState, type FormEvent } from 'react';
 import type { StudyCard, StudyGoal, StudyRating } from '@akw/contracts';
 import { api, errorText, post, type ArtifactSummary } from '../lib/api';
@@ -9,6 +11,7 @@ const ratings: { value:StudyRating; label:string }[] = [
 export function StudyPage({ workspace,documents,editable,openArtifact,report,initialArtifact }: {
   workspace:string; initialArtifact?:string; documents:ArtifactSummary[]; editable:boolean; openArtifact:(id:string)=>void; report:(value:string)=>void;
 }) {
+  const [search,setSearch]=useState(''),[states,setStates]=useState<string[]>([]);
   const [goals,setGoals] = useState<StudyGoal[]>([]);
   const [cards,setCards] = useState<StudyCard[]>([]);
   const [tab,setTab] = useState<'goals'|'cards'>(initialArtifact ? 'cards' : 'goals');
@@ -16,15 +19,16 @@ export function StudyPage({ workspace,documents,editable,openArtifact,report,ini
   const [formOpen,setFormOpen] = useState(Boolean(initialArtifact));
   const [busy,setBusy] = useState(false);
   const [loading,setLoading] = useState(true);
+  const [loadError,setLoadError]=useState(''),[loadEpoch,setLoadEpoch]=useState(0);
   const path = '/study?workspace_id=' + encodeURIComponent(workspace);
   useEffect(() => {
-    const controller = new AbortController();
+    const controller = new AbortController();setLoading(true);
     void api<{ goals:StudyGoal[]; cards:StudyCard[] }>(path,{ signal:controller.signal })
-      .then(data => { setGoals(data.goals); setCards(data.cards); })
-      .catch(error => { if (!controller.signal.aborted) report(errorText(error)); })
+      .then(data => { setGoals(data.goals); setCards(data.cards);setLoadError(''); })
+      .catch(error => { if (!controller.signal.aborted){report(errorText(error));setLoadError(errorText(error));} })
       .finally(() => { if (!controller.signal.aborted) setLoading(false); });
     return () => controller.abort();
-  },[path,report]);
+  },[path,report,loadEpoch]);
   async function act(action:()=>Promise<void>) {
     if (busy) return;
     setBusy(true);
@@ -56,7 +60,8 @@ export function StudyPage({ workspace,documents,editable,openArtifact,report,ini
       setGoals(previous => previous.map(item => item.id === row.id ? row : item));
     });
   }
-  const due = cards.filter(card => new Date(card.due_at).getTime() <= Date.now()).sort((a,b) => a.due_at.localeCompare(b.due_at));
+  const matchedCards=cards.filter(card=>(card.question+' '+card.answer).toLocaleLowerCase().includes(search.toLocaleLowerCase()));
+  const due = cards.filter(card=>(card.question+' '+card.answer).toLocaleLowerCase().includes(search.toLocaleLowerCase())).filter(card => new Date(card.due_at).getTime() <= Date.now()).sort((a,b) => a.due_at.localeCompare(b.due_at));
   const current = due[0];
   function review(card:StudyCard,rating:StudyRating) {
     void act(async () => {
@@ -70,11 +75,11 @@ export function StudyPage({ workspace,documents,editable,openArtifact,report,ini
     const document = documents.find(item => item.id === id);
     return document && <button type="button" onClick={() => openArtifact(document.id)}>{document.title}</button>;
   }
-  return <div className="workflow">
-    <header className="page-heading"><h1>学习</h1><p>用阶段任务跟踪进度，用间隔复习巩固知识。</p></header>
+  return <div className="workflow atlas-study">
+    <header className="page-heading atlas-page-heading"><div><p className="eyebrow">A JOURNEY THROUGH KNOWLEDGE</p><h1>学习</h1><p>用目标组织章节，用复习巩固理解。</p></div><figure><AtlasArt asset={tab==='cards'?'aa_learning_fossil_01':'aa_learning_seed_capsule_01'}/><figcaption>概念插画</figcaption></figure></header>
     <div className="button-row">
       <button aria-pressed={tab === 'goals'} onClick={() => { setTab('goals'); setFormOpen(false); }}>学习目标</button>
-      <button aria-pressed={tab === 'cards'} onClick={() => { setTab('cards'); setFormOpen(false); }}>复习卡片（{due.length} 张到期）</button>
+      <button aria-pressed={tab === 'cards'} onClick={() => { setTab('cards'); setStates([]); setFormOpen(false); }}>复习卡片（{due.length} 张到期）</button>
       {editable && <button className="primary" onClick={() => setFormOpen(!formOpen)}>{formOpen ? '关闭表单' : tab === 'goals' ? '新建学习目标' : '新建复习卡片'}</button>}
     </div>
     {formOpen && <form className="panel stack" onSubmit={create}>
@@ -90,11 +95,14 @@ export function StudyPage({ workspace,documents,editable,openArtifact,report,ini
       <label>关联文档<select name="artifact" defaultValue={initialArtifact}><option value="">无</option>{documents.map(item => <option key={item.id} value={item.id}>{item.title}</option>)}</select></label>
       <div><button className="primary" disabled={busy}>保存{tab === 'goals' ? '目标' : '卡片'}</button></div>
     </form>}
-    {loading ? <p className="muted">正在读取学习记录…</p> : tab === 'goals' ? <>
-      {!goals.length && <p className="muted">还没有学习目标。</p>}
-      {goals.map(goal => {
+    <PrimarySearch value={search} onChange={setSearch} label="搜索学习主题或卡片"/>{tab==='goals'&&<FacetBar><FacetPopover label="目标状态" values={states} onChange={setStates} options={[{value:'active',label:'进行中'},{value:'completed',label:'已完成'}]}/></FacetBar>}<ActiveFilterTokens tokens={[...(search?[{key:'q',label:'搜索：'+search,remove:()=>setSearch('')}]:[]),...states.map(value=>({key:value,label:value==='completed'?'已完成':'进行中',remove:()=>setStates(states.filter(item=>item!==value))}))]} onClear={()=>{setSearch('');setStates([]);}}/><ResultSummary>{tab==='goals'?goals.length+' 个学习目标':cards.length+' 张卡片 · '+due.length+' 张当前到期'}</ResultSummary>
+    {loadError&&<div role="alert"><p>学习记录暂不可读取：{loadError}</p><button onClick={()=>setLoadEpoch(value=>value+1)}>重试学习记录</button></div>}
+    {loading&&!goals.length&&!cards.length ? <p className="muted">正在读取学习记录…</p> : loadError&&!goals.length&&!cards.length ? null : tab === 'goals' ? <>
+      {!goals.length && <section className="atlas-learning-empty"><p className="eyebrow">LEARNING / 00</p><h3>还没有学习目标。</h3><p className="muted">从一个想弄清楚的问题开始，安排章节与复习。</p></section>}
+      {goals.length>0&&!goals.some(goal=>(!states.length||states.includes(goal.status==='completed'?'completed':'active'))&&(goal.title+' '+goal.notes).toLocaleLowerCase().includes(search.toLocaleLowerCase()))&&<EmptyFilterResult empty={false} subject="学习目标" onClear={()=>{setSearch('');setStates([]);}}/>}
+      {goals.filter(goal=>(!states.length||states.includes(goal.status==='completed'?'completed':'active'))&&(goal.title+' '+goal.notes).toLocaleLowerCase().includes(search.toLocaleLowerCase())).map(goal => {
         const done = goal.steps.filter(step => step.done).length;
-        return <article className="panel stack" key={goal.id}>
+        return <article className="panel stack atlas-learning-chapter" key={goal.id}>
           <div><h2>{goal.title}</h2><p className="muted">{goal.status === 'completed' ? '已完成' : '进行中'}{goal.target_date && ' · 目标日期 ' + goal.target_date}</p></div>
           {goal.notes && <p className="excerpt">{goal.notes}</p>}
           {goal.steps.length > 0 && <div className="stack">
@@ -108,15 +116,16 @@ export function StudyPage({ workspace,documents,editable,openArtifact,report,ini
         </article>;
       })}
     </> : <>
+      {cards.length>0&&!matchedCards.length&&<EmptyFilterResult empty={false} subject="复习卡片" onClear={()=>setSearch('')}/>}
       {current ? <article className="panel stack">
         <h2>{current.question}</h2>
         {visibleAnswer === current.id ? <>
           <p className="excerpt">{current.answer}</p>
           {editable && <div className="button-row">{ratings.map(rating => <button key={rating.value} disabled={busy} onClick={() => review(current,rating.value)}>{rating.label}</button>)}</div>}
         </> : <div><button className="primary" onClick={() => setVisibleAnswer(current.id)}>查看答案</button></div>}
-      </article> : <p className="muted">当前没有到期卡片。</p>}
-      {cards.length > 0 && <section className="panel stack"><h2>全部卡片</h2>
-        {[...cards].sort((a,b) => a.due_at.localeCompare(b.due_at)).map(card => <div className="detail stack" key={card.id}>
+      </article> : <p className="muted">{!cards.length?'还没有复习卡片。':matchedCards.length?'当前没有到期卡片。':'请调整搜索条件。'}</p>}
+      {matchedCards.length > 0 && <section className="panel stack"><h2>全部卡片</h2>
+        {[...cards].filter(card=>(card.question+' '+card.answer).toLocaleLowerCase().includes(search.toLocaleLowerCase())).sort((a,b) => a.due_at.localeCompare(b.due_at)).map(card => <div className="detail stack" key={card.id}>
           <strong>{card.question}</strong><time dateTime={card.due_at}>{new Date(card.due_at).toLocaleString()}</time>
           <div className="button-row">{link(card.artifact_id)}
             {editable && <button disabled={busy} onClick={() => void act(async () => {

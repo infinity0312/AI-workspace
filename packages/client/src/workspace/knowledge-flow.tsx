@@ -1,71 +1,82 @@
-import { useEffect, useMemo, useState } from 'react';
-import { Background, Controls, MarkerType, ReactFlow, useNodesState, type Node } from '@xyflow/react';
-import type { ProjectionEdge, ProjectionNode } from '@akw/contracts';
-import { nodeTypes,relations } from './graph-explorer';
+import {AtlasHeading} from './atlas-art';
+import {readExplorerLink,writeExplorerLink} from './explorer-link';
+import { useEffect,useMemo,useState } from 'react';
+import { Background,BaseEdge,EdgeText,Controls,MarkerType,ReactFlow,useNodesState,type Node,type EdgeProps } from '@xyflow/react';
+import type { ProjectionEdge,ProjectionNode } from '@akw/contracts';
+import { nodeTypes,relations,reviewStatuses } from './graph-labels';
+import { atlasPositions,focusWindow } from './projection-adapter';
+import { ActiveFilterTokens,AdvancedFilterDrawer,EmptyFilterResult,FacetBar,FacetPopover,FocusEntityPicker,PrimarySearch,ResultSummary,ViewOptionsMenu,useViewPreference,type FilterToken } from './explorer-controls';
+import { EntityInspector,InspectorAction } from './entity-inspector';
 
-export function KnowledgeFlow({ nodes,edges,root,viewKey,onEvidence,onNode }:{
-  nodes:ProjectionNode[]; edges:ProjectionEdge[]; root?:string; viewKey:string; onEvidence:(id:string)=>void; onNode?:(id:string)=>void;
-}) {
-  const [focus,setFocus] = useState(root ?? '');
-  const [query,setQuery] = useState('');
-  const [relation,setRelation] = useState('');
-  const byId = useMemo(() => new Map(nodes.map(node => [node.id,node])),[nodes]);
-  const visible = useMemo(() => {
-    const term = query.trim().toLocaleLowerCase();
-    const neighborhood = new Set([focus,...edges.filter(edge => edge.from_node_id === focus || edge.to_node_id === focus)
-      .flatMap(edge => [edge.from_node_id,edge.to_node_id])]);
-    return nodes.filter(node => (!focus || neighborhood.has(node.id)) && (!term || (node.title+' '+node.description).toLocaleLowerCase().includes(term))).slice(0,70);
-  },[nodes,edges,focus,query]);
-  const filtered = useMemo(() => {
-    const ids = new Set(visible.map(node => node.id));
-    return edges.filter(edge => ids.has(edge.from_node_id) && ids.has(edge.to_node_id) && (!relation || edge.relation_type === relation));
-  },[visible,edges,relation]);
-  const stored = 'akw-graph-layout:' + viewKey;
-  const initial = useMemo(() => {
-    let saved:Record<string,{x:number;y:number}> = {};
-    try { saved = JSON.parse(localStorage.getItem(stored) ?? '{}'); } catch { /* Use the default grid. */ }
-    return visible.map((node,index):Node => ({
-      id:node.id,data:{ label:<div className="flow-node-label"><strong>{node.title}</strong><small>{nodeTypes[node.type] ?? node.type}</small></div> },
-      position:Number.isFinite(saved[node.id]?.x) && Number.isFinite(saved[node.id]?.y) ? saved[node.id]! :
-        { x:(index%4)*208,y:Math.floor(index/4)*116 },
-      className:node.id === focus ? 'flow-node-focused' : '',
-    }));
-  },[visible,focus,stored]);
-  const [flow,setFlow,change] = useNodesState(initial);
-  useEffect(() => { setFlow(initial); },[initial,setFlow]);
-  const flowEdges = useMemo(() => filtered.map(edge => ({
-    id:edge.id,source:edge.from_node_id,target:edge.to_node_id,label:relations[edge.relation_type] ?? edge.relation_type,
-    markerEnd:{ type:MarkerType.ArrowClosed },animated:false,
-  })),[filtered]);
-  const current = byId.get(focus);
-  return <div className="stack">
-    <div className="field-grid">
-      <label>查找节点<input value={query} onChange={event => setQuery(event.target.value)} /></label>
-      <label>聚焦节点<select value={focus} onChange={event => setFocus(event.target.value)}><option value="">全部节点</option>
-        {nodes.map(node => <option key={node.id} value={node.id}>{node.title}</option>)}</select></label>
-      <label>关系类型<select value={relation} onChange={event => setRelation(event.target.value)}><option value="">全部关系</option>
-        {[...new Set(edges.map(edge => edge.relation_type))].map(type => <option key={type} value={type}>{relations[type] ?? type}</option>)}</select></label>
+type AtlasEndpoint={x:number;y:number;width:number;height:number};
+function AtlasEdge({id,data,label,markerEnd,style}:EdgeProps){
+  const points=data as {from?:AtlasEndpoint;to?:AtlasEndpoint}|undefined;if(!points?.from||!points.to)return null;
+  const a=points.from,b=points.to,ax=a.x+a.width/2,ay=a.y+a.height/2,bx=b.x+b.width/2,by=b.y+b.height/2,dx=bx-ax,dy=by-ay;
+  const t1=Math.min(a.width/2/Math.max(.001,Math.abs(dx)),a.height/2/Math.max(.001,Math.abs(dy))),t2=Math.min(b.width/2/Math.max(.001,Math.abs(dx)),b.height/2/Math.max(.001,Math.abs(dy)));
+  const same=ax===bx&&ay===by,path=same?`M${ax+a.width/2},${ay} C${ax+a.width},${ay-90} ${ax-a.width},${ay-90} ${ax-a.width/2},${ay}`:`M${ax+dx*t1},${ay+dy*t1} L${bx-dx*t2},${by-dy*t2}`;
+  return <><BaseEdge id={id} path={path} markerEnd={markerEnd} style={style}/>{label&&<EdgeText x={same?ax:(ax+bx)/2} y={same?ay-65:(ay+by)/2} label={label} labelShowBg labelBgPadding={[4,3]}/>}</>;
+}
+const atlasEdgeTypes={atlas:AtlasEdge};
+
+export function KnowledgeFlow({nodes,edges,root,viewKey,onEvidence,onNode,onFocus}:{nodes:ProjectionNode[];edges:ProjectionEdge[];root?:string;viewKey:string;onEvidence:(id:string)=>void;onNode?:(id:string)=>void;onFocus?:(id:string)=>void}) {
+  const [shared]=useState(()=>typeof window==='undefined'?undefined:readExplorerLink(window.location.href,viewKey,{nodes:nodes.map(node=>node.id),types:nodes.map(node=>node.type),relations:edges.map(edge=>edge.relation_type),statuses:edges.map(edge=>edge.status)}));
+  const [linkSaved,setLinkSaved]=useState(false),[mobile,setMobile]=useState(false);
+  const [focus,setFocus]=useState(shared?.focus || root || '');
+  const [history,setHistory]=useState<string[]>([]);
+  const [query,setQuery]=useState('');
+  const [types,setTypes]=useState<string[]>(shared?.types||[]),[relationsFilter,setRelations]=useState<string[]>(shared?.relations||[]),[statuses,setStatuses]=useState<string[]>(shared?.statuses||[]);
+  const [evidenceOnly,setEvidenceOnly]=useState(false),[draftEvidence,setDraftEvidence]=useState(false);
+  const [view,setView]=useViewPreference(viewKey,{mode:'map',density:'balanced',labels:true});
+  const [selected,setSelected]=useState(''),[selectedEdge,setSelectedEdge]=useState('');
+  const [depth,setDepth]=useState(1),[indexPage,setIndexPage]=useState(0);
+  useEffect(()=>setIndexPage(0),[query,types,relationsFilter,statuses,focus,view.mode]);
+  const [layoutEpoch,setLayoutEpoch]=useState(0);
+  useEffect(()=>{const media=window.matchMedia('(max-width:767px)');const update=()=>setMobile(media.matches);update();media.addEventListener('change',update);return()=>media.removeEventListener('change',update);},[viewKey]);
+  useEffect(()=>{if(root&&!shared)setFocus(root);},[root,shared]);
+  useEffect(()=>{if(shared)setView({...view,mode:shared.mode});},[shared]);
+  useEffect(()=>{onFocus?.(focus);},[focus,onFocus]);
+  const byId=useMemo(()=>new Map(nodes.map(node=>[node.id,node])),[nodes]);
+  const currentFocus=byId.has(focus)?focus:'';
+  const displayFocus=currentFocus || (view.mode==='map' ? [...nodes].sort((a,b)=>Number(b.type==='concept')-Number(a.type==='concept')||edges.filter(edge=>edge.from_node_id===b.id||edge.to_node_id===b.id).length-edges.filter(edge=>edge.from_node_id===a.id||edge.to_node_id===a.id).length||a.id.localeCompare(b.id))[0]?.id || '' : '');
+  function navigate(id:string){setHistory(previous=>[...previous,currentFocus]);setFocus(id);setDepth(1);setSelected(id);setSelectedEdge('');}
+  const eligibleEdges=useMemo(()=>edges.filter(edge=>(!relationsFilter.length||relationsFilter.includes(edge.relation_type))&&(!statuses.length||statuses.includes(edge.status))&&(!evidenceOnly||edge.evidence_id)),[edges,relationsFilter,statuses,evidenceOnly]);
+  const visible=useMemo(()=>{
+    const nearby=new Set(displayFocus?[displayFocus]:nodes.map(node=>node.id));
+    if(displayFocus){let frontier=new Set([displayFocus]);for(let i=0;i<depth;i++){const next=new Set<string>();for(const edge of eligibleEdges){if(frontier.has(edge.from_node_id))next.add(edge.to_node_id);if(frontier.has(edge.to_node_id))next.add(edge.from_node_id);}for(const id of next)nearby.add(id);frontier=next;}}
+    const linked=new Set(eligibleEdges.flatMap(edge=>[edge.from_node_id,edge.to_node_id]));
+    const term=query.trim().toLocaleLowerCase();
+    return nodes.filter(node=>nearby.has(node.id)&&(!types.length||types.includes(node.type))&&(!term||(node.title+' '+node.description).toLocaleLowerCase().includes(term))&&(!(relationsFilter.length||statuses.length||evidenceOnly)||linked.has(node.id)));
+  },[nodes,displayFocus,depth,eligibleEdges,types,query,relationsFilter.length,statuses.length,evidenceOnly]);
+  const matchingEdges=useMemo(()=>{const ids=new Set(visible.map(node=>node.id));return eligibleEdges.filter(edge=>ids.has(edge.from_node_id)&&ids.has(edge.to_node_id));},[visible,eligibleEdges]);
+  const rendered=useMemo(()=>view.mode==='map'?focusWindow(visible,displayFocus,mobile?3:70):visible,[visible,view.mode,displayFocus,mobile]);
+  const filtered=useMemo(()=>{const ids=new Set(rendered.map(node=>node.id));return eligibleEdges.filter(edge=>ids.has(edge.from_node_id)&&ids.has(edge.to_node_id));},[rendered,eligibleEdges]);
+  const stored='akw-graph-layout:'+viewKey;
+  const initial=useMemo(()=>{
+    let saved:Record<string,{x:number;y:number}>={};try{saved=JSON.parse(localStorage.getItem(stored)||'{}');}catch{/* Default deterministic layout. */}
+    const positions=mobile?new Map(rendered.map((node,index)=>[node.id,{x:32,y:30+index*140}])):atlasPositions(rendered,displayFocus);
+    return rendered.map((node):Node=>({id:node.id,data:{label:<div className="flow-node-label"><small>{node.type==='claim'?'CLAIM / ':node.type==='source'?'SOURCE / ':''}{nodeTypes[node.type]||node.type}</small><strong>{node.title}</strong>{node.id===displayFocus && <span>当前焦点</span>}</div>},position:!mobile&&Number.isFinite(saved[node.id]?.x)&&Number.isFinite(saved[node.id]?.y)?saved[node.id]!:positions.get(node.id)!,className:['semantic-node','node-kind-'+node.type,node.id===displayFocus?'flow-node-focused':'',node.id===selected?'is-selected':''].join(' ')}));
+  },[rendered,displayFocus,stored,selected,layoutEpoch,mobile]);
+  const [flow,setFlow,change]=useNodesState(initial);
+  useEffect(()=>{setFlow(initial);},[initial,setFlow]);
+  const activeFlow=flow.length===initial.length&&flow.every(node=>initial.some(item=>item.id===node.id))?flow:initial;
+  const flowEdges=useMemo(()=>filtered.map(edge=>({id:edge.id,source:edge.from_node_id,target:edge.to_node_id,type:'atlas',data:{from:(()=>{const node=activeFlow.find(node=>node.id===edge.from_node_id)||{position:{x:0,y:0},measured:undefined};return {...node.position,width:node.measured?.width||204,height:node.measured?.height||94};})(),to:(()=>{const node=activeFlow.find(node=>node.id===edge.to_node_id)||{position:{x:0,y:0},measured:undefined};return {...node.position,width:node.measured?.width||204,height:node.measured?.height||94};})()},label:view.labels?(relations[edge.relation_type]||edge.relation_type)+(edge.status==='confirmed'?'':' · '+(reviewStatuses[edge.status]||edge.status)):undefined,markerEnd:{type:MarkerType.ArrowClosed},animated:false,className:'relation-'+edge.status,style:{stroke:edge.relation_type==='contradicts'?'var(--warning)':'var(--muted)',strokeWidth:edge.id===selectedEdge?2.5:1.2,strokeDasharray:edge.status==='confirmed'?undefined:'6 4'}})),[filtered,view.labels,selectedEdge,activeFlow]);
+  const clear=()=>{setQuery('');setTypes([]);setRelations([]);setStatuses([]);setEvidenceOnly(false);setDraftEvidence(false);};
+  const tokens:FilterToken[]=[...(query?[{key:'q',label:'搜索：'+query,remove:()=>setQuery('')}]:[]),...types.map(value=>({key:'t:'+value,label:'类型：'+(nodeTypes[value]||value),remove:()=>setTypes(types.filter(item=>item!==value))})),...relationsFilter.map(value=>({key:'r:'+value,label:'关系：'+(relations[value]||value),remove:()=>setRelations(relationsFilter.filter(item=>item!==value))})),...statuses.map(value=>({key:'s:'+value,label:'状态：'+(reviewStatuses[value]||value),remove:()=>setStatuses(statuses.filter(item=>item!==value))})),...(evidenceOnly?[{key:'evidence',label:'有关系证据',remove:()=>setEvidenceOnly(false)}]:[])];
+  const current=byId.get(selected),edge=edges.find(item=>item.id===selectedEdge);
+  return <div className={'stack explorer graph-atlas density-'+view.density}>
+    <AtlasHeading code="KNOWLEDGE ATLAS / RELATIONS" title="沿关联，读懂当前焦点。" description="对象、主张与来源共享身份；空间位置只影响阅读。" asset={view.mode==='clusters'?'aa_graph_mountain_01':'aa_graph_contour_01'}/>
+    <div className="explorer-toolbar"><PrimarySearch value={query} onChange={setQuery} label="搜索知识节点" placeholder="搜索概念、主张、来源…" /><FocusEntityPicker items={nodes.map(node=>({...node,type:nodeTypes[node.type]||node.type}))} value={displayFocus} onFocus={navigate} /><ViewOptionsMenu><div className="segmented" role="group" aria-label="图谱显示模式">{[['map','图谱'],['clusters','分类图册'],['index','节点列表']].map(([value,label])=><button key={value} aria-pressed={view.mode===value} onClick={()=>setView({...view,mode:value!})}>{label}</button>)}</div><label>密度<select value={view.density} onChange={event=>setView({...view,density:event.target.value})}><option value="airy">舒展</option><option value="balanced">均衡</option><option value="dense">紧凑</option></select></label><label className="check"><input type="checkbox" checked={view.labels} onChange={event=>setView({...view,labels:event.target.checked})}/>显示关系标签</label><button onClick={()=>{localStorage.removeItem(stored);setLayoutEpoch(layoutEpoch+1);setView({mode:'map',density:'balanced',labels:true});}}>恢复默认视图</button><button onClick={()=>{window.history.replaceState(null,'',writeExplorerLink(window.location.href,viewKey,{focus:displayFocus,types,relations:relationsFilter,statuses,mode:view.mode}));setLinkSaved(true);}}>保存视图到链接</button><small>链接只包含实体 ID、枚举筛选和布局，不包含搜索文本或高级证据条件；访问仍受工作空间权限限制。</small>{linkSaved&&<p role="status">视图已写入地址栏，可复制当前链接。</p>}</ViewOptionsMenu></div>
+    {query.trim()&&<section className="entity-search-suggestions" aria-label="按类型分组的搜索候选" onKeyDown={event=>{if(!['ArrowDown','ArrowUp'].includes(event.key))return;event.preventDefault();const choices=Array.from(event.currentTarget.querySelectorAll<HTMLButtonElement>('button'));const at=choices.indexOf(document.activeElement as HTMLButtonElement);choices[(at+(event.key==='ArrowDown'?1:-1)+choices.length)%choices.length]?.focus();}}><p className="eyebrow">搜索定位 · 选择动作后才改变焦点</p>{[...new Set(nodes.filter(node=>(node.title+' '+node.description).toLocaleLowerCase().includes(query.toLocaleLowerCase())).map(node=>node.type))].map(type=><div key={type}><h4>{nodeTypes[type]||type}</h4>{nodes.filter(node=>node.type===type&&(node.title+' '+node.description).toLocaleLowerCase().includes(query.toLocaleLowerCase())).slice(0,12).map(node=><div className="search-entity-row" key={node.id}><strong>{node.title}</strong><button onClick={()=>{setSelected(node.id);setSelectedEdge('');}}>打开详情</button><button onClick={()=>{navigate(node.id);setQuery('');}}>聚焦</button></div>)}</div>)}</section>}
+    <FacetBar><FacetPopover label="节点类型" options={[...new Set(nodes.map(node=>node.type))].map(value=>({value,label:nodeTypes[value]||value,count:nodes.filter(node=>node.type===value).length}))} values={types} onChange={setTypes}/><FacetPopover label="关系类型" options={[...new Set(edges.map(edge=>edge.relation_type))].map(value=>({value,label:relations[value]||value,count:edges.filter(edge=>edge.relation_type===value).length}))} values={relationsFilter} onChange={setRelations}/><FacetPopover label="审核状态" options={[...new Set(edges.map(edge=>edge.status))].map(value=>({value,label:reviewStatuses[value]||value,count:edges.filter(edge=>edge.status===value).length}))} values={statuses} onChange={setStatuses}/><button className="facet-trigger" aria-pressed={statuses.length===1&&statuses[0]==='confirmed'} onClick={()=>setStatuses(['confirmed'])}>仅看已确认</button><AdvancedFilterDrawer active={evidenceOnly}><p>当前范围的高级条件。勾选只修改草稿，点击应用后生效。</p><label className="check"><input type="checkbox" checked={draftEvidence} onChange={event=>setDraftEvidence(event.target.checked)}/>只看附有关系证据的节点与关系</label><p role="status">{draftEvidence!==evidenceOnly?'草稿 · 尚未应用':'与当前生效条件一致'}</p><div className="button-row"><button className="primary" onClick={event=>{setEvidenceOnly(draftEvidence);event.currentTarget.closest('dialog')?.close();}}>应用筛选</button><button onClick={event=>{setDraftEvidence(evidenceOnly);event.currentTarget.closest('dialog')?.close();}}>取消草稿</button></div></AdvancedFilterDrawer></FacetBar>
+    <ActiveFilterTokens tokens={tokens} onClear={clear}/><div className="section-heading"><ResultSummary>{visible.length} 个节点 · {matchingEdges.length} 条当前关系 · {tokens.length} 个条件{!statuses.length?' · 全部审核状态':''}</ResultSummary>{displayFocus && <div className="focus-trail"><span>焦点 / {byId.get(displayFocus)?.title}</span>{history.length>0 && <button onClick={()=>{setFocus(history.at(-1)||'');setHistory(history.slice(0,-1));setSelected('');}}>上一焦点</button>}<button onClick={()=>{setFocus('');setView({...view,mode:'index'});setSelected('');}}>返回全局</button><button onClick={()=>setDepth(depth+1)}>展开更多关联（{depth} 层）</button></div>}</div>
+    <div className="explorer-stage">
+      <div className="explorer-canvas">{!visible.length?<EmptyFilterResult empty={!nodes.length} onClear={clear} subject="知识节点"/>:view.mode==='clusters'?<div className="atlas-clusters"><p className="projection-caption">按真实节点类型分区，空间相邻不表示额外关系。</p>{[...new Set(visible.map(node=>node.type))].sort().map(kind=><section className="atlas-cluster" key={kind}><h3>{nodeTypes[kind]||kind} / {visible.filter(node=>node.type===kind).length}</h3><ul>{visible.filter(node=>node.type===kind).slice(0,40).map(node=><li key={node.id}><button onClick={()=>{navigate(node.id);setView({...view,mode:'map'});}}>{node.title}</button></li>)}</ul>{visible.filter(node=>node.type===kind).length>40&&<button onClick={()=>{setTypes([kind]);setView({...view,mode:'index'});}}>此类超过 40 项，打开完整分页索引</button>}</section>)}</div>:view.mode==='index'?<div><ul className="node-index">{visible.slice(indexPage*80,(indexPage+1)*80).map(node=><li key={node.id}><small>{nodeTypes[node.type]||node.type}</small><button aria-pressed={selected===node.id} onClick={()=>{setSelected(node.id);setSelectedEdge('');}}><strong>{node.title}</strong></button><p>{node.description}</p><button onClick={()=>{navigate(node.id);setView({...view,mode:'map'});}}>聚焦关联 →</button></li>)}</ul>{visible.length>80&&<div className="button-row"><button disabled={!indexPage} onClick={()=>setIndexPage(indexPage-1)}>上一页</button><span>{indexPage*80+1}–{Math.min(visible.length,(indexPage+1)*80)} / {visible.length} 个节点</span><button disabled={(indexPage+1)*80>=visible.length} onClick={()=>setIndexPage(indexPage+1)}>下一页</button></div>}</div>:<div className="workspace-flow" aria-label="交互图谱"><ReactFlow key={rendered.map(node=>node.id).join(':')+':'+layoutEpoch} nodes={activeFlow} edges={flowEdges} edgeTypes={atlasEdgeTypes} onNodesChange={change} nodesConnectable={false} deleteKeyCode={null} onNodeClick={(_event,node)=>{setSelected(node.id);setSelectedEdge('');}} onEdgeClick={(_event,item)=>{setSelectedEdge(item.id);setSelected('');}} onNodeDoubleClick={(_event,node)=>navigate(node.id)} onNodeDragStop={(_event,node)=>{try{const saved=JSON.parse(localStorage.getItem(stored)||'{}');localStorage.setItem(stored,JSON.stringify({...saved,[node.id]:node.position}));}catch{/* Device layout only. */}}} fitView minZoom={0.15} maxZoom={2}><Background/><Controls showInteractive={false}/></ReactFlow></div>}
+      {view.mode==='map'&&visible.length>0&&<details className="mobile-graph-neighbors" open><summary>局部关联列表（{visible.length}）</summary><ul>{visible.map(node=><li key={node.id}><button onClick={()=>{setSelected(node.id);setSelectedEdge('');}}>{node.title}</button><button onClick={()=>navigate(node.id)}>聚焦</button></li>)}</ul></details>}
+      {view.mode==='map'&&visible.length>(mobile?3:70)&&<p>画布展示 {rendered.length} / {visible.length} 个节点、{filtered.length} / {matchingEdges.length} 条关系；节点列表与关系明细保留全部结果。</p>}
+      </div>
+      {(current||edge)&&<EntityInspector key={(current?.id||edge?.id)} title={current?.title || (relations[edge!.relation_type]||edge!.relation_type)} kind={current?(nodeTypes[current.type]||current.type):'关系'} onClose={()=>{setSelected('');setSelectedEdge('');}}>{current?<><p>{current.description||'尚未提供定义。'}</p><small>ID / {current.id}</small><div className="button-row"><button onClick={()=>navigate(current.id)}>以此为焦点</button>{onNode&&<InspectorAction onClick={()=>onNode(current.id)}>打开知识节点</InspectorAction>}</div><h4>关联关系</h4>{edges.filter(item=>item.from_node_id===current.id||item.to_node_id===current.id).map(item=><button key={item.id} onClick={()=>{setSelected('');setSelectedEdge(item.id);}}>{byId.get(item.from_node_id)?.title} — {relations[item.relation_type]||item.relation_type} → {byId.get(item.to_node_id)?.title} · {reviewStatuses[item.status]||item.status}</button>)}</>:<><p>{byId.get(edge!.from_node_id)?.title} → {byId.get(edge!.to_node_id)?.title}</p><strong>{reviewStatuses[edge!.status]||edge!.status}</strong><small>关系 ID / {edge!.id}</small>{edge!.evidence_id?<InspectorAction className="citation" onClick={()=>onEvidence(edge!.evidence_id!)}>打开关系证据</InspectorAction>:<p>未附原文证据</p>}</>}</EntityInspector>}
     </div>
-    {visible.length ? <div className="workspace-flow" aria-label="交互图谱">
-      <ReactFlow nodes={flow} edges={flowEdges} onNodesChange={change} nodesConnectable={false} deleteKeyCode={null}
-        onNodeDoubleClick={(_event,node) => setFocus(node.id)} panOnScroll={false} zoomOnScroll={false}
-        onNodeDragStop={(_event,node) => {
-          try {
-            const saved = JSON.parse(localStorage.getItem(stored) ?? '{}');
-            localStorage.setItem(stored,JSON.stringify({ ...saved,[node.id]:node.position }));
-          } catch { /* Layout is optional device state. */ }
-        }} fitView minZoom={0.15} maxZoom={2}>
-        <Background /><Controls showInteractive={false} />
-      </ReactFlow>
-    </div> : <p className="muted">没有匹配的节点。</p>}
-    {current && <div className="detail"><strong>{current.title}</strong><p>{current.description}</p>
-      {onNode && <button onClick={() => onNode(current.id)}>打开知识节点</button>}</div>}
-    {filtered.length ? <details open={filtered.length <= 8}><summary>关系明细（{filtered.length}）</summary>
-      <ul className="projection-edges">{filtered.map(edge => <li key={edge.id}>
-        <button onClick={() => setFocus(edge.from_node_id)}>{byId.get(edge.from_node_id)?.title}</button>
-        <span>{relations[edge.relation_type] ?? edge.relation_type} →</span>
-        <button onClick={() => setFocus(edge.to_node_id)}>{byId.get(edge.to_node_id)?.title}</button>
-        {edge.evidence_id && <button className="citation" onClick={() => onEvidence(edge.evidence_id!)}>关系证据</button>}
-      </li>)}</ul></details> : <p className="muted">此范围暂无已确认的关系。</p>}
+    {!!matchingEdges.length && <details><summary>关系明细（{matchingEdges.length}）</summary><ul className="projection-edges">{matchingEdges.map(item=><li key={item.id}><button onClick={()=>{setSelectedEdge(item.id);setSelected('');}}>{byId.get(item.from_node_id)?.title} — {relations[item.relation_type]||item.relation_type} → {byId.get(item.to_node_id)?.title}</button><small>{reviewStatuses[item.status]||item.status}</small>{item.evidence_id&&<InspectorAction className="citation" onClick={()=>onEvidence(item.evidence_id!)}>关系证据</InspectorAction>}</li>)}</ul></details>}
+    <details className="graph-legend"><summary>图例与数据边界</summary><p>矩形：概念；档案边框：来源；侧标：主张。箭头表示保存的方向；虚线关系为待审核或已拒绝，不属于正式知识。拖动仅保存本机布局。</p></details>
   </div>;
 }

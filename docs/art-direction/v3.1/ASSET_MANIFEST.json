@@ -1,0 +1,1158 @@
+{
+  "version": "3.1",
+  "direction": "A",
+  "assets": [
+    {
+      "id": "aa_learning_botanical_01",
+      "module": "learning",
+      "category": "isolated-illustration",
+      "original": "originals/aa_learning_botanical_01.png",
+      "prompt_file": "prompts/aa_learning_botanical_01.md",
+      "source_width": 1254,
+      "source_height": 1254,
+      "transparent": true,
+      "alpha_min": 0,
+      "alpha_max": 255,
+      "variants": [
+        {
+          "file": "optimized/aa_learning_botanical_01-192.webp",
+          "width": 192,
+          "height": 192,
+          "bytes": 16690
+        },
+        {
+          "file": "optimized/aa_learning_botanical_01-384.webp",
+          "width": 384,
+          "height": 384,
+          "bytes": 50728
+        },
+        {
+          "file": "optimized/aa_learning_botanical_01-768.webp",
+          "width": 768,
+          "height": 768,
+          "bytes": 158784
+        }
+      ],
+      "tool": "image_gen.imagegen",
+      "generated_date": "2026-11-16",
+      "status": "visual QA passed by implementing agent; human approval not recorded",
+      "production_usage": [
+        "workspace-home.tsx / 首页默认标本",
+        "document-canvas.tsx / 学习文稿边注",
+        "atlas-art.tsx / learning-folio 别名"
+      ],
+      "rights": "Original image generated for this project; no copied reference brand or document imagery.",
+      "filename": "optimized/aa_learning_botanical_01-384.webp",
+      "source_format": "png",
+      "display_role": "decorative-conceptual-object",
+      "recommended_display_width": 120,
+      "alt": "Decorative conceptual illustration: botanical",
+      "qa": {
+        "date": "2026-11-16",
+        "subject_complete": true,
+        "no_obvious_malformation": true,
+        "no_pseudo_text": true,
+        "clean_alpha_or_intended_opaque": true,
+        "small_display_reviewed": true,
+        "light_dark_reviewed": true,
+        "distinct_purpose": true,
+        "evidence": "final-screenshots/assets-light-dark.jpg",
+        "reviewer": "implementing agent",
+        "human_approved": false
+      }
+    },
+    {
+      "id": "aa_graph_mineral_01",
+      "module": "graph",
+      "category": "isolated-illustration",
+      "original": "originals/aa_graph_mineral_01.png",
+      "prompt_file": "prompts/aa_graph_mineral_01.md",
+      "source_width": 1254,
+      "source_height": 1254,
+      "transparent": true,
+      "alpha_min": 0,
+      "alpha_max": 255,
+      "variants": [
+        {
+          "file": "optimized/aa_graph_mineral_01-192.webp",
+          "width": 192,
+          "height": 192,
+          "bytes": 8232
+        },
+        {
+          "file": "optimized/aa_graph_mineral_01-384.webp",
+          "width": 384,
+          "height": 384,
+          "bytes": 23548
+        },
+        {
+          "file": "optimized/aa_graph_mineral_01-768.webp",
+          "width": 768,
+          "height": 768,
+          "bytes": 87782
+        }
+      ],
+      "tool": "image_gen.imagegen",
+      "generated_date": "2026-11-16",
+      "status": "visual QA passed by implementing agent; human approval not recorded",
+      "production_usage": [
+        "workspace-home.tsx / 主要近期成果",
+        "atlas-art.tsx / comparison-empty 别名"
+      ],
+      "rights": "Original image generated for this project; no copied reference brand or document imagery.",
+      "filename": "optimized/aa_graph_mineral_01-384.webp",
+      "source_format": "png",
+      "display_role": "decorative-conceptual-object",
+      "recommended_display_width": 120,
+      "alt": "Decorative conceptual illustration: mineral",
+      "qa": {
+        "date": "2026-11-16",
+        "subject_complete": true,
+        "no_obvious_malformation": true,
+        "no_pseudo_text": true,
+        "clean_alpha_or_intended_opaque": true,
+        "small_display_reviewed": true,
+        "light_dark_reviewed": true,
+        "distinct_purpose": true,
+        "evidence": "final-screenshots/assets-light-dark.jpg",
+        "reviewer": "implementing agent",
+        "human_approved": false
+      }
+    },
+    {
+      "id": "aa_home_compass_01",
+      "module": "home",
+      "category": "isolated-illustration",
+      "original": "originals/aa_home_compass_01.png",
+      "prompt_file": "prompts/aa_home_compass_01.md",
+      "source_width": 1254,
+      "source_height": 1254,
+      "transparent": true,
+      "alpha_min": 0,
+      "alpha_max": 255,
+      "variants": [
+        {
+          "file": "optimized/aa_home_compass_01-192.webp",
+          "width": 192,
+          "height": 192,
+          "bytes": 7258
+        },
+        {
+          "file": "optimized/aa_home_compass_01-384.webp",
+          "width": 384,
+          "height": 384,
+          "bytes": 19210
+        },
+        {
+          "file": "optimized/aa_home_compass_01-768.webp",
+          "width": 768,
+          "height": 768,
+          "bytes": 67414
+        }
+      ],
+      "tool": "image_gen.imagegen",
+      "generated_date": "2026-11-16",
+      "status": "visual QA passed by implementing agent; human approval not recorded",
+      "production_usage": [
+        "workspace-home.tsx / 首页可切换标本",
+        "atlas-art.tsx / search-empty 别名"
+      ],
+      "rights": "Original image generated for this project; no copied reference brand or document imagery.",
+      "filename": "optimized/aa_home_compass_01-384.webp",
+      "source_format": "png",
+      "display_role": "decorative-conceptual-object",
+      "recommended_display_width": 120,
+      "alt": "Decorative conceptual illustration: compass",
+      "qa": {
+        "date": "2026-11-16",
+        "subject_complete": true,
+        "no_obvious_malformation": true,
+        "no_pseudo_text": true,
+        "clean_alpha_or_intended_opaque": true,
+        "small_display_reviewed": true,
+        "light_dark_reviewed": true,
+        "distinct_purpose": true,
+        "evidence": "final-screenshots/assets-light-dark.jpg",
+        "reviewer": "implementing agent",
+        "human_approved": false
+      }
+    },
+    {
+      "id": "aa_dependency_instrument_01",
+      "module": "dependency",
+      "category": "isolated-illustration",
+      "original": "originals/aa_dependency_instrument_01.png",
+      "prompt_file": "prompts/aa_dependency_instrument_01.md",
+      "source_width": 2048,
+      "source_height": 768,
+      "transparent": true,
+      "alpha_min": 0,
+      "alpha_max": 254,
+      "variants": [
+        {
+          "file": "optimized/aa_dependency_instrument_01-192.webp",
+          "width": 192,
+          "height": 72,
+          "bytes": 5066
+        },
+        {
+          "file": "optimized/aa_dependency_instrument_01-384.webp",
+          "width": 384,
+          "height": 144,
+          "bytes": 13256
+        },
+        {
+          "file": "optimized/aa_dependency_instrument_01-768.webp",
+          "width": 768,
+          "height": 288,
+          "bytes": 41904
+        }
+      ],
+      "tool": "image_gen.imagegen",
+      "generated_date": "2026-11-16",
+      "status": "visual QA passed by implementing agent; human approval not recorded",
+      "production_usage": [
+        "dependency-view.tsx / 依赖图页首",
+        "research-page.tsx / 研究页首",
+        "atlas-art.tsx / error、research 别名"
+      ],
+      "rights": "Original image generated for this project; no copied reference brand or document imagery.",
+      "filename": "optimized/aa_dependency_instrument_01-384.webp",
+      "source_format": "png",
+      "display_role": "decorative-conceptual-object",
+      "recommended_display_width": 120,
+      "alt": "Decorative conceptual illustration: instrument",
+      "qa": {
+        "date": "2026-11-16",
+        "subject_complete": true,
+        "no_obvious_malformation": true,
+        "no_pseudo_text": true,
+        "clean_alpha_or_intended_opaque": false,
+        "small_display_reviewed": true,
+        "light_dark_reviewed": true,
+        "distinct_purpose": true,
+        "evidence": "final-screenshots/assets-light-dark.jpg",
+        "reviewer": "implementing agent",
+        "human_approved": false
+      }
+    },
+    {
+      "id": "aa_document_notebook_01",
+      "module": "document",
+      "category": "isolated-illustration",
+      "original": "originals/aa_document_notebook_01.png",
+      "prompt_file": "prompts/aa_document_notebook_01.md",
+      "source_width": 1536,
+      "source_height": 1024,
+      "transparent": true,
+      "alpha_min": 0,
+      "alpha_max": 254,
+      "variants": [
+        {
+          "file": "optimized/aa_document_notebook_01-192.webp",
+          "width": 192,
+          "height": 128,
+          "bytes": 5196
+        },
+        {
+          "file": "optimized/aa_document_notebook_01-384.webp",
+          "width": 384,
+          "height": 256,
+          "bytes": 16616
+        },
+        {
+          "file": "optimized/aa_document_notebook_01-768.webp",
+          "width": 768,
+          "height": 512,
+          "bytes": 65482
+        }
+      ],
+      "tool": "image_gen.imagegen",
+      "generated_date": "2026-11-16",
+      "status": "visual QA passed by implementing agent; human approval not recorded",
+      "production_usage": [
+        "document-canvas.tsx / 普通文稿边注",
+        "workspace-home.tsx / 无近期成果",
+        "atlas-art.tsx / collection、offline、guide 空态别名"
+      ],
+      "rights": "Original image generated for this project; no copied reference brand or document imagery.",
+      "filename": "optimized/aa_document_notebook_01-384.webp",
+      "source_format": "png",
+      "display_role": "decorative-conceptual-object",
+      "recommended_display_width": 120,
+      "alt": "Decorative conceptual illustration: notebook",
+      "qa": {
+        "date": "2026-11-16",
+        "subject_complete": true,
+        "no_obvious_malformation": true,
+        "no_pseudo_text": true,
+        "clean_alpha_or_intended_opaque": false,
+        "small_display_reviewed": true,
+        "light_dark_reviewed": true,
+        "distinct_purpose": true,
+        "evidence": "final-screenshots/assets-light-dark.jpg",
+        "reviewer": "implementing agent",
+        "human_approved": false
+      }
+    },
+    {
+      "id": "aa_evidence_archive_stamp_01",
+      "module": "evidence",
+      "category": "isolated-illustration",
+      "original": "originals/aa_evidence_archive_stamp_01.png",
+      "prompt_file": "prompts/aa_evidence_archive_stamp_01.md",
+      "source_width": 1536,
+      "source_height": 1024,
+      "transparent": true,
+      "alpha_min": 0,
+      "alpha_max": 254,
+      "variants": [
+        {
+          "file": "optimized/aa_evidence_archive_stamp_01-192.webp",
+          "width": 192,
+          "height": 128,
+          "bytes": 4510
+        },
+        {
+          "file": "optimized/aa_evidence_archive_stamp_01-384.webp",
+          "width": 384,
+          "height": 256,
+          "bytes": 11584
+        },
+        {
+          "file": "optimized/aa_evidence_archive_stamp_01-768.webp",
+          "width": 768,
+          "height": 512,
+          "bytes": 38904
+        }
+      ],
+      "tool": "image_gen.imagegen",
+      "generated_date": "2026-11-16",
+      "status": "visual QA passed by implementing agent; human approval not recorded",
+      "production_usage": [
+        "provenance-board.tsx / 有主张或引用时页首；实体装饰，不表示通过审核"
+      ],
+      "rights": "Original image generated for this project; no copied reference brand or document imagery.",
+      "filename": "optimized/aa_evidence_archive_stamp_01-384.webp",
+      "source_format": "png",
+      "display_role": "decorative-conceptual-object",
+      "recommended_display_width": 120,
+      "alt": "Decorative conceptual illustration: archive stamp",
+      "qa": {
+        "date": "2026-11-16",
+        "subject_complete": true,
+        "no_obvious_malformation": true,
+        "no_pseudo_text": true,
+        "clean_alpha_or_intended_opaque": false,
+        "small_display_reviewed": true,
+        "light_dark_reviewed": true,
+        "distinct_purpose": true,
+        "evidence": "final-screenshots/assets-light-dark.jpg",
+        "reviewer": "implementing agent",
+        "human_approved": false
+      }
+    },
+    {
+      "id": "aa_evidence_manuscript_01",
+      "module": "evidence",
+      "category": "isolated-illustration",
+      "original": "originals/aa_evidence_manuscript_01.png",
+      "prompt_file": "prompts/aa_evidence_manuscript_01.md",
+      "source_width": 1536,
+      "source_height": 1024,
+      "transparent": true,
+      "alpha_min": 0,
+      "alpha_max": 254,
+      "variants": [
+        {
+          "file": "optimized/aa_evidence_manuscript_01-192.webp",
+          "width": 192,
+          "height": 128,
+          "bytes": 5160
+        },
+        {
+          "file": "optimized/aa_evidence_manuscript_01-384.webp",
+          "width": 384,
+          "height": 256,
+          "bytes": 12096
+        },
+        {
+          "file": "optimized/aa_evidence_manuscript_01-768.webp",
+          "width": 768,
+          "height": 512,
+          "bytes": 36698
+        }
+      ],
+      "tool": "image_gen.imagegen",
+      "generated_date": "2026-11-16",
+      "status": "visual QA passed by implementing agent; human approval not recorded",
+      "production_usage": [
+        "provenance-board.tsx / 无主张且无引用时页首",
+        "atlas-art.tsx / evidence-empty 别名"
+      ],
+      "rights": "Original image generated for this project; no copied reference brand or document imagery.",
+      "filename": "optimized/aa_evidence_manuscript_01-384.webp",
+      "source_format": "png",
+      "display_role": "decorative-conceptual-object",
+      "recommended_display_width": 120,
+      "alt": "Decorative conceptual illustration: manuscript",
+      "qa": {
+        "date": "2026-11-16",
+        "subject_complete": true,
+        "no_obvious_malformation": true,
+        "no_pseudo_text": true,
+        "clean_alpha_or_intended_opaque": false,
+        "small_display_reviewed": true,
+        "light_dark_reviewed": true,
+        "distinct_purpose": true,
+        "evidence": "final-screenshots/assets-light-dark.jpg",
+        "reviewer": "implementing agent",
+        "human_approved": false
+      }
+    },
+    {
+      "id": "aa_global_cartographic_ornament_01",
+      "module": "global",
+      "category": "isolated-illustration",
+      "original": "originals/aa_global_cartographic_ornament_01.png",
+      "prompt_file": "prompts/aa_global_cartographic_ornament_01.md",
+      "source_width": 1263,
+      "source_height": 1246,
+      "transparent": true,
+      "alpha_min": 0,
+      "alpha_max": 255,
+      "variants": [
+        {
+          "file": "optimized/aa_global_cartographic_ornament_01-192.webp",
+          "width": 192,
+          "height": 189,
+          "bytes": 12544
+        },
+        {
+          "file": "optimized/aa_global_cartographic_ornament_01-384.webp",
+          "width": 384,
+          "height": 379,
+          "bytes": 34046
+        },
+        {
+          "file": "optimized/aa_global_cartographic_ornament_01-768.webp",
+          "width": 768,
+          "height": 758,
+          "bytes": 112258
+        }
+      ],
+      "tool": "image_gen.imagegen",
+      "generated_date": "2026-11-16",
+      "status": "visual QA passed by implementing agent; human approval not recorded",
+      "production_usage": [
+        "search-page.tsx / 搜索页首；采用重生成v02单一风向玫瑰"
+      ],
+      "rights": "Original image generated for this project; no copied reference brand or document imagery.",
+      "filename": "optimized/aa_global_cartographic_ornament_01-384.webp",
+      "source_format": "png",
+      "display_role": "decorative-conceptual-object",
+      "recommended_display_width": 64,
+      "alt": "Decorative conceptual illustration: cartographic ornament",
+      "qa": {
+        "date": "2026-11-16",
+        "subject_complete": true,
+        "no_obvious_malformation": true,
+        "no_pseudo_text": true,
+        "clean_alpha_or_intended_opaque": true,
+        "small_display_reviewed": true,
+        "light_dark_reviewed": true,
+        "distinct_purpose": true,
+        "evidence": "final-screenshots/assets-light-dark.jpg",
+        "reviewer": "implementing agent",
+        "human_approved": false
+      },
+      "regeneration": "v01 rejected: unrelated branch beside instrument. v02 accepted: one wind-rose rosette."
+    },
+    {
+      "id": "aa_global_ink_texture_01",
+      "module": "global",
+      "category": "material",
+      "original": "originals/aa_global_ink_texture_01.png",
+      "prompt_file": "prompts/aa_global_ink_texture_01.md",
+      "source_width": 1774,
+      "source_height": 887,
+      "transparent": true,
+      "alpha_min": 0,
+      "alpha_max": 255,
+      "variants": [
+        {
+          "file": "optimized/aa_global_ink_texture_01-192.webp",
+          "width": 192,
+          "height": 96,
+          "bytes": 6448
+        },
+        {
+          "file": "optimized/aa_global_ink_texture_01-384.webp",
+          "width": 384,
+          "height": 192,
+          "bytes": 21032
+        },
+        {
+          "file": "optimized/aa_global_ink_texture_01-768.webp",
+          "width": 768,
+          "height": 384,
+          "bytes": 76080
+        }
+      ],
+      "tool": "image_gen.imagegen",
+      "generated_date": "2026-11-16",
+      "status": "visual QA passed by implementing agent; human approval not recorded",
+      "production_usage": [
+        "art-direction-v31.css / 文稿起始8px细分隔"
+      ],
+      "rights": "Original image generated for this project; no copied reference brand or document imagery.",
+      "filename": "optimized/aa_global_ink_texture_01-384.webp",
+      "source_format": "png",
+      "display_role": "local-reading-material",
+      "recommended_display_width": 180,
+      "alt": "Decorative conceptual illustration: ink texture",
+      "qa": {
+        "date": "2026-11-16",
+        "subject_complete": true,
+        "no_obvious_malformation": true,
+        "no_pseudo_text": true,
+        "clean_alpha_or_intended_opaque": true,
+        "small_display_reviewed": true,
+        "light_dark_reviewed": true,
+        "distinct_purpose": true,
+        "evidence": "final-screenshots/assets-light-dark.jpg",
+        "reviewer": "implementing agent",
+        "human_approved": false
+      }
+    },
+    {
+      "id": "aa_global_paper_grain_01",
+      "module": "global",
+      "category": "material",
+      "original": "originals/aa_global_paper_grain_01.png",
+      "prompt_file": "prompts/aa_global_paper_grain_01.md",
+      "source_width": 1254,
+      "source_height": 1254,
+      "transparent": false,
+      "variants": [
+        {
+          "file": "optimized/aa_global_paper_grain_01-192.webp",
+          "width": 192,
+          "height": 192,
+          "bytes": 872
+        },
+        {
+          "file": "optimized/aa_global_paper_grain_01-384.webp",
+          "width": 384,
+          "height": 384,
+          "bytes": 8616
+        },
+        {
+          "file": "optimized/aa_global_paper_grain_01-768.webp",
+          "width": 768,
+          "height": 768,
+          "bytes": 61144
+        }
+      ],
+      "tool": "image_gen.imagegen",
+      "generated_date": "2026-11-16",
+      "status": "visual QA passed by implementing agent; human approval not recorded",
+      "production_usage": [
+        "art-direction-v31.css / 文稿边缘，97%底色覆盖的低对比纸纹"
+      ],
+      "rights": "Original image generated for this project; no copied reference brand or document imagery.",
+      "filename": "optimized/aa_global_paper_grain_01-384.webp",
+      "source_format": "png",
+      "display_role": "local-reading-material",
+      "recommended_display_width": 180,
+      "alt": "Decorative conceptual illustration: paper grain",
+      "qa": {
+        "date": "2026-11-16",
+        "subject_complete": true,
+        "no_obvious_malformation": true,
+        "no_pseudo_text": true,
+        "clean_alpha_or_intended_opaque": true,
+        "small_display_reviewed": true,
+        "light_dark_reviewed": true,
+        "distinct_purpose": true,
+        "evidence": "final-screenshots/assets-light-dark.jpg",
+        "reviewer": "implementing agent",
+        "human_approved": false
+      }
+    },
+    {
+      "id": "aa_graph_contour_01",
+      "module": "graph",
+      "category": "isolated-illustration",
+      "original": "originals/aa_graph_contour_01.png",
+      "prompt_file": "prompts/aa_graph_contour_01.md",
+      "source_width": 1536,
+      "source_height": 1024,
+      "transparent": true,
+      "alpha_min": 0,
+      "alpha_max": 254,
+      "variants": [
+        {
+          "file": "optimized/aa_graph_contour_01-192.webp",
+          "width": 192,
+          "height": 128,
+          "bytes": 6380
+        },
+        {
+          "file": "optimized/aa_graph_contour_01-384.webp",
+          "width": 384,
+          "height": 256,
+          "bytes": 18776
+        },
+        {
+          "file": "optimized/aa_graph_contour_01-768.webp",
+          "width": 768,
+          "height": 512,
+          "bytes": 66206
+        }
+      ],
+      "tool": "image_gen.imagegen",
+      "generated_date": "2026-11-16",
+      "status": "visual QA passed by implementing agent; human approval not recorded",
+      "production_usage": [
+        "knowledge-flow.tsx / map、index 页首"
+      ],
+      "rights": "Original image generated for this project; no copied reference brand or document imagery.",
+      "filename": "optimized/aa_graph_contour_01-384.webp",
+      "source_format": "png",
+      "display_role": "decorative-conceptual-object",
+      "recommended_display_width": 120,
+      "alt": "Decorative conceptual illustration: contour",
+      "qa": {
+        "date": "2026-11-16",
+        "subject_complete": true,
+        "no_obvious_malformation": true,
+        "no_pseudo_text": true,
+        "clean_alpha_or_intended_opaque": false,
+        "small_display_reviewed": true,
+        "light_dark_reviewed": true,
+        "distinct_purpose": true,
+        "evidence": "final-screenshots/assets-light-dark.jpg",
+        "reviewer": "implementing agent",
+        "human_approved": false
+      }
+    },
+    {
+      "id": "aa_graph_mountain_01",
+      "module": "graph",
+      "category": "isolated-illustration",
+      "original": "originals/aa_graph_mountain_01.png",
+      "prompt_file": "prompts/aa_graph_mountain_01.md",
+      "source_width": 2172,
+      "source_height": 724,
+      "transparent": true,
+      "alpha_min": 0,
+      "alpha_max": 255,
+      "variants": [
+        {
+          "file": "optimized/aa_graph_mountain_01-192.webp",
+          "width": 192,
+          "height": 64,
+          "bytes": 5098
+        },
+        {
+          "file": "optimized/aa_graph_mountain_01-384.webp",
+          "width": 384,
+          "height": 128,
+          "bytes": 13896
+        },
+        {
+          "file": "optimized/aa_graph_mountain_01-768.webp",
+          "width": 768,
+          "height": 256,
+          "bytes": 45826
+        }
+      ],
+      "tool": "image_gen.imagegen",
+      "generated_date": "2026-11-16",
+      "status": "visual QA passed by implementing agent; human approval not recorded",
+      "production_usage": [
+        "knowledge-flow.tsx / clusters 页首"
+      ],
+      "rights": "Original image generated for this project; no copied reference brand or document imagery.",
+      "filename": "optimized/aa_graph_mountain_01-384.webp",
+      "source_format": "png",
+      "display_role": "decorative-conceptual-object",
+      "recommended_display_width": 120,
+      "alt": "Decorative conceptual illustration: mountain",
+      "qa": {
+        "date": "2026-11-16",
+        "subject_complete": true,
+        "no_obvious_malformation": true,
+        "no_pseudo_text": true,
+        "clean_alpha_or_intended_opaque": true,
+        "small_display_reviewed": true,
+        "light_dark_reviewed": true,
+        "distinct_purpose": true,
+        "evidence": "final-screenshots/assets-light-dark.jpg",
+        "reviewer": "implementing agent",
+        "human_approved": false
+      }
+    },
+    {
+      "id": "aa_home_atlas_fragment_01",
+      "module": "home",
+      "category": "isolated-illustration",
+      "original": "originals/aa_home_atlas_fragment_01.png",
+      "prompt_file": "prompts/aa_home_atlas_fragment_01.md",
+      "source_width": 1536,
+      "source_height": 1024,
+      "transparent": true,
+      "alpha_min": 0,
+      "alpha_max": 254,
+      "variants": [
+        {
+          "file": "optimized/aa_home_atlas_fragment_01-192.webp",
+          "width": 192,
+          "height": 128,
+          "bytes": 7864
+        },
+        {
+          "file": "optimized/aa_home_atlas_fragment_01-384.webp",
+          "width": 384,
+          "height": 256,
+          "bytes": 22306
+        },
+        {
+          "file": "optimized/aa_home_atlas_fragment_01-768.webp",
+          "width": 768,
+          "height": 512,
+          "bytes": 85050
+        }
+      ],
+      "tool": "image_gen.imagegen",
+      "generated_date": "2026-11-16",
+      "status": "visual QA passed by implementing agent; human approval not recorded",
+      "production_usage": [
+        "workspace-home.tsx / ProjectsPage 页首"
+      ],
+      "rights": "Original image generated for this project; no copied reference brand or document imagery.",
+      "filename": "optimized/aa_home_atlas_fragment_01-384.webp",
+      "source_format": "png",
+      "display_role": "decorative-conceptual-object",
+      "recommended_display_width": 120,
+      "alt": "Decorative conceptual illustration: atlas fragment",
+      "qa": {
+        "date": "2026-11-16",
+        "subject_complete": true,
+        "no_obvious_malformation": true,
+        "no_pseudo_text": true,
+        "clean_alpha_or_intended_opaque": false,
+        "small_display_reviewed": true,
+        "light_dark_reviewed": true,
+        "distinct_purpose": true,
+        "evidence": "final-screenshots/assets-light-dark.jpg",
+        "reviewer": "implementing agent",
+        "human_approved": false
+      }
+    },
+    {
+      "id": "aa_learning_fossil_01",
+      "module": "learning",
+      "category": "isolated-illustration",
+      "original": "originals/aa_learning_fossil_01.png",
+      "prompt_file": "prompts/aa_learning_fossil_01.md",
+      "source_width": 1312,
+      "source_height": 1199,
+      "transparent": true,
+      "alpha_min": 0,
+      "alpha_max": 255,
+      "variants": [
+        {
+          "file": "optimized/aa_learning_fossil_01-192.webp",
+          "width": 192,
+          "height": 175,
+          "bytes": 10610
+        },
+        {
+          "file": "optimized/aa_learning_fossil_01-384.webp",
+          "width": 384,
+          "height": 351,
+          "bytes": 36388
+        },
+        {
+          "file": "optimized/aa_learning_fossil_01-768.webp",
+          "width": 768,
+          "height": 702,
+          "bytes": 140878
+        }
+      ],
+      "tool": "image_gen.imagegen",
+      "generated_date": "2026-11-16",
+      "status": "visual QA passed by implementing agent; human approval not recorded",
+      "production_usage": [
+        "study-page.tsx / 复习卡页首"
+      ],
+      "rights": "Original image generated for this project; no copied reference brand or document imagery.",
+      "filename": "optimized/aa_learning_fossil_01-384.webp",
+      "source_format": "png",
+      "display_role": "decorative-conceptual-object",
+      "recommended_display_width": 120,
+      "alt": "Decorative conceptual illustration: fossil",
+      "qa": {
+        "date": "2026-11-16",
+        "subject_complete": true,
+        "no_obvious_malformation": true,
+        "no_pseudo_text": true,
+        "clean_alpha_or_intended_opaque": true,
+        "small_display_reviewed": true,
+        "light_dark_reviewed": true,
+        "distinct_purpose": true,
+        "evidence": "final-screenshots/assets-light-dark.jpg",
+        "reviewer": "implementing agent",
+        "human_approved": false
+      }
+    },
+    {
+      "id": "aa_learning_seed_capsule_01",
+      "module": "learning",
+      "category": "isolated-illustration",
+      "original": "originals/aa_learning_seed_capsule_01.png",
+      "prompt_file": "prompts/aa_learning_seed_capsule_01.md",
+      "source_width": 1199,
+      "source_height": 1312,
+      "transparent": true,
+      "alpha_min": 0,
+      "alpha_max": 255,
+      "variants": [
+        {
+          "file": "optimized/aa_learning_seed_capsule_01-192.webp",
+          "width": 192,
+          "height": 210,
+          "bytes": 8488
+        },
+        {
+          "file": "optimized/aa_learning_seed_capsule_01-384.webp",
+          "width": 384,
+          "height": 420,
+          "bytes": 25670
+        },
+        {
+          "file": "optimized/aa_learning_seed_capsule_01-768.webp",
+          "width": 768,
+          "height": 840,
+          "bytes": 92030
+        }
+      ],
+      "tool": "image_gen.imagegen",
+      "generated_date": "2026-11-16",
+      "status": "visual QA passed by implementing agent; human approval not recorded",
+      "production_usage": [
+        "study-page.tsx / 学习目标页首",
+        "atlas-art.tsx / learning-empty 别名"
+      ],
+      "rights": "Original image generated for this project; no copied reference brand or document imagery.",
+      "filename": "optimized/aa_learning_seed_capsule_01-384.webp",
+      "source_format": "png",
+      "display_role": "decorative-conceptual-object",
+      "recommended_display_width": 120,
+      "alt": "Decorative conceptual illustration: seed capsule",
+      "qa": {
+        "date": "2026-11-16",
+        "subject_complete": true,
+        "no_obvious_malformation": true,
+        "no_pseudo_text": true,
+        "clean_alpha_or_intended_opaque": true,
+        "small_display_reviewed": true,
+        "light_dark_reviewed": true,
+        "distinct_purpose": true,
+        "evidence": "final-screenshots/assets-light-dark.jpg",
+        "reviewer": "implementing agent",
+        "human_approved": false
+      }
+    },
+    {
+      "id": "aa_mindmap_branching_01",
+      "module": "mindmap",
+      "category": "isolated-illustration",
+      "original": "originals/aa_mindmap_branching_01.png",
+      "prompt_file": "prompts/aa_mindmap_branching_01.md",
+      "source_width": 1536,
+      "source_height": 1024,
+      "transparent": true,
+      "alpha_min": 0,
+      "alpha_max": 254,
+      "variants": [
+        {
+          "file": "optimized/aa_mindmap_branching_01-192.webp",
+          "width": 192,
+          "height": 128,
+          "bytes": 5918
+        },
+        {
+          "file": "optimized/aa_mindmap_branching_01-384.webp",
+          "width": 384,
+          "height": 256,
+          "bytes": 14356
+        },
+        {
+          "file": "optimized/aa_mindmap_branching_01-768.webp",
+          "width": 768,
+          "height": 512,
+          "bytes": 38366
+        }
+      ],
+      "tool": "image_gen.imagegen",
+      "generated_date": "2026-11-16",
+      "status": "visual QA passed by implementing agent; human approval not recorded",
+      "production_usage": [
+        "specialized-projection.tsx / 思维导图页首",
+        "atlas-art.tsx / mindmap-empty 别名"
+      ],
+      "rights": "Original image generated for this project; no copied reference brand or document imagery.",
+      "filename": "optimized/aa_mindmap_branching_01-384.webp",
+      "source_format": "png",
+      "display_role": "decorative-conceptual-object",
+      "recommended_display_width": 120,
+      "alt": "Decorative conceptual illustration: branching",
+      "qa": {
+        "date": "2026-11-16",
+        "subject_complete": true,
+        "no_obvious_malformation": true,
+        "no_pseudo_text": true,
+        "clean_alpha_or_intended_opaque": false,
+        "small_display_reviewed": true,
+        "light_dark_reviewed": true,
+        "distinct_purpose": true,
+        "evidence": "final-screenshots/assets-light-dark.jpg",
+        "reviewer": "implementing agent",
+        "human_approved": false
+      }
+    },
+    {
+      "id": "aa_scientific_mica_01",
+      "module": "scientific",
+      "category": "isolated-illustration",
+      "original": "originals/aa_scientific_mica_01.png",
+      "prompt_file": "prompts/aa_scientific_mica_01.md",
+      "source_width": 1536,
+      "source_height": 1024,
+      "transparent": true,
+      "alpha_min": 0,
+      "alpha_max": 254,
+      "variants": [
+        {
+          "file": "optimized/aa_scientific_mica_01-192.webp",
+          "width": 192,
+          "height": 128,
+          "bytes": 8820
+        },
+        {
+          "file": "optimized/aa_scientific_mica_01-384.webp",
+          "width": 384,
+          "height": 256,
+          "bytes": 26384
+        },
+        {
+          "file": "optimized/aa_scientific_mica_01-768.webp",
+          "width": 768,
+          "height": 512,
+          "bytes": 95120
+        }
+      ],
+      "tool": "image_gen.imagegen",
+      "generated_date": "2026-11-16",
+      "status": "visual QA passed by implementing agent; human approval not recorded",
+      "production_usage": [
+        "chart-block.tsx / 科学图表标题旁，位于数据绘图区外"
+      ],
+      "rights": "Original image generated for this project; no copied reference brand or document imagery.",
+      "filename": "optimized/aa_scientific_mica_01-384.webp",
+      "source_format": "png",
+      "display_role": "decorative-conceptual-object",
+      "recommended_display_width": 120,
+      "alt": "Decorative conceptual illustration: mica",
+      "qa": {
+        "date": "2026-11-16",
+        "subject_complete": true,
+        "no_obvious_malformation": true,
+        "no_pseudo_text": true,
+        "clean_alpha_or_intended_opaque": false,
+        "small_display_reviewed": true,
+        "light_dark_reviewed": true,
+        "distinct_purpose": true,
+        "evidence": "final-screenshots/assets-light-dark.jpg",
+        "reviewer": "implementing agent",
+        "human_approved": false
+      }
+    },
+    {
+      "id": "aa_sources_book_spine_01",
+      "module": "sources",
+      "category": "isolated-illustration",
+      "original": "originals/aa_sources_book_spine_01.png",
+      "prompt_file": "prompts/aa_sources_book_spine_01.md",
+      "source_width": 1024,
+      "source_height": 1536,
+      "transparent": true,
+      "alpha_min": 0,
+      "alpha_max": 254,
+      "variants": [
+        {
+          "file": "optimized/aa_sources_book_spine_01-192.webp",
+          "width": 192,
+          "height": 288,
+          "bytes": 8036
+        },
+        {
+          "file": "optimized/aa_sources_book_spine_01-384.webp",
+          "width": 384,
+          "height": 576,
+          "bytes": 28316
+        },
+        {
+          "file": "optimized/aa_sources_book_spine_01-768.webp",
+          "width": 768,
+          "height": 1152,
+          "bytes": 112598
+        }
+      ],
+      "tool": "image_gen.imagegen",
+      "generated_date": "2026-11-16",
+      "status": "visual QA passed by implementing agent; human approval not recorded",
+      "production_usage": [
+        "sources-page.tsx / 来源库页首"
+      ],
+      "rights": "Original image generated for this project; no copied reference brand or document imagery.",
+      "filename": "optimized/aa_sources_book_spine_01-384.webp",
+      "source_format": "png",
+      "display_role": "decorative-conceptual-object",
+      "recommended_display_width": 120,
+      "alt": "Decorative conceptual illustration: book spine",
+      "qa": {
+        "date": "2026-11-16",
+        "subject_complete": true,
+        "no_obvious_malformation": true,
+        "no_pseudo_text": true,
+        "clean_alpha_or_intended_opaque": false,
+        "small_display_reviewed": true,
+        "light_dark_reviewed": true,
+        "distinct_purpose": true,
+        "evidence": "final-screenshots/assets-light-dark.jpg",
+        "reviewer": "implementing agent",
+        "human_approved": false
+      }
+    },
+    {
+      "id": "aa_timeline_astronomical_01",
+      "module": "timeline",
+      "category": "isolated-illustration",
+      "original": "originals/aa_timeline_astronomical_01.png",
+      "prompt_file": "prompts/aa_timeline_astronomical_01.md",
+      "source_width": 1254,
+      "source_height": 1254,
+      "transparent": true,
+      "alpha_min": 0,
+      "alpha_max": 255,
+      "variants": [
+        {
+          "file": "optimized/aa_timeline_astronomical_01-192.webp",
+          "width": 192,
+          "height": 192,
+          "bytes": 16698
+        },
+        {
+          "file": "optimized/aa_timeline_astronomical_01-384.webp",
+          "width": 384,
+          "height": 384,
+          "bytes": 44684
+        },
+        {
+          "file": "optimized/aa_timeline_astronomical_01-768.webp",
+          "width": 768,
+          "height": 768,
+          "bytes": 143014
+        }
+      ],
+      "tool": "image_gen.imagegen",
+      "generated_date": "2026-11-16",
+      "status": "visual QA passed by implementing agent; human approval not recorded",
+      "production_usage": [
+        "chronicle.tsx / 编年、横向、轨道页首",
+        "atlas-art.tsx / timeline-empty 别名"
+      ],
+      "rights": "Original image generated for this project; no copied reference brand or document imagery.",
+      "filename": "optimized/aa_timeline_astronomical_01-384.webp",
+      "source_format": "png",
+      "display_role": "decorative-conceptual-object",
+      "recommended_display_width": 120,
+      "alt": "Decorative conceptual illustration: astronomical",
+      "qa": {
+        "date": "2026-11-16",
+        "subject_complete": true,
+        "no_obvious_malformation": true,
+        "no_pseudo_text": true,
+        "clean_alpha_or_intended_opaque": true,
+        "small_display_reviewed": true,
+        "light_dark_reviewed": true,
+        "distinct_purpose": true,
+        "evidence": "final-screenshots/assets-light-dark.jpg",
+        "reviewer": "implementing agent",
+        "human_approved": false
+      }
+    },
+    {
+      "id": "aa_timeline_strata_01",
+      "module": "timeline",
+      "category": "isolated-illustration",
+      "original": "originals/aa_timeline_strata_01.png",
+      "prompt_file": "prompts/aa_timeline_strata_01.md",
+      "source_width": 1536,
+      "source_height": 1024,
+      "transparent": true,
+      "alpha_min": 0,
+      "alpha_max": 254,
+      "variants": [
+        {
+          "file": "optimized/aa_timeline_strata_01-192.webp",
+          "width": 192,
+          "height": 128,
+          "bytes": 8406
+        },
+        {
+          "file": "optimized/aa_timeline_strata_01-384.webp",
+          "width": 384,
+          "height": 256,
+          "bytes": 25762
+        },
+        {
+          "file": "optimized/aa_timeline_strata_01-768.webp",
+          "width": 768,
+          "height": 512,
+          "bytes": 100400
+        }
+      ],
+      "tool": "image_gen.imagegen",
+      "generated_date": "2026-11-16",
+      "status": "visual QA passed by implementing agent; human approval not recorded",
+      "production_usage": [
+        "chronicle.tsx / 时期概览页首"
+      ],
+      "rights": "Original image generated for this project; no copied reference brand or document imagery.",
+      "filename": "optimized/aa_timeline_strata_01-384.webp",
+      "source_format": "png",
+      "display_role": "decorative-conceptual-object",
+      "recommended_display_width": 120,
+      "alt": "Decorative conceptual illustration: strata",
+      "qa": {
+        "date": "2026-11-16",
+        "subject_complete": true,
+        "no_obvious_malformation": true,
+        "no_pseudo_text": true,
+        "clean_alpha_or_intended_opaque": false,
+        "small_display_reviewed": true,
+        "light_dark_reviewed": true,
+        "distinct_purpose": true,
+        "evidence": "final-screenshots/assets-light-dark.jpg",
+        "reviewer": "implementing agent",
+        "human_approved": false
+      }
+    }
+  ],
+  "archive": "ASSET_MANIFEST_PILOTS_ARCHIVE.json"
+}

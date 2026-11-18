@@ -1,0 +1,67 @@
+ M README.md
+ M apps/api/src/domain/diagram-export.ts
+ M apps/api/src/domain/exports.ts
+ M apps/web/package.json
+ M packages/client/src/styles.css
+ M packages/client/src/workspace/artifact-editor.tsx
+ M packages/client/src/workspace/artifact-renderer.tsx
+ M packages/client/src/workspace/chart-block.tsx
+ M packages/client/src/workspace/document-canvas.tsx
+ M packages/client/src/workspace/graph-explorer.tsx
+ M packages/client/src/workspace/knowledge-flow.tsx
+ M packages/client/src/workspace/knowledge-page.tsx
+ M packages/client/src/workspace/library-pages.tsx
+ M packages/client/src/workspace/projection-views.tsx
+ M packages/client/src/workspace/reference-views.tsx
+ M packages/client/src/workspace/research-page.tsx
+ M packages/client/src/workspace/search-page.tsx
+ M packages/client/src/workspace/sources-page.tsx
+ M packages/client/src/workspace/study-page.tsx
+ M packages/client/src/workspace/task-experience.tsx
+ M packages/client/src/workspace/use-projection.ts
+ M packages/client/src/workspace/workspace-app.tsx
+ M packages/client/src/workspace/workspace-inspector.tsx
+ M playwright.config.ts
+ M tests/e2e/workspace.spec.ts
+?? apps/api/tests/editorial-assets.test.ts
+?? apps/api/tests/explorer-v21.test.ts
+?? apps/api/tests/frontend-rendering.test.ts
+?? apps/web/app/renderer-lab/
+?? docs/ARTIFACT_RENDERING_AUDIT.md
+?? docs/ARTIFACT_RENDERING_GAP_ANALYSIS.md
+?? docs/ART_ASSET_COVERAGE.md
+?? docs/CONTROL_LANGUAGE_AUDIT.md
+?? docs/FRONTEND_IMPLEMENTATION.md
+?? docs/UI_AUDIT.md
+?? docs/V21_IMPLEMENTATION_REPORT.md
+?? docs/art-direction/
+?? packages/client/src/assets/
+?? packages/client/src/workspace/art-direction-v31.css
+?? packages/client/src/workspace/atelier.css
+?? packages/client/src/workspace/atlas-art.tsx
+?? packages/client/src/workspace/chronicle.tsx
+?? packages/client/src/workspace/comparison-sheet.tsx
+?? packages/client/src/workspace/dependency-layout.ts
+?? packages/client/src/workspace/dependency-view.tsx
+?? packages/client/src/workspace/editorial-assets.css
+?? packages/client/src/workspace/editorial-image.tsx
+?? packages/client/src/workspace/entity-inspector.tsx
+?? packages/client/src/workspace/explorer-controls.tsx
+?? packages/client/src/workspace/explorer-link.ts
+?? packages/client/src/workspace/explorer.css
+?? packages/client/src/workspace/graph-labels.ts
+?? packages/client/src/workspace/mindmap-structure.tsx
+?? packages/client/src/workspace/panel-resize.tsx
+?? packages/client/src/workspace/projection-adapter.ts
+?? packages/client/src/workspace/provenance-board.tsx
+?? packages/client/src/workspace/renderer-lab.tsx
+?? packages/client/src/workspace/specialized-projection.tsx
+?? packages/client/src/workspace/ui-icon.tsx
+?? packages/client/src/workspace/workspace-brand.ts
+?? packages/client/src/workspace/workspace-home.tsx
+?? tests/e2e/v21.bridge.spec.ts
+?? tests/e2e/v21.spec.ts
+?? tests/e2e/v21.visual.spec.ts
+?? tests/e2e/v21.visual.spec.ts-snapshots/
+?? tests/e2e/zz-frontend.spec.ts
+?? tests/e2e/zzz-editorial-assets.spec.ts

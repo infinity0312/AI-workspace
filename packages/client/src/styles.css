@@ -1,7 +1,12 @@
 @import 'katex/dist/katex.min.css';
 @import '@xyflow/react/dist/style.css';
 @import './workspace/panels.css';
+@import './workspace/atelier.css';
+@import './workspace/editorial-assets.css';
+@import './workspace/explorer.css';
+@import './workspace/art-direction-v31.css';
 
+@layer legacy {
 :root {
   color-scheme: light;
   --paper: #f1eee5;
@@ -177,4 +182,7 @@ blockquote { border-left: 3px solid #667c70; margin: 0; padding: 0.5rem 0.7rem; 
   .sidebar.mobile-open { display: block; position: fixed; z-index: 5; top: 61px; bottom: 0; width: min(270px,88vw); overflow: auto; box-shadow: 10px 0 30px #2122381a; }
   .inspector.inspector-open { top: auto; bottom: 0; left: 0; right: 0; width: auto; max-height: 65vh; border: 1px solid var(--line); border-radius: 12px 12px 0 0; }
   button { min-height: 44px; }
+}
+
+
 }

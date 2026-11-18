@@ -1,3 +1,8 @@
+import { WorkspaceHome, ProjectsPage, ActivityPage } from './workspace-home';
+import { UIIcon } from './ui-icon';
+import { workspaceBrand } from './workspace-brand';
+import { PanelResize } from './panel-resize';
+import { EditorialImage } from './editorial-image';
 import { useCallback, useEffect, useRef, useState, type FormEvent, type CSSProperties } from 'react';
 import { type ArtifactDetail, type ArtifactDocument, type ArtifactRevision, type LearningMastery, type LearningAssessmentResult, type RunSummary, type SearchHit, type WorkspaceSummary } from '@akw/contracts';
 import { ApiError, api, errorText, post, workspaceApi, type Evidence, type Job, type Patch, type WorkspaceView } from '../lib/api';
@@ -9,7 +14,7 @@ import { activeRun } from './workflow-status';
 import { ExportCenter } from './export-center';
 import { Knowledge } from './knowledge-page';
 import { canUseModel,LearningJourney } from './learning-experience';
-import { ForecastActions,TaskStart } from './task-experience';
+import { ForecastActions } from './task-experience';
 import { Research } from './research-page';
 import { Sources } from './sources-page';
 import { DocumentCanvas } from './document-canvas';
@@ -24,11 +29,17 @@ import { SchedulesPage } from './schedules-page';
 import { SearchPage } from './search-page';
 import { PreferencesPanel, reopenLastDocument, usePreferences } from './preferences';
 
-type Page = 'home'|'search'|'artifact'|'capture'|'study'|'schedules'|'research'|'sources'|'knowledge'|'maintenance'|'trash'|'exports'|'settings';
+type Page = 'projects'|'activity'|'home'|'search'|'artifact'|'capture'|'study'|'schedules'|'research'|'sources'|'knowledge'|'maintenance'|'trash'|'exports'|'settings';
 const sections: { id: Page; title: string }[] = [
-  { id:'home',title:'工作台' },{ id:'search',title:'搜索' },{ id:'capture',title:'收件箱' },{ id:'research',title:'研究' },{ id:'sources',title:'来源' },
+  { id:'home',title:'工作台' },{ id:'projects',title:'项目' },{ id:'activity',title:'活动' },{ id:'search',title:'搜索' },{ id:'capture',title:'收件箱' },{ id:'research',title:'研究' },{ id:'sources',title:'来源' },
   { id:'study',title:'学习' },{ id:'knowledge',title:'知识关系' },{ id:'maintenance',title:'知识维护' },{ id:'schedules',title:'监测' },{ id:'exports',title:'导出' },{ id:'trash',title:'回收站' },{ id:'settings',title:'设置' },
 ];
+const navGroups = [
+  { title:'工作空间',ids:['home','projects','sources','activity'] },
+  { title:'探索与整理',ids:['search','capture','research','study','knowledge'] },
+  { title:'管理',ids:['maintenance','schedules','exports','trash','settings'] },
+];
+const navIcon:Record<string,string>={ home:'home',projects:'projects',sources:'sources',activity:'activity',search:'search',study:'study',knowledge:'graph',settings:'settings' };
 const emptyView: WorkspaceView = { projects:[],artifacts:[],sources:[] };
 
 export function WorkspaceApp() {
@@ -47,7 +58,7 @@ export function WorkspaceApp() {
   const [patches,setPatches] = useState<Patch[]>([]);
   const [aiJob,setAiJob] = useState<Job | null>(null);
   const [edit,setEdit] = useState(false);
-  const [panels,setPanels] = useState<PanelLayout>({ left:218,right:312,leftOpen:true,rightOpen:true });
+  const [panels,setPanels] = useState<PanelLayout>({ left:218,right:312,leftOpen:true,rightOpen:false });
   const [inspectedBlock,setInspectedBlock] = useState('');
   const [floatingAI,setFloatingAI] = useState<{ left:number;top:number }>();
   const [reader,setReader] = useState('');
@@ -61,7 +72,7 @@ export function WorkspaceApp() {
     if (!jumpTarget) return;
     const frame=requestAnimationFrame(() => {
       const element=document.getElementById('block-' + jumpTarget);
-      element?.scrollIntoView({ block:'center' }); element?.focus({ preventScroll:true }); setJumpTarget('');
+      element?.scrollIntoView({ block:'start' }); element?.focus({ preventScroll:true }); setJumpTarget('');
     });
     return () => cancelAnimationFrame(frame);
   },[jumpTarget]);
@@ -126,7 +137,10 @@ export function WorkspaceApp() {
   function updatePanels(fields:Partial<PanelLayout>) {
     setPanels(previous => { const next={ ...previous,...fields }; savePanels(next); return next; });
   }
-  function showInspector() { setInspector(true); updatePanels({ rightOpen:true }); }
+  const inspectorOrigin=useRef<HTMLElement|null>(null);
+  function showInspector(capture=true) {if(capture)inspectorOrigin.current=document.activeElement as HTMLElement;setInspector(true);updatePanels({rightOpen:true});}
+  function closeInspector(){setInspector(false);updatePanels({rightOpen:false});if(page!=='artifact'){setEvidence(null);setReader('');}window.requestAnimationFrame(()=>{if(inspectorOrigin.current?.isConnected)inspectorOrigin.current.focus({preventScroll:true});});}
+  useEffect(()=>{if(!inspector||(!evidence&&!reader))return;const frame=window.requestAnimationFrame(()=>document.querySelector<HTMLElement>('.inspector.inspector-open')?.focus({preventScroll:true}));return()=>window.cancelAnimationFrame(frame);},[inspector,evidence,reader,page]);
   function jumpToBlock(id:string) { setFloatingAI(undefined); setJumpTarget(id); }
   function inspectSource(id:string) { setReader(id); setReaderPage(null); setEvidence(null); showInspector(); }
   function inspectNode(id:string) { navigate('knowledge'); setInitialNode(id); }
@@ -139,7 +153,7 @@ export function WorkspaceApp() {
     if (target === 'sources') setInitialSource(undefined);
     if (target === 'maintenance') { setInitialClaim(undefined); setClaimEvidence(undefined); }
     if (target === 'knowledge') setInitialNode(undefined);
-    setEvidence(null);
+    setEvidence(null);setReader('');setReaderPage(null);
     setPage(target);
   }
   function openSource(id:string) {
@@ -431,7 +445,8 @@ export function WorkspaceApp() {
     } catch (error) { report(errorText(error)); }
   }
   async function loadEvidence(id: string) {
-    try { setEvidence(await workspaceApi.evidence(id)); setReader(''); showInspector(); } catch (error) { report(errorText(error)); }
+    inspectorOrigin.current=document.activeElement as HTMLElement;
+    try { setEvidence(await workspaceApi.evidence(id)); setReader(''); showInspector(false); } catch (error) { report(errorText(error)); }
   }
   async function insertEvidence(id:string) {
     if (!doc || archived || workspace?.role === 'viewer') return;
@@ -497,11 +512,22 @@ export function WorkspaceApp() {
   const localStatus = doc ? documentStatus(doc) : 'synced';
   const status = localStatus === 'conflict' ? '同步冲突' : !online ? '离线'
     : backendOffline ? (platform.kind === 'web' ? '服务断开' : '本地服务断开') : localStatus === 'pending' ? '待同步' : '在线';
+  useEffect(()=>{
+    const keyboard=(event:KeyboardEvent)=>{
+      if(event.key==='Escape'&&!event.defaultPrevented&&!document.querySelector('dialog[open]')){setNav(false);closeInspector();}
+      if ((event.ctrlKey || event.metaKey) && event.key==='k') { event.preventDefault();navigate('search'); }
+    };
+    window.addEventListener('keydown',keyboard);
+    return()=>window.removeEventListener('keydown',keyboard);
+  });
   return <div className="app" data-density={preferences.value.density}>
+    <a className="skip-link" href="#main-content">跳到主内容</a>
     <header className="top">
-      <button className="menu-button" aria-label="打开导航" aria-expanded={nav} onClick={() => setNav(!nav)}>☰</button>
-      <button className="brand" onClick={() => navigate('home')}>AI Knowledge Workspace</button>
-      <span className="connection" data-status={localStatus}><span aria-hidden="true" />{status}</span>
+      <button className="menu-button" aria-label="打开导航" aria-expanded={nav} onClick={() => setNav(!nav)}><UIIcon name="menu" /></button>
+      <button className="brand" onClick={() => navigate('home')} aria-label={workspaceBrand.product+' · 返回工作台'}><span className="brand-mark" aria-hidden="true">{workspaceBrand.monogram}</span><span>{workspaceBrand.name}<small>{workspaceBrand.product}</small></span></button>
+      <div className="context-breadcrumb"><span>{workspace?.name ?? '知识工作室'}</span><span aria-hidden="true">/</span><strong>{page==='artifact' ? doc?.server.title ?? '文档' : sections.find(item=>item.id===page)?.title}</strong></div>
+      <button className="global-search" onClick={()=>navigate('search')} aria-label="全局搜索"><UIIcon name="search" /><span>搜索空间</span><kbd>Ctrl K</kbd></button>
+      <span className="connection" data-status={!online || backendOffline ? 'offline' : localStatus}><span aria-hidden="true" />{status}</span>
       {page === 'artifact' && <button className="desktop-panel-toggle" aria-expanded={panels.leftOpen} onClick={() => updatePanels({ leftOpen:!panels.leftOpen })}>导航</button>}
       {page === 'artifact' && <button className="inspector-toggle" aria-expanded={inspector || panels.rightOpen} onClick={() => {
         if (window.matchMedia('(max-width:1070px)').matches) setInspector(!inspector);
@@ -510,7 +536,9 @@ export function WorkspaceApp() {
     </header>
     <div className={'shell ' + (page === 'artifact' ? 'with-inspector' + (panels.leftOpen ? '' : ' left-collapsed') + (panels.rightOpen ? '' : ' right-collapsed') : '')}
       style={{ '--sidebar-width':panels.left+'px','--inspector-width':panels.right+'px' } as CSSProperties}>
+      {nav && <button className="nav-scrim" aria-label="关闭导航" onClick={()=>setNav(false)} />}
       <aside className={'sidebar ' + (nav ? 'mobile-open' : '')}>
+        <div className="sidebar-caption"><span>你的知识空间</span><button className="mobile-nav-close" aria-label="关闭导航面板" onClick={()=>setNav(false)}><UIIcon name="close" /></button></div>
         <label>工作空间<select value={workspaceId} onChange={event => chooseWorkspace(event.target.value)}>
           {!workspaceId && <option value="">选择工作空间</option>}
           {list.map(item => <option key={item.id} value={item.id}>{item.name}</option>)}
@@ -520,22 +548,23 @@ export function WorkspaceApp() {
           <nav aria-label="文档知识节点">{projection.graph?.nodes.slice(0,12).map(node => <button key={node.id} onClick={() => inspectNode(node.id)}>{node.title}</button>)}
             <button onClick={() => navigate('knowledge')}>浏览知识图谱</button></nav>
         </details>}
-        <nav aria-label="主导航">{sections.map(item => <button key={item.id} className={page === item.id ? 'selected' : ''} onClick={() => navigate(item.id)}>{item.title}</button>)}</nav>
+        <nav aria-label="主导航">{navGroups.map(group=><div className="nav-group" key={group.title}><p>{group.title}</p>{group.ids.map(id=>sections.find(item=>item.id===id)!).map(item=><button key={item.id} aria-current={page===item.id ? 'page' : undefined} className={page===item.id ? 'selected' : ''} onClick={()=>navigate(item.id)}><UIIcon name={navIcon[item.id] ?? 'sources'} />{item.title}</button>)}</div>)}</nav>
         {view.artifacts.length > 0 && <div className="side-documents"><h2>文档</h2>
           {view.artifacts.map(item => <button key={item.id} className={page === 'artifact' && artifactId === item.id ? 'selected' : ''} onClick={() => openArtifact(item.id)}>{item.title}</button>)}
         </div>}
+        {page==='artifact' && <PanelResize side="left" width={panels.left} onChange={left=>updatePanels({ left })} />}
       </aside>
-      <main className="canvas" id="main-content">
+      <main className="canvas" id="main-content" tabIndex={-1}>
+        {(!online || backendOffline) && <div className="connection-art-notice" role="status"><EditorialImage asset={!online ? 'offline-preserved' : 'error-recovery'} /><p>{!online ? '当前离线，已保存的文档仍可继续阅读和编辑。' : '连接暂时中断，本机草稿会保留，服务恢复后继续同步。'}</p></div>}
         {notice && <div className="notice" role="status"><span>{notice}</span><button onClick={() => setNotice('')}>关闭</button></div>}
-        {page !== 'artifact' && evidence && <div className="panel workflow"><EvidencePanel evidence={evidence} close={() => setEvidence(null)} propose={workspace && workspace.role !== 'viewer' ? openClaimDraft : undefined} report={report} /></div>}
         {!ready ? <p className="muted">正在打开工作台…</p> : !workspace ? <div className="workflow">
           <header className="page-heading"><h1>创建工作空间</h1><p>从一个学习主题或研究方向开始。</p></header>
           <form className="panel stack" onSubmit={event => void createWorkspace(event)}><label>工作空间名称<input required maxLength={200} name="name" placeholder="例如：材料与图神经网络" /></label><div><button className="primary">创建工作空间</button></div></form>
         </div> : <>
-          {page === 'home' && <div className="workflow">
-            <header className="page-heading"><h1>{workspace.name}</h1></header>
-            <TaskStart key={workspace.id} workspace={workspace} online={online && !backendOffline} onOpen={openArtifact} onSettings={()=>navigate('settings')} />
-            <details><summary>手动组织项目与文档</summary><div className="home-grid">
+          {page === 'projects' && <ProjectsPage view={view} onOpen={openArtifact} onCreate={()=>{ navigate('home');requestAnimationFrame(()=>{ const el=document.getElementById('manual-create') as HTMLDetailsElement|null;if(el){ el.open=true;el.scrollIntoView({ block:'start' }); } }); }} />}
+          {page === 'activity' && <ActivityPage workspace={workspaceId} online={online && !backendOffline} onOpen={openArtifact} onResearch={()=>navigate('research')} />}
+          {page === 'home' && <WorkspaceHome workspace={workspace} view={view} online={online && !backendOffline} onOpen={openArtifact} onSettings={()=>navigate('settings')} onProjects={()=>navigate('projects')} onSources={()=>navigate('sources')} onActivity={()=>navigate('activity')}>
+            <details className="manual-create" id="manual-create"><summary>手动组织项目与文档</summary><div className="home-grid">
               <form className="panel stack" onSubmit={event => void createItem(event,'project')}><h2>项目</h2>
                 <label>项目名称<input required name="title" maxLength={200} /></label><div><button>创建项目</button></div>
                 {view.projects.map(project => <p className="project-row" key={project.id}>{project.name}</p>)}
@@ -547,8 +576,7 @@ export function WorkspaceApp() {
                 <div className="button-row"><button>创建空白文档</button><button className="primary" value="analysis">创建并分析</button></div>
               </form>
             </div></details>
-            <div className="panel stack"><h2>最近产物</h2>{view.artifacts.length ? view.artifacts.slice(0,8).map(item => <div className="list-item" key={item.id}><button onClick={() => openArtifact(item.id)}>{item.title}</button><span>{item.kind === 'note' ? '知识笔记' : '文档'}</span></div>) : <p className="muted">还没有文档。</p>}</div>
-          </div>}
+          </WorkspaceHome>}
           {page === 'artifact' && (!doc || doc.server.id !== artifactId ? <p className="muted">正在打开文档…</p> : <article className="document">
             <header className="page-heading">
               <span className="muted">{view.projects.find(project => project.id === doc.server.project_id)?.name ?? workspace.name}</span>
@@ -650,8 +678,10 @@ export function WorkspaceApp() {
           </div>}
         </>}
       </main>
-      {page === 'artifact' && doc && <aside className={'inspector ' + (inspector ? 'inspector-open' : '')}>
-        <div className="section-heading"><h2>检查器</h2><button className="inspector-close" onClick={() => setInspector(false)}>关闭</button></div>
+      {page!=='artifact'&&inspector&&(evidence||reader)&&<aside className="inspector read-only-inspector inspector-open" tabIndex={-1} aria-label="只读检查器"><div className="section-heading"><h2>检查器</h2><button onClick={closeInspector}>关闭检查器</button></div>{reader&&<SourceReader key={reader} sourceId={reader} firstPage={readerPage} onClose={()=>setReader('')} report={report}/>}<EvidencePanel evidence={evidence} close={()=>setEvidence(null)} read={item=>{setReader(item.source_id);setReaderPage(item.locator.page);}} propose={workspace&&workspace.role!=='viewer'?openClaimDraft:undefined} report={report}/></aside>}
+      {page === 'artifact' && doc && <aside tabIndex={-1} aria-label="检查器" className={'inspector ' + (inspector ? 'inspector-open' : '')}>
+        <PanelResize side="right" width={panels.right} onChange={right=>updatePanels({ right })} />
+        <div className="section-heading"><h2>检查器</h2><button onClick={closeInspector}>关闭检查器</button></div>
         <details><summary>画布布局</summary><div className="stack">
           <label>导航宽度<input type="range" min={180} max={340} value={panels.left} onChange={event => updatePanels({ left:Number(event.target.value) })} /></label>
           <label>检查器宽度<input type="range" min={250} max={500} value={panels.right} onChange={event => updatePanels({ right:Number(event.target.value) })} /></label>
@@ -671,5 +701,6 @@ export function WorkspaceApp() {
           }} />
       </aside>}
     </div>
+    <nav className="mobile-primary-nav" aria-label="快捷切换">{['home','projects','sources','activity'].map(id=>sections.find(item=>item.id===id)!).map(item=><button key={item.id} aria-current={page===item.id ? 'page' : undefined} onClick={()=>navigate(item.id)}><UIIcon name={navIcon[item.id] ?? 'sources'} /><span>{item.id==='sources' ? '资料库' : item.title}</span></button>)}</nav>
   </div>;
 }

@@ -153,10 +153,10 @@ function flattenProjections(document:ArtifactDocument,projection:WorkspaceProjec
     const lines = block.type === 'timeline'
       ? nodes.filter(node => node.event_date).sort((a,b) => a.event_date!.localeCompare(b.event_date!))
         .map(node => [node.event_date,node.title,node.description].filter(Boolean).join(' · ') + citation(node.event_evidence_id))
-      : block.type === 'mindmap' ? mindMapForest(nodes,edges,settings.data.root_id).flatMap(branch => tree(branch))
+      : block.type === 'mindmap' ? (()=>{const forest=mindMapForest(nodes,edges.filter(edge=>edge.relation_type==='is_a').map(edge=>({...edge,from_node_id:edge.to_node_id,to_node_id:edge.from_node_id})),settings.data.root_id);const used=new Set<string>();function collect(branch:MindMapBranch){if(branch.edge)used.add(branch.edge.id);branch.children.forEach(collect);}forest.forEach(collect);return [...forest.flatMap(branch=>tree(branch)),...edges.filter(edge=>!used.has(edge.id)).map(edge=>'交叉关系 / '+titles.get(edge.from_node_id)+' → '+edge.relation_type+' → '+titles.get(edge.to_node_id)+citation(edge.evidence_id))];})()
       : block.type === 'evidence_network' ? (projection.references?.evidence ?? []).filter(item => item.in_document)
         .map(item => item.title + ' · ' + item.quote + citation(item.id))
-      : (block.type === 'dependency_graph' ? edges.filter(edge => ['depends_on','derived_from'].includes(edge.relation_type)) : edges).map(edge => titles.get(edge.from_node_id) + ' → ' + edge.relation_type + ' → ' + titles.get(edge.to_node_id) + citation(edge.evidence_id));
+      : (block.type === 'dependency_graph' ? edges.filter(edge => edge.relation_type === 'depends_on') : edges).map(edge => titles.get(edge.from_node_id) + ' → ' + edge.relation_type + ' → ' + titles.get(edge.to_node_id) + citation(edge.evidence_id));
     const textBlock = (text:string,type:string):Block => ({ id:randomUUID(),type,children:[{ type:'text',text }] });
     return [textBlock(settings.data.title || labels[block.type] || '知识视图','heading'),...lines.map(line => textBlock(line,'paragraph'))];
   });

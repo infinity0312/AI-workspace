@@ -1,0 +1,17 @@
+[
+  {
+    "check": "web-build",
+    "exit_code": 0,
+    "finished": "2026-11-16T10:33:49.697Z"
+  },
+  {
+    "check": "windows-frontend-build",
+    "exit_code": 0,
+    "finished": "2026-11-16T10:34:09.671Z"
+  },
+  {
+    "check": "mobile-frontend-build",
+    "exit_code": 0,
+    "finished": "2026-11-16T10:34:21.620Z"
+  }
+]

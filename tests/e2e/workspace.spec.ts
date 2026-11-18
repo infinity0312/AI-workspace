@@ -2,9 +2,9 @@ import { expect, test } from '@playwright/test';
 
 test('create, edit offline, sync, and verify narrow layout', async ({ page, context, request }) => {
   const title = '离线工作空间 ' + Date.now();
+  const prior=await(await request.get('/api/v1/workspaces')).json();
   await page.goto('/');
-  await page.getByRole('textbox',{ name:'工作空间名称' }).fill(title);
-  await page.getByRole('button',{ name:'创建工作空间' }).click();
+  if(prior.length){await page.getByRole('navigation',{name:'主导航'}).getByRole('button',{name:'设置',exact:true}).click();const form=page.locator('form').filter({has:page.getByRole('heading',{name:'新建工作空间',exact:true})});await form.getByRole('textbox',{name:'名称',exact:true}).fill(title);await form.getByRole('button',{name:'创建工作空间',exact:true}).click();}else{await page.getByRole('textbox',{ name:'工作空间名称' }).fill(title);await page.getByRole('button',{ name:'创建工作空间' }).click();}
   await expect(page.getByRole('heading',{ name:title })).toBeVisible();
   await page.getByText('手动组织项目与文档',{ exact:true }).click();
   await page.getByRole('textbox',{ name:'项目名称' }).fill('研究项目');
@@ -50,11 +50,13 @@ test('paste a source, produce a research artifact, and open its original evidenc
   await page.addInitScript(id => localStorage.setItem('akw-last-workspace',id),workspace.id);
   await page.goto('/');
   await page.getByRole('navigation',{ name:'主导航' }).getByRole('button',{ name:'来源',exact:true }).click();
+  await page.locator('summary').filter({hasText:'导入新资料'}).click();
   await page.getByRole('textbox',{ name:'标题',exact:true }).fill('研究原文');
   await page.getByRole('textbox',{ name:'正文',exact:true }).fill('图神经网络聚合相邻节点的信息。');
   await page.getByRole('button',{ name:'添加来源' }).click();
   await expect(page.getByRole('button',{ name:'研究原文' })).toBeVisible();
   await page.getByRole('navigation',{ name:'主导航' }).getByRole('button',{ name:'研究',exact:true }).click();
+  await page.locator('summary').filter({hasText:'开始一次研究'}).click();
   await page.getByRole('textbox',{ name:'研究目标' }).fill('图神经网络的聚合过程');
   await page.getByLabel('使用来源').selectOption({ label:'研究原文' });
   await page.getByRole('button',{ name:'开始任务' }).click();
@@ -117,7 +119,7 @@ test('organize capture, review a flashcard, and recover a document through the u
   await page.getByLabel('资料正文').fill('一个可以复习的定义。');
   await page.getByRole('button',{ name:'保存到收件箱' }).click();
   await page.getByRole('button',{ name:'转为知识笔记' }).click();
-  await page.getByLabel('收件箱状态').selectOption('processed');
+  await page.getByRole('button',{name:'收件箱状态 · 待整理',exact:true}).click();await page.getByRole('radio',{name:'已整理',exact:true}).check();await page.keyboard.press('Escape');
   await page.getByRole('button',{ name:'打开整理结果' }).click();
   await expect(page.getByRole('heading',{ name:'待整理笔记',exact:true })).toBeVisible();
   await expect(page.getByText('一个可以复习的定义。',{ exact:true })).toBeVisible();
@@ -182,16 +184,16 @@ test('compose diagrams, a dated view and LaTeX in one saved document',async ({ p
   const body = page.locator('.artifact-content');
   await expect(body.locator('.katex')).toHaveCount(2);
   const map = body.getByRole('region',{ name:'研究分支' });
-  await expect(map.getByText('后续事件',{ exact:true })).toBeVisible();
+  await expect(map.getByRole('button',{name:'后续事件',exact:true})).toBeVisible();
   const timeline = body.getByRole('region',{ name:'研究历程' });
   await expect(timeline.locator('time')).toHaveText(['2020','2021-03-05']);
   const graph = body.getByRole('region',{ name:'研究关系' });
   await expect(graph.locator('.react-flow')).toBeVisible();
-  await expect(graph.getByText('依赖 →')).toBeVisible();
+  await expect(graph.locator('.react-flow__edge-text')).toContainText('依赖');
   await graph.locator('..').getByRole('button',{ name:'编辑',exact:true }).click();
   await page.getByLabel('包含的节点',{ exact:false }).selectOption([first.id]);
   await page.getByRole('button',{ name:'保存视图设置' }).click();
-  await expect(graph.getByText('此范围暂无已确认的关系。')).toBeVisible();
+  await expect(graph.locator('.result-summary')).toContainText('0 条当前关系');
   await expect(page.getByText(/版本 \d+ · 已同步/)).toBeVisible({ timeout:15000 });
   await page.reload();
   await expect(body.getByRole('region',{ name:'研究历程' }).locator('time')).toHaveText(['2020','2021-03-05']);
@@ -257,7 +259,7 @@ test('workspace data, references, PDF, dependency graph and revision export work
   await page.getByText('文档目录',{ exact:true }).click();
   await page.getByRole('navigation',{ name:'文档目录' }).getByRole('button',{ name:'试验记录' }).click();
   await expect(page.locator('#block-'+heading.id)).toBeFocused();
-  await expect(page.locator('.artifact-content .react-flow')).toBeVisible();
+  await expect(page.locator('.artifact-content .dependency-map')).toBeVisible();await expect(page.locator('.dependency-node')).toHaveCount(2);
   const network = page.getByRole('region',{ name:'证据网络' });
   await expect(network.getByText('Trial 2 measured a value of 25 units.')).toBeVisible();
   await network.getByRole('button',{ name:'标定实验原始报告 · 第 2 页' }).click();
@@ -352,7 +354,7 @@ test('evidence network refreshes after a document revision adds a citation',asyn
   const artifact=await post('/artifacts',{ workspace_id:ws.id,title:'引用刷新文档',content:{ schema_version:'1.0',relations:{ source_ids:[],knowledge_node_ids:[] },blocks:[{ id:crypto.randomUUID(),type:'evidence_network',attrs:{ view_version:1,node_ids:[] } }] } });
   await page.goto('/?workspace='+ws.id+'&artifact='+artifact.id);
   const network=page.getByRole('region',{ name:'证据网络' });
-  await expect(network.getByText('没有符合条件的引用。',{ exact:false })).toBeVisible();
+  await expect(network.getByText('当前范围还没有可浏览的证据或主张',{ exact:true })).toBeVisible();
   await page.getByRole('button',{ name:'编辑模式',exact:true }).click();
   await page.getByRole('button',{ name:'＋ 添加内容块',exact:true }).click();
   await page.getByLabel('内容类型').selectOption('evidence_reference');

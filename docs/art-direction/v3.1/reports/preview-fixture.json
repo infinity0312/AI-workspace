@@ -1,0 +1,22 @@
+{
+  "workspace": "7984eeb1-c50f-4e7c-9790-69052b6d32e2",
+  "project": "8a9145cd-efcc-4d4a-8685-4442a4487146",
+  "artifact": "dedc38b8-07a0-482a-ab98-13a5d501b199",
+  "source": "d0cc2968-4da9-46d8-b69c-3c8dd9d34112",
+  "evidence": "c75387b6-e5d8-468c-8d02-ef4f48e93f3e",
+  "nodes": [
+    "eb99dcb9-f17d-43e2-9011-2c120faab35a",
+    "d334d8c0-790a-4bbf-a889-0b1bc6877c1c",
+    "1606d2a6-56c8-4e0f-9624-6ff31303e974",
+    "c9b2aed9-cb44-4890-9ff6-134fd3f29935",
+    "2dbf461e-1bbc-46f1-8b40-172be3dce52e",
+    "e9470334-1c2e-4d59-8a4b-1b5e48bfd98b",
+    "a07c6f7c-5cf0-42ae-bf69-7522345881c3",
+    "2160e7bd-c580-4603-8ea1-4b709af998e7"
+  ],
+  "api": "http://127.0.0.1:4114",
+  "synthetic": true,
+  "empty_local_preflight_verified": true,
+  "workspace_url": "http://127.0.0.1:3116/?workspace=7984eeb1-c50f-4e7c-9790-69052b6d32e2",
+  "document_url": "http://127.0.0.1:3116/?workspace=7984eeb1-c50f-4e7c-9790-69052b6d32e2&artifact=dedc38b8-07a0-482a-ab98-13a5d501b199"
+}

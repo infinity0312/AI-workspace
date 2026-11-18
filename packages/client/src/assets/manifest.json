@@ -1,0 +1,1617 @@
+{
+  "version": 2,
+  "assets": [
+    {
+      "id": "collection-empty-mobile",
+      "promptId": "COLLECTION-EMPTY-01-mobile",
+      "module": "empty-states",
+      "ratio": "4:5",
+      "target": "1200x1500",
+      "prompt": "Use case: stylized-concept. A single finished project-bound raster illustration, not a collage or contact sheet. Series art direction: premium scientific atlas meets independent art-book publishing, refined digital atelier and museum research archive. Warm ivory #F3EFE6, restrained cobalt #3155C8, ink black, mineral green, occasional vermilion. Delicate printmaking, tactile fine paper, elegant asymmetry, quiet negative space. No readable text, letters, digits, logos, watermark, interface, controls, fake charts, fake formulas, robots, brains, gradients, neon or glassmorphism. Independently compose a portrait 4:5 mobile illustration, target 1200x1500; compact subject centered in the lower half, spacious ivory upper region, not a crop of a landscape. An empty research dossier folder, two translucent sheets and a single cobalt index tab, elegant archival still life. No contents or legible markings. A visibly distinct folder silhouette. Keep exactly the requested subject. No decorative plants, animals, mountain landscape or floral border. Clean contemporary ivory, not stained antique parchment. Background assets must remain almost blank and extremely low contrast.",
+      "status": "integrated; Codex visual review completed; no human approval recorded",
+      "source": "generated/originals/collection-empty-mobile-v01.png",
+      "asset_id": "COLLECTION-EMPTY-01-mobile-v01",
+      "prompt_id": "COLLECTION-EMPTY-01-mobile",
+      "prompt_text": "Use case: stylized-concept. A single finished project-bound raster illustration, not a collage or contact sheet. Series art direction: premium scientific atlas meets independent art-book publishing, refined digital atelier and museum research archive. Warm ivory #F3EFE6, restrained cobalt #3155C8, ink black, mineral green, occasional vermilion. Delicate printmaking, tactile fine paper, elegant asymmetry, quiet negative space. No readable text, letters, digits, logos, watermark, interface, controls, fake charts, fake formulas, robots, brains, gradients, neon or glassmorphism. Independently compose a portrait 4:5 mobile illustration, target 1200x1500; compact subject centered in the lower half, spacious ivory upper region, not a crop of a landscape. An empty research dossier folder, two translucent sheets and a single cobalt index tab, elegant archival still life. No contents or legible markings. A visibly distinct folder silhouette. Keep exactly the requested subject. No decorative plants, animals, mountain landscape or floral border. Clean contemporary ivory, not stained antique parchment. Background assets must remain almost blank and extremely low contrast.",
+      "filename": "generated/optimized/empty-states/collection-empty-mobile-960-v01.webp",
+      "tool": "built-in image_gen.imagegen",
+      "model": "tool-managed (not reported)",
+      "generated_at": "2026-11-15T15:48:18.579Z",
+      "version": "v01",
+      "dimensions": {
+        "width": 1122,
+        "height": 1402
+      },
+      "aspect_ratio": "4:5",
+      "target_dimensions": "1200x1500",
+      "variants": [
+        {
+          "filename": "generated/optimized/empty-states/collection-empty-mobile-480-v01.webp",
+          "width": 480,
+          "height": 600,
+          "bytes": 5302
+        },
+        {
+          "filename": "generated/optimized/empty-states/collection-empty-mobile-960-v01.webp",
+          "width": 960,
+          "height": 1200,
+          "bytes": 21956
+        }
+      ],
+      "focal_point": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "alt_text": "",
+      "decorative": true,
+      "approved_by": null,
+      "reviewed_by": "Codex visual QA",
+      "license": "AI-generated project concept artwork; no third-party input image",
+      "purpose": "来源中心无资料选集的独立手机构图",
+      "usage": "来源中心无资料选集的独立手机构图",
+      "crop_rule": "preserve full subject; responsive source selection; no resolution enlargement",
+      "fallback": "中性纸色与品牌标记，文字、操作和数据继续可用",
+      "reviewed_at": "2026-11-15T16:03:20.687Z"
+    },
+    {
+      "id": "collection-empty",
+      "promptId": "COLLECTION-EMPTY-01",
+      "module": "empty-states",
+      "ratio": "4:3",
+      "target": "1200x900",
+      "prompt": "Use case: stylized-concept. A single finished project-bound raster illustration, not a collage or contact sheet. Series art direction: premium scientific atlas meets independent art-book publishing, refined digital atelier and museum research archive. Warm ivory #F3EFE6, restrained cobalt #3155C8, ink black, mineral green, occasional vermilion. Delicate printmaking, tactile fine paper, elegant asymmetry, quiet negative space. No readable text, letters, digits, logos, watermark, interface, controls, fake charts, fake formulas, robots, brains, gradients, neon or glassmorphism.  Asset ID collection-empty. Output composition 4:3, target 1200x900. An empty research dossier folder, two translucent sheets and a single cobalt index tab, elegant archival still life. No contents or legible markings. A visibly distinct folder silhouette.",
+      "status": "integrated; Codex visual review completed; no human approval recorded",
+      "source": "generated/originals/collection-empty-v01.png",
+      "asset_id": "COLLECTION-EMPTY-01-v01",
+      "prompt_id": "COLLECTION-EMPTY-01",
+      "prompt_text": "Use case: stylized-concept. A single finished project-bound raster illustration, not a collage or contact sheet. Series art direction: premium scientific atlas meets independent art-book publishing, refined digital atelier and museum research archive. Warm ivory #F3EFE6, restrained cobalt #3155C8, ink black, mineral green, occasional vermilion. Delicate printmaking, tactile fine paper, elegant asymmetry, quiet negative space. No readable text, letters, digits, logos, watermark, interface, controls, fake charts, fake formulas, robots, brains, gradients, neon or glassmorphism.  Asset ID collection-empty. Output composition 4:3, target 1200x900. An empty research dossier folder, two translucent sheets and a single cobalt index tab, elegant archival still life. No contents or legible markings. A visibly distinct folder silhouette.",
+      "filename": "generated/optimized/empty-states/collection-empty-960-v01.webp",
+      "tool": "built-in image_gen.imagegen",
+      "model": "tool-managed (not reported)",
+      "generated_at": "2026-11-15T15:33:49.606Z",
+      "version": "v01",
+      "dimensions": {
+        "width": 1448,
+        "height": 1086
+      },
+      "aspect_ratio": "4:3",
+      "target_dimensions": "1200x900",
+      "variants": [
+        {
+          "filename": "generated/optimized/empty-states/collection-empty-480-v01.webp",
+          "width": 480,
+          "height": 360,
+          "bytes": 14610
+        },
+        {
+          "filename": "generated/optimized/empty-states/collection-empty-960-v01.webp",
+          "width": 960,
+          "height": 720,
+          "bytes": 74104
+        }
+      ],
+      "focal_point": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "alt_text": "",
+      "decorative": true,
+      "approved_by": null,
+      "reviewed_by": "Codex visual QA",
+      "license": "AI-generated project concept artwork; no third-party input image",
+      "purpose": "来源中心无资料选集",
+      "usage": "来源中心无资料选集",
+      "crop_rule": "preserve full subject; responsive source selection; no resolution enlargement",
+      "fallback": "中性纸色与品牌标记，文字、操作和数据继续可用",
+      "reviewed_at": "2026-11-15T16:03:20.688Z"
+    },
+    {
+      "id": "comparison-empty-mobile",
+      "promptId": "COMPARISON-EMPTY-01-mobile",
+      "module": "empty-states",
+      "ratio": "4:5",
+      "target": "1200x1500",
+      "prompt": "Use case: stylized-concept. A single finished project-bound raster illustration, not a collage or contact sheet. Series art direction: premium scientific atlas meets independent art-book publishing, refined digital atelier and museum research archive. Warm ivory #F3EFE6, restrained cobalt #3155C8, ink black, mineral green, occasional vermilion. Delicate printmaking, tactile fine paper, elegant asymmetry, quiet negative space. No readable text, letters, digits, logos, watermark, interface, controls, fake charts, fake formulas, robots, brains, gradients, neon or glassmorphism. Independently compose a portrait 4:5 mobile illustration, target 1200x1500; compact subject centered in the lower half, spacious ivory upper region, not a crop of a landscape. Two blank archival sheets aligned precisely side by side, subtle unnumbered physical measurement marks along outer paper margins, a small cobalt accent. Sparse, elegant and balanced, no table grid, numbers or comparison values. Keep exactly the requested subject. No decorative plants, animals, mountain landscape or floral border. Clean contemporary ivory, not stained antique parchment. Background assets must remain almost blank and extremely low contrast.",
+      "status": "integrated; Codex visual review completed; no human approval recorded",
+      "source": "generated/originals/comparison-empty-mobile-v01.png",
+      "asset_id": "COMPARISON-EMPTY-01-mobile-v01",
+      "prompt_id": "COMPARISON-EMPTY-01-mobile",
+      "prompt_text": "Use case: stylized-concept. A single finished project-bound raster illustration, not a collage or contact sheet. Series art direction: premium scientific atlas meets independent art-book publishing, refined digital atelier and museum research archive. Warm ivory #F3EFE6, restrained cobalt #3155C8, ink black, mineral green, occasional vermilion. Delicate printmaking, tactile fine paper, elegant asymmetry, quiet negative space. No readable text, letters, digits, logos, watermark, interface, controls, fake charts, fake formulas, robots, brains, gradients, neon or glassmorphism. Independently compose a portrait 4:5 mobile illustration, target 1200x1500; compact subject centered in the lower half, spacious ivory upper region, not a crop of a landscape. Two blank archival sheets aligned precisely side by side, subtle unnumbered physical measurement marks along outer paper margins, a small cobalt accent. Sparse, elegant and balanced, no table grid, numbers or comparison values. Keep exactly the requested subject. No decorative plants, animals, mountain landscape or floral border. Clean contemporary ivory, not stained antique parchment. Background assets must remain almost blank and extremely low contrast.",
+      "filename": "generated/optimized/empty-states/comparison-empty-mobile-960-v01.webp",
+      "tool": "built-in image_gen.imagegen",
+      "model": "tool-managed (not reported)",
+      "generated_at": "2026-11-15T15:54:04.596Z",
+      "version": "v01",
+      "dimensions": {
+        "width": 1122,
+        "height": 1402
+      },
+      "aspect_ratio": "4:5",
+      "target_dimensions": "1200x1500",
+      "variants": [
+        {
+          "filename": "generated/optimized/empty-states/comparison-empty-mobile-480-v01.webp",
+          "width": 480,
+          "height": 600,
+          "bytes": 3244
+        },
+        {
+          "filename": "generated/optimized/empty-states/comparison-empty-mobile-960-v01.webp",
+          "width": 960,
+          "height": 1200,
+          "bytes": 13386
+        }
+      ],
+      "focal_point": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "alt_text": "",
+      "decorative": true,
+      "approved_by": null,
+      "reviewed_by": "Codex visual QA",
+      "license": "AI-generated project concept artwork; no third-party input image",
+      "purpose": "无数据表／图表的视图回退的独立手机构图",
+      "usage": "无数据表／图表的视图回退的独立手机构图",
+      "crop_rule": "preserve full subject; responsive source selection; no resolution enlargement",
+      "fallback": "中性纸色与品牌标记，文字、操作和数据继续可用",
+      "reviewed_at": "2026-11-15T16:03:20.688Z"
+    },
+    {
+      "id": "comparison-empty",
+      "promptId": "COMPARISON-EMPTY-01",
+      "module": "empty-states",
+      "ratio": "4:3",
+      "target": "1200x900",
+      "prompt": "Use case: stylized-concept. A single finished project-bound raster illustration, not a collage or contact sheet. Series art direction: premium scientific atlas meets independent art-book publishing, refined digital atelier and museum research archive. Warm ivory #F3EFE6, restrained cobalt #3155C8, ink black, mineral green, occasional vermilion. Delicate printmaking, tactile fine paper, elegant asymmetry, quiet negative space. No readable text, letters, digits, logos, watermark, interface, controls, fake charts, fake formulas, robots, brains, gradients, neon or glassmorphism.  Asset ID comparison-empty. Output composition 4:3, target 1200x900. Two blank archival sheets aligned precisely side by side, subtle unnumbered physical measurement marks along outer paper margins, a small cobalt accent. Sparse, elegant and balanced, no table grid, numbers or comparison values. Keep exactly the requested subject. No decorative plants, animals, mountain landscape or floral border. Clean contemporary ivory, not stained antique parchment. Background assets must remain almost blank and extremely low contrast.",
+      "status": "integrated; Codex visual review completed; no human approval recorded",
+      "source": "generated/originals/comparison-empty-v01.png",
+      "asset_id": "COMPARISON-EMPTY-01-v01",
+      "prompt_id": "COMPARISON-EMPTY-01",
+      "prompt_text": "Use case: stylized-concept. A single finished project-bound raster illustration, not a collage or contact sheet. Series art direction: premium scientific atlas meets independent art-book publishing, refined digital atelier and museum research archive. Warm ivory #F3EFE6, restrained cobalt #3155C8, ink black, mineral green, occasional vermilion. Delicate printmaking, tactile fine paper, elegant asymmetry, quiet negative space. No readable text, letters, digits, logos, watermark, interface, controls, fake charts, fake formulas, robots, brains, gradients, neon or glassmorphism.  Asset ID comparison-empty. Output composition 4:3, target 1200x900. Two blank archival sheets aligned precisely side by side, subtle unnumbered physical measurement marks along outer paper margins, a small cobalt accent. Sparse, elegant and balanced, no table grid, numbers or comparison values. Keep exactly the requested subject. No decorative plants, animals, mountain landscape or floral border. Clean contemporary ivory, not stained antique parchment. Background assets must remain almost blank and extremely low contrast.",
+      "filename": "generated/optimized/empty-states/comparison-empty-960-v01.webp",
+      "tool": "built-in image_gen.imagegen",
+      "model": "tool-managed (not reported)",
+      "generated_at": "2026-11-15T15:46:03.844Z",
+      "version": "v01",
+      "dimensions": {
+        "width": 1448,
+        "height": 1086
+      },
+      "aspect_ratio": "4:3",
+      "target_dimensions": "1200x900",
+      "variants": [
+        {
+          "filename": "generated/optimized/empty-states/comparison-empty-480-v01.webp",
+          "width": 480,
+          "height": 360,
+          "bytes": 3566
+        },
+        {
+          "filename": "generated/optimized/empty-states/comparison-empty-960-v01.webp",
+          "width": 960,
+          "height": 720,
+          "bytes": 12970
+        }
+      ],
+      "focal_point": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "alt_text": "",
+      "decorative": true,
+      "approved_by": null,
+      "reviewed_by": "Codex visual QA",
+      "license": "AI-generated project concept artwork; no third-party input image",
+      "purpose": "无数据表／图表的视图回退",
+      "usage": "无数据表／图表的视图回退",
+      "crop_rule": "preserve full subject; responsive source selection; no resolution enlargement",
+      "fallback": "中性纸色与品牌标记，文字、操作和数据继续可用",
+      "reviewed_at": "2026-11-15T16:03:20.688Z"
+    },
+    {
+      "id": "error-recovery-mobile",
+      "promptId": "ERROR-01-mobile",
+      "module": "empty-states",
+      "ratio": "4:5",
+      "target": "1200x1500",
+      "prompt": "Use case: stylized-concept. Premium contemporary editorial still life in clean warm ivory, ink, restrained cobalt binding and a single thin vermilion ribbon. Portrait 4:5 independently composed for mobile, subject low with generous empty upper half. EXACTLY an OPEN BLANK FOLIO, one visibly separated BLANK PAGE to the right, and a thin vermilion ribbon crossing the gap and continuing on the detached page, representing recoverable interruption. All pages completely blank. Zero mineral specimens, crystals, rocks, plants, landscapes, illustrations printed on pages, labels, words, numbers, diagrams, graphs, arrows, warning triangles or UI. Delicate paper fibers, calm museum archive aesthetic. The separated page and resumed ribbon must be clearly recognizable.",
+      "status": "integrated; Codex visual review completed; no human approval recorded",
+      "source": "generated/originals/error-recovery-mobile-v02.png",
+      "rejection_reason": "Initial blank folio contained unrelated mineral imagery.",
+      "revision": "v02",
+      "asset_id": "ERROR-01-mobile-v02",
+      "prompt_id": "ERROR-01-mobile",
+      "prompt_text": "Use case: stylized-concept. Premium contemporary editorial still life in clean warm ivory, ink, restrained cobalt binding and a single thin vermilion ribbon. Portrait 4:5 independently composed for mobile, subject low with generous empty upper half. EXACTLY an OPEN BLANK FOLIO, one visibly separated BLANK PAGE to the right, and a thin vermilion ribbon crossing the gap and continuing on the detached page, representing recoverable interruption. All pages completely blank. Zero mineral specimens, crystals, rocks, plants, landscapes, illustrations printed on pages, labels, words, numbers, diagrams, graphs, arrows, warning triangles or UI. Delicate paper fibers, calm museum archive aesthetic. The separated page and resumed ribbon must be clearly recognizable.",
+      "filename": "generated/optimized/empty-states/error-recovery-mobile-960-v02.webp",
+      "rejected": {
+        "source": "generated/rejected/error-recovery-mobile-v01.png",
+        "reason": "Initial blank folio contained unrelated mineral imagery."
+      },
+      "tool": "built-in image_gen.imagegen",
+      "model": "tool-managed (not reported)",
+      "generated_at": "2026-11-15T15:56:16.271Z",
+      "version": "v02",
+      "dimensions": {
+        "width": 1122,
+        "height": 1402
+      },
+      "aspect_ratio": "4:5",
+      "target_dimensions": "1200x1500",
+      "variants": [
+        {
+          "filename": "generated/optimized/empty-states/error-recovery-mobile-480-v02.webp",
+          "width": 480,
+          "height": 600,
+          "bytes": 6180
+        },
+        {
+          "filename": "generated/optimized/empty-states/error-recovery-mobile-960-v02.webp",
+          "width": 960,
+          "height": 1200,
+          "bytes": 29296
+        }
+      ],
+      "focal_point": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "alt_text": "",
+      "decorative": true,
+      "approved_by": null,
+      "reviewed_by": "Codex visual QA",
+      "license": "AI-generated project concept artwork; no third-party input image",
+      "purpose": "活动加载错误／连接中断提示的独立手机构图",
+      "usage": "活动加载错误／连接中断提示的独立手机构图",
+      "crop_rule": "preserve full subject; responsive source selection; no resolution enlargement",
+      "fallback": "中性纸色与品牌标记，文字、操作和数据继续可用",
+      "reviewed_at": "2026-11-15T16:03:20.688Z"
+    },
+    {
+      "id": "error-recovery",
+      "promptId": "ERROR-01",
+      "module": "empty-states",
+      "ratio": "4:3",
+      "target": "1200x900",
+      "prompt": "Use case: stylized-concept. Premium contemporary editorial still life in clean warm ivory, ink, restrained cobalt binding and a single thin vermilion ribbon. Landscape 4:3 with generous open space. EXACTLY an OPEN BLANK FOLIO, one visibly separated BLANK PAGE to the right, and a thin vermilion ribbon crossing the gap and continuing on the detached page, representing recoverable interruption. All pages completely blank. Zero mineral specimens, crystals, rocks, plants, landscapes, illustrations printed on pages, labels, words, numbers, diagrams, graphs, arrows, warning triangles or UI. Delicate paper fibers, calm museum archive aesthetic. The separated page and resumed ribbon must be clearly recognizable.",
+      "status": "integrated; Codex visual review completed; no human approval recorded",
+      "source": "generated/originals/error-recovery-v02.png",
+      "rejection_reason": "Initial blank folio contained unrelated mineral imagery.",
+      "revision": "v02",
+      "asset_id": "ERROR-01-v02",
+      "prompt_id": "ERROR-01",
+      "prompt_text": "Use case: stylized-concept. Premium contemporary editorial still life in clean warm ivory, ink, restrained cobalt binding and a single thin vermilion ribbon. Landscape 4:3 with generous open space. EXACTLY an OPEN BLANK FOLIO, one visibly separated BLANK PAGE to the right, and a thin vermilion ribbon crossing the gap and continuing on the detached page, representing recoverable interruption. All pages completely blank. Zero mineral specimens, crystals, rocks, plants, landscapes, illustrations printed on pages, labels, words, numbers, diagrams, graphs, arrows, warning triangles or UI. Delicate paper fibers, calm museum archive aesthetic. The separated page and resumed ribbon must be clearly recognizable.",
+      "filename": "generated/optimized/empty-states/error-recovery-960-v02.webp",
+      "rejected": {
+        "source": "generated/rejected/error-recovery-v01.png",
+        "reason": "Initial blank folio contained unrelated mineral imagery."
+      },
+      "tool": "built-in image_gen.imagegen",
+      "model": "tool-managed (not reported)",
+      "generated_at": "2026-11-15T15:55:53.066Z",
+      "version": "v02",
+      "dimensions": {
+        "width": 1448,
+        "height": 1086
+      },
+      "aspect_ratio": "4:3",
+      "target_dimensions": "1200x900",
+      "variants": [
+        {
+          "filename": "generated/optimized/empty-states/error-recovery-480-v02.webp",
+          "width": 480,
+          "height": 360,
+          "bytes": 4768
+        },
+        {
+          "filename": "generated/optimized/empty-states/error-recovery-960-v02.webp",
+          "width": 960,
+          "height": 720,
+          "bytes": 18608
+        }
+      ],
+      "focal_point": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "alt_text": "",
+      "decorative": true,
+      "approved_by": null,
+      "reviewed_by": "Codex visual QA",
+      "license": "AI-generated project concept artwork; no third-party input image",
+      "purpose": "活动加载错误／连接中断提示",
+      "usage": "活动加载错误／连接中断提示",
+      "crop_rule": "preserve full subject; responsive source selection; no resolution enlargement",
+      "fallback": "中性纸色与品牌标记，文字、操作和数据继续可用",
+      "reviewed_at": "2026-11-15T16:03:20.688Z"
+    },
+    {
+      "id": "evidence-archive-bg",
+      "promptId": "EVIDENCE-ARCHIVE-BG",
+      "module": "backgrounds",
+      "ratio": "16:9",
+      "target": "2400x1350",
+      "prompt": "Use case: stylized-concept. A single finished project-bound raster illustration, not a collage or contact sheet. Series art direction: premium scientific atlas meets independent art-book publishing, refined digital atelier and museum research archive. Warm ivory #F3EFE6, restrained cobalt #3155C8, ink black, mineral green, occasional vermilion. Delicate printmaking, tactile fine paper, elegant asymmetry, quiet negative space. No readable text, letters, digits, logos, watermark, interface, controls, fake charts, fake formulas, robots, brains, gradients, neon or glassmorphism.  Asset ID evidence-archive-bg. Output composition 16:9, target 2400x1350. Understated research-board paper texture, very faint column guides and fine paper fibers, tiny print registration marks confined at corners. Clean open central space. No cards, citations, connecting lines or data objects. Keep exactly the requested subject. No decorative plants, animals, mountain landscape or floral border. Clean contemporary ivory, not stained antique parchment. Background assets must remain almost blank and extremely low contrast.",
+      "status": "integrated; Codex visual review completed; no human approval recorded",
+      "source": "generated/originals/evidence-archive-bg-v01.png",
+      "asset_id": "EVIDENCE-ARCHIVE-BG-v01",
+      "prompt_id": "EVIDENCE-ARCHIVE-BG",
+      "prompt_text": "Use case: stylized-concept. A single finished project-bound raster illustration, not a collage or contact sheet. Series art direction: premium scientific atlas meets independent art-book publishing, refined digital atelier and museum research archive. Warm ivory #F3EFE6, restrained cobalt #3155C8, ink black, mineral green, occasional vermilion. Delicate printmaking, tactile fine paper, elegant asymmetry, quiet negative space. No readable text, letters, digits, logos, watermark, interface, controls, fake charts, fake formulas, robots, brains, gradients, neon or glassmorphism.  Asset ID evidence-archive-bg. Output composition 16:9, target 2400x1350. Understated research-board paper texture, very faint column guides and fine paper fibers, tiny print registration marks confined at corners. Clean open central space. No cards, citations, connecting lines or data objects. Keep exactly the requested subject. No decorative plants, animals, mountain landscape or floral border. Clean contemporary ivory, not stained antique parchment. Background assets must remain almost blank and extremely low contrast.",
+      "filename": "generated/optimized/backgrounds/evidence-archive-bg-1600-v01.webp",
+      "tool": "built-in image_gen.imagegen",
+      "model": "tool-managed (not reported)",
+      "generated_at": "2026-11-15T15:41:43.413Z",
+      "version": "v01",
+      "dimensions": {
+        "width": 1672,
+        "height": 941
+      },
+      "aspect_ratio": "16:9",
+      "target_dimensions": "2400x1350",
+      "variants": [
+        {
+          "filename": "generated/optimized/backgrounds/evidence-archive-bg-480-v01.webp",
+          "width": 480,
+          "height": 270,
+          "bytes": 706
+        },
+        {
+          "filename": "generated/optimized/backgrounds/evidence-archive-bg-960-v01.webp",
+          "width": 960,
+          "height": 540,
+          "bytes": 2468
+        },
+        {
+          "filename": "generated/optimized/backgrounds/evidence-archive-bg-1600-v01.webp",
+          "width": 1600,
+          "height": 900,
+          "bytes": 7874
+        }
+      ],
+      "focal_point": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "alt_text": "",
+      "decorative": true,
+      "approved_by": null,
+      "reviewed_by": "Codex visual QA",
+      "license": "AI-generated project concept artwork; no third-party input image",
+      "purpose": "来源—证据—主张展板底层纹理",
+      "usage": "来源—证据—主张展板底层纹理",
+      "crop_rule": "cover at low opacity; no functional marks",
+      "fallback": "中性纸色与品牌标记，文字、操作和数据继续可用",
+      "reviewed_at": "2026-11-15T16:03:20.688Z"
+    },
+    {
+      "id": "evidence-empty-mobile",
+      "promptId": "EVIDENCE-EMPTY-01-mobile",
+      "module": "empty-states",
+      "ratio": "4:5",
+      "target": "1200x1500",
+      "prompt": "Use case: stylized-concept. A single finished project-bound raster illustration, not a collage or contact sheet. Series art direction: premium scientific atlas meets independent art-book publishing, refined digital atelier and museum research archive. Warm ivory #F3EFE6, restrained cobalt #3155C8, ink black, mineral green, occasional vermilion. Delicate printmaking, tactile fine paper, elegant asymmetry, quiet negative space. No readable text, letters, digits, logos, watermark, interface, controls, fake charts, fake formulas, robots, brains, gradients, neon or glassmorphism. Independently compose a portrait 4:5 mobile illustration, target 1200x1500; compact subject centered in the lower half, spacious ivory upper region, not a crop of a landscape. An empty evidence dossier, a small source folio and transparent tracing sheet with blank index tabs, neatly separated but adjacent. Restrained cobalt binding, warm ivory archival mood. No text, citations, connecting arrows or actual evidence. Keep exactly the requested subject. No decorative plants, animals, mountain landscape or floral border. Clean contemporary ivory, not stained antique parchment. Background assets must remain almost blank and extremely low contrast.",
+      "status": "integrated; Codex visual review completed; no human approval recorded",
+      "source": "generated/originals/evidence-empty-mobile-v01.png",
+      "asset_id": "EVIDENCE-EMPTY-01-mobile-v01",
+      "prompt_id": "EVIDENCE-EMPTY-01-mobile",
+      "prompt_text": "Use case: stylized-concept. A single finished project-bound raster illustration, not a collage or contact sheet. Series art direction: premium scientific atlas meets independent art-book publishing, refined digital atelier and museum research archive. Warm ivory #F3EFE6, restrained cobalt #3155C8, ink black, mineral green, occasional vermilion. Delicate printmaking, tactile fine paper, elegant asymmetry, quiet negative space. No readable text, letters, digits, logos, watermark, interface, controls, fake charts, fake formulas, robots, brains, gradients, neon or glassmorphism. Independently compose a portrait 4:5 mobile illustration, target 1200x1500; compact subject centered in the lower half, spacious ivory upper region, not a crop of a landscape. An empty evidence dossier, a small source folio and transparent tracing sheet with blank index tabs, neatly separated but adjacent. Restrained cobalt binding, warm ivory archival mood. No text, citations, connecting arrows or actual evidence. Keep exactly the requested subject. No decorative plants, animals, mountain landscape or floral border. Clean contemporary ivory, not stained antique parchment. Background assets must remain almost blank and extremely low contrast.",
+      "filename": "generated/optimized/empty-states/evidence-empty-mobile-960-v01.webp",
+      "tool": "built-in image_gen.imagegen",
+      "model": "tool-managed (not reported)",
+      "generated_at": "2026-11-15T15:53:33.459Z",
+      "version": "v01",
+      "dimensions": {
+        "width": 1122,
+        "height": 1402
+      },
+      "aspect_ratio": "4:5",
+      "target_dimensions": "1200x1500",
+      "variants": [
+        {
+          "filename": "generated/optimized/empty-states/evidence-empty-mobile-480-v01.webp",
+          "width": 480,
+          "height": 600,
+          "bytes": 10710
+        },
+        {
+          "filename": "generated/optimized/empty-states/evidence-empty-mobile-960-v01.webp",
+          "width": 960,
+          "height": 1200,
+          "bytes": 47230
+        }
+      ],
+      "focal_point": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "alt_text": "",
+      "decorative": true,
+      "approved_by": null,
+      "reviewed_by": "Codex visual QA",
+      "license": "AI-generated project concept artwork; no third-party input image",
+      "purpose": "当前筛选无证据与主张状态的独立手机构图",
+      "usage": "当前筛选无证据与主张状态的独立手机构图",
+      "crop_rule": "preserve full subject; responsive source selection; no resolution enlargement",
+      "fallback": "中性纸色与品牌标记，文字、操作和数据继续可用",
+      "reviewed_at": "2026-11-15T16:03:20.688Z"
+    },
+    {
+      "id": "evidence-empty",
+      "promptId": "EVIDENCE-EMPTY-01",
+      "module": "empty-states",
+      "ratio": "4:3",
+      "target": "1200x900",
+      "prompt": "Use case: stylized-concept. A single finished project-bound raster illustration, not a collage or contact sheet. Series art direction: premium scientific atlas meets independent art-book publishing, refined digital atelier and museum research archive. Warm ivory #F3EFE6, restrained cobalt #3155C8, ink black, mineral green, occasional vermilion. Delicate printmaking, tactile fine paper, elegant asymmetry, quiet negative space. No readable text, letters, digits, logos, watermark, interface, controls, fake charts, fake formulas, robots, brains, gradients, neon or glassmorphism.  Asset ID evidence-empty. Output composition 4:3, target 1200x900. An empty evidence dossier, a small source folio and transparent tracing sheet with blank index tabs, neatly separated but adjacent. Restrained cobalt binding, warm ivory archival mood. No text, citations, connecting arrows or actual evidence. Keep exactly the requested subject. No decorative plants, animals, mountain landscape or floral border. Clean contemporary ivory, not stained antique parchment. Background assets must remain almost blank and extremely low contrast.",
+      "status": "integrated; Codex visual review completed; no human approval recorded",
+      "source": "generated/originals/evidence-empty-v01.png",
+      "asset_id": "EVIDENCE-EMPTY-01-v01",
+      "prompt_id": "EVIDENCE-EMPTY-01",
+      "prompt_text": "Use case: stylized-concept. A single finished project-bound raster illustration, not a collage or contact sheet. Series art direction: premium scientific atlas meets independent art-book publishing, refined digital atelier and museum research archive. Warm ivory #F3EFE6, restrained cobalt #3155C8, ink black, mineral green, occasional vermilion. Delicate printmaking, tactile fine paper, elegant asymmetry, quiet negative space. No readable text, letters, digits, logos, watermark, interface, controls, fake charts, fake formulas, robots, brains, gradients, neon or glassmorphism.  Asset ID evidence-empty. Output composition 4:3, target 1200x900. An empty evidence dossier, a small source folio and transparent tracing sheet with blank index tabs, neatly separated but adjacent. Restrained cobalt binding, warm ivory archival mood. No text, citations, connecting arrows or actual evidence. Keep exactly the requested subject. No decorative plants, animals, mountain landscape or floral border. Clean contemporary ivory, not stained antique parchment. Background assets must remain almost blank and extremely low contrast.",
+      "filename": "generated/optimized/empty-states/evidence-empty-960-v01.webp",
+      "tool": "built-in image_gen.imagegen",
+      "model": "tool-managed (not reported)",
+      "generated_at": "2026-11-15T15:44:15.556Z",
+      "version": "v01",
+      "dimensions": {
+        "width": 1448,
+        "height": 1086
+      },
+      "aspect_ratio": "4:3",
+      "target_dimensions": "1200x900",
+      "variants": [
+        {
+          "filename": "generated/optimized/empty-states/evidence-empty-480-v01.webp",
+          "width": 480,
+          "height": 360,
+          "bytes": 7238
+        },
+        {
+          "filename": "generated/optimized/empty-states/evidence-empty-960-v01.webp",
+          "width": 960,
+          "height": 720,
+          "bytes": 38686
+        }
+      ],
+      "focal_point": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "alt_text": "",
+      "decorative": true,
+      "approved_by": null,
+      "reviewed_by": "Codex visual QA",
+      "license": "AI-generated project concept artwork; no third-party input image",
+      "purpose": "当前筛选无证据与主张状态",
+      "usage": "当前筛选无证据与主张状态",
+      "crop_rule": "preserve full subject; responsive source selection; no resolution enlargement",
+      "fallback": "中性纸色与品牌标记，文字、操作和数据继续可用",
+      "reviewed_at": "2026-11-15T16:03:20.688Z"
+    },
+    {
+      "id": "graph-atlas-bg",
+      "promptId": "GRAPH-ATLAS-BG / GRAPH-BG-01",
+      "module": "backgrounds",
+      "ratio": "16:9",
+      "target": "2400x1350",
+      "prompt": "Use case: stylized-concept. A single finished project-bound raster illustration, not a collage or contact sheet. Series art direction: premium scientific atlas meets independent art-book publishing, refined digital atelier and museum research archive. Warm ivory #F3EFE6, restrained cobalt #3155C8, ink black, mineral green, occasional vermilion. Delicate printmaking, tactile fine paper, elegant asymmetry, quiet negative space. No readable text, letters, digits, logos, watermark, interface, controls, fake charts, fake formulas, robots, brains, gradients, neon or glassmorphism.  Asset ID graph-atlas-bg. Output composition 16:9, target 2400x1350. Extremely low-contrast cartographic texture, fine topographic contours confined near the outer margins and faint print registration ticks. Large blank center for real interactive graph. No nodes, symbols, connecting edges, axes, labels or scientific data. Keep exactly the requested subject. No decorative plants, animals, mountain landscape or floral border. Clean contemporary ivory, not stained antique parchment. Background assets must remain almost blank and extremely low contrast.",
+      "status": "integrated; Codex visual review completed; no human approval recorded",
+      "source": "generated/originals/graph-atlas-bg-v01.png",
+      "asset_id": "GRAPH-ATLAS-BG / GRAPH-BG-01-v01",
+      "prompt_id": "GRAPH-ATLAS-BG / GRAPH-BG-01",
+      "prompt_text": "Use case: stylized-concept. A single finished project-bound raster illustration, not a collage or contact sheet. Series art direction: premium scientific atlas meets independent art-book publishing, refined digital atelier and museum research archive. Warm ivory #F3EFE6, restrained cobalt #3155C8, ink black, mineral green, occasional vermilion. Delicate printmaking, tactile fine paper, elegant asymmetry, quiet negative space. No readable text, letters, digits, logos, watermark, interface, controls, fake charts, fake formulas, robots, brains, gradients, neon or glassmorphism.  Asset ID graph-atlas-bg. Output composition 16:9, target 2400x1350. Extremely low-contrast cartographic texture, fine topographic contours confined near the outer margins and faint print registration ticks. Large blank center for real interactive graph. No nodes, symbols, connecting edges, axes, labels or scientific data. Keep exactly the requested subject. No decorative plants, animals, mountain landscape or floral border. Clean contemporary ivory, not stained antique parchment. Background assets must remain almost blank and extremely low contrast.",
+      "filename": "generated/optimized/backgrounds/graph-atlas-bg-1600-v01.webp",
+      "tool": "built-in image_gen.imagegen",
+      "model": "tool-managed (not reported)",
+      "generated_at": "2026-11-15T15:34:58.694Z",
+      "version": "v01",
+      "dimensions": {
+        "width": 1672,
+        "height": 941
+      },
+      "aspect_ratio": "16:9",
+      "target_dimensions": "2400x1350",
+      "variants": [
+        {
+          "filename": "generated/optimized/backgrounds/graph-atlas-bg-480-v01.webp",
+          "width": 480,
+          "height": 270,
+          "bytes": 630
+        },
+        {
+          "filename": "generated/optimized/backgrounds/graph-atlas-bg-960-v01.webp",
+          "width": 960,
+          "height": 540,
+          "bytes": 2562
+        },
+        {
+          "filename": "generated/optimized/backgrounds/graph-atlas-bg-1600-v01.webp",
+          "width": 1600,
+          "height": 900,
+          "bytes": 7872
+        }
+      ],
+      "focal_point": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "alt_text": "",
+      "decorative": true,
+      "approved_by": null,
+      "reviewed_by": "Codex visual QA",
+      "license": "AI-generated project concept artwork; no third-party input image",
+      "purpose": "交互图谱底层纹理，真实节点和边覆盖其上",
+      "usage": "交互图谱底层纹理，真实节点和边覆盖其上",
+      "crop_rule": "cover at low opacity; no functional marks",
+      "fallback": "中性纸色与品牌标记，文字、操作和数据继续可用",
+      "reviewed_at": "2026-11-15T16:03:20.688Z"
+    },
+    {
+      "id": "guide-manual",
+      "promptId": "GUIDE-MANUAL-01",
+      "module": "guide",
+      "ratio": "3:2",
+      "target": "1800x1200",
+      "prompt": "Use case: stylized-concept. A single finished project-bound raster illustration, not a collage or contact sheet. Series art direction: premium scientific atlas meets independent art-book publishing, refined digital atelier and museum research archive. Warm ivory #F3EFE6, restrained cobalt #3155C8, ink black, mineral green, occasional vermilion. Delicate printmaking, tactile fine paper, elegant asymmetry, quiet negative space. No readable text, letters, digits, logos, watermark, interface, controls, fake charts, fake formulas, robots, brains, gradients, neon or glassmorphism.  Asset ID guide-manual. Output composition 3:2, target 1800x1200. Procedural field manual concept cover: carefully arranged blank paper steps, subtle physical index tabs, a precise vermilion route marker and ink technical-manual binding. Quiet left for real task title. No instructions, fake process diagram or actual executable steps. Keep exactly the requested subject. No decorative plants, animals, mountain landscape or floral border. Clean contemporary ivory, not stained antique parchment. Background assets must remain almost blank and extremely low contrast.",
+      "status": "integrated; Codex visual review completed; no human approval recorded",
+      "source": "generated/originals/guide-manual-v01.png",
+      "asset_id": "GUIDE-MANUAL-01-v01",
+      "prompt_id": "GUIDE-MANUAL-01",
+      "prompt_text": "Use case: stylized-concept. A single finished project-bound raster illustration, not a collage or contact sheet. Series art direction: premium scientific atlas meets independent art-book publishing, refined digital atelier and museum research archive. Warm ivory #F3EFE6, restrained cobalt #3155C8, ink black, mineral green, occasional vermilion. Delicate printmaking, tactile fine paper, elegant asymmetry, quiet negative space. No readable text, letters, digits, logos, watermark, interface, controls, fake charts, fake formulas, robots, brains, gradients, neon or glassmorphism.  Asset ID guide-manual. Output composition 3:2, target 1800x1200. Procedural field manual concept cover: carefully arranged blank paper steps, subtle physical index tabs, a precise vermilion route marker and ink technical-manual binding. Quiet left for real task title. No instructions, fake process diagram or actual executable steps. Keep exactly the requested subject. No decorative plants, animals, mountain landscape or floral border. Clean contemporary ivory, not stained antique parchment. Background assets must remain almost blank and extremely low contrast.",
+      "filename": "generated/optimized/guide/guide-manual-960-v01.webp",
+      "tool": "built-in image_gen.imagegen",
+      "model": "tool-managed (not reported)",
+      "generated_at": "2026-11-15T15:45:39.731Z",
+      "version": "v01",
+      "dimensions": {
+        "width": 1536,
+        "height": 1024
+      },
+      "aspect_ratio": "3:2",
+      "target_dimensions": "1800x1200",
+      "variants": [
+        {
+          "filename": "generated/optimized/guide/guide-manual-480-v01.webp",
+          "width": 480,
+          "height": 320,
+          "bytes": 8448
+        },
+        {
+          "filename": "generated/optimized/guide/guide-manual-960-v01.webp",
+          "width": 960,
+          "height": 640,
+          "bytes": 40074
+        }
+      ],
+      "focal_point": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "alt_text": "",
+      "decorative": true,
+      "approved_by": null,
+      "reviewed_by": "Codex visual QA",
+      "license": "AI-generated project concept artwork; no third-party input image",
+      "purpose": "含 guide_step 的产物手册封面",
+      "usage": "含 guide_step 的产物手册封面",
+      "crop_rule": "preserve full subject; responsive source selection; no resolution enlargement",
+      "fallback": "中性纸色与品牌标记，文字、操作和数据继续可用",
+      "reviewed_at": "2026-11-15T16:03:20.688Z"
+    },
+    {
+      "id": "home-atlas-desktop",
+      "promptId": "HOME-01",
+      "module": "home",
+      "ratio": "16:9",
+      "target": "2400x1350",
+      "prompt": "Use case: stylized-concept. A single finished project-bound raster illustration, not a collage or contact sheet. Series art direction: premium scientific atlas meets independent art-book publishing, refined digital atelier and museum research archive. Warm ivory #F3EFE6, restrained cobalt #3155C8, ink black, mineral green, occasional vermilion. Delicate printmaking, tactile fine paper, elegant asymmetry, quiet negative space. No readable text, letters, digits, logos, watermark, interface, controls, fake charts, fake formulas, robots, brains, gradients, neon or glassmorphism.  Asset ID home-atlas-desktop. Output composition 16:9, target 2400x1350. Abstract knowledge terrain formed from layered topographic contour paper relief and translucent archival sheets; a restrained cobalt route ornament. Subject weighted right, left half quiet for a heading. Wide landscape. Clearly concept art, no apparent scientific data.",
+      "status": "integrated; Codex visual review completed; no human approval recorded",
+      "source": "generated/originals/home-atlas-desktop-v01.png",
+      "asset_id": "HOME-01-v01",
+      "prompt_id": "HOME-01",
+      "prompt_text": "Use case: stylized-concept. A single finished project-bound raster illustration, not a collage or contact sheet. Series art direction: premium scientific atlas meets independent art-book publishing, refined digital atelier and museum research archive. Warm ivory #F3EFE6, restrained cobalt #3155C8, ink black, mineral green, occasional vermilion. Delicate printmaking, tactile fine paper, elegant asymmetry, quiet negative space. No readable text, letters, digits, logos, watermark, interface, controls, fake charts, fake formulas, robots, brains, gradients, neon or glassmorphism.  Asset ID home-atlas-desktop. Output composition 16:9, target 2400x1350. Abstract knowledge terrain formed from layered topographic contour paper relief and translucent archival sheets; a restrained cobalt route ornament. Subject weighted right, left half quiet for a heading. Wide landscape. Clearly concept art, no apparent scientific data.",
+      "filename": "generated/optimized/home/home-atlas-desktop-1600-v01.webp",
+      "tool": "built-in image_gen.imagegen",
+      "model": "tool-managed (not reported)",
+      "generated_at": "2026-11-15T15:30:19.169Z",
+      "version": "v01",
+      "dimensions": {
+        "width": 1672,
+        "height": 941
+      },
+      "aspect_ratio": "16:9",
+      "target_dimensions": "2400x1350",
+      "variants": [
+        {
+          "filename": "generated/optimized/home/home-atlas-desktop-480-v01.webp",
+          "width": 480,
+          "height": 270,
+          "bytes": 23646
+        },
+        {
+          "filename": "generated/optimized/home/home-atlas-desktop-960-v01.webp",
+          "width": 960,
+          "height": 540,
+          "bytes": 97960
+        },
+        {
+          "filename": "generated/optimized/home/home-atlas-desktop-1600-v01.webp",
+          "width": 1600,
+          "height": 900,
+          "bytes": 253598
+        }
+      ],
+      "focal_point": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "alt_text": "",
+      "decorative": true,
+      "approved_by": null,
+      "reviewed_by": "Codex visual QA",
+      "license": "AI-generated project concept artwork; no third-party input image",
+      "purpose": "首页主图；可切换工作室静物",
+      "usage": "首页主图；可切换工作室静物",
+      "crop_rule": "preserve full subject; responsive source selection; no resolution enlargement",
+      "fallback": "中性纸色与品牌标记，文字、操作和数据继续可用",
+      "reviewed_at": "2026-11-15T16:03:20.688Z"
+    },
+    {
+      "id": "home-atlas-mobile",
+      "promptId": "HOME-01-mobile",
+      "module": "home",
+      "ratio": "4:5",
+      "target": "1200x1500",
+      "prompt": "Use case: stylized-concept. A single finished project-bound raster illustration, not a collage or contact sheet. Series art direction: premium scientific atlas meets independent art-book publishing, refined digital atelier and museum research archive. Warm ivory #F3EFE6, restrained cobalt #3155C8, ink black, mineral green, occasional vermilion. Delicate printmaking, tactile fine paper, elegant asymmetry, quiet negative space. No readable text, letters, digits, logos, watermark, interface, controls, fake charts, fake formulas, robots, brains, gradients, neon or glassmorphism.  Asset ID home-atlas-mobile. Output composition 4:5, target 1200x1500. Independently composed portrait version of knowledge terrain: delicately stacked topographic paper relief in the lower two thirds, generous empty ivory space above, small cobalt index tab. Vertical composition, no cropped desktop screenshot.",
+      "status": "integrated; Codex visual review completed; no human approval recorded",
+      "source": "generated/originals/home-atlas-mobile-v01.png",
+      "asset_id": "HOME-01-mobile-v01",
+      "prompt_id": "HOME-01-mobile",
+      "prompt_text": "Use case: stylized-concept. A single finished project-bound raster illustration, not a collage or contact sheet. Series art direction: premium scientific atlas meets independent art-book publishing, refined digital atelier and museum research archive. Warm ivory #F3EFE6, restrained cobalt #3155C8, ink black, mineral green, occasional vermilion. Delicate printmaking, tactile fine paper, elegant asymmetry, quiet negative space. No readable text, letters, digits, logos, watermark, interface, controls, fake charts, fake formulas, robots, brains, gradients, neon or glassmorphism.  Asset ID home-atlas-mobile. Output composition 4:5, target 1200x1500. Independently composed portrait version of knowledge terrain: delicately stacked topographic paper relief in the lower two thirds, generous empty ivory space above, small cobalt index tab. Vertical composition, no cropped desktop screenshot.",
+      "filename": "generated/optimized/home/home-atlas-mobile-960-v01.webp",
+      "tool": "built-in image_gen.imagegen",
+      "model": "tool-managed (not reported)",
+      "generated_at": "2026-11-15T15:30:46.692Z",
+      "version": "v01",
+      "dimensions": {
+        "width": 1122,
+        "height": 1402
+      },
+      "aspect_ratio": "4:5",
+      "target_dimensions": "1200x1500",
+      "variants": [
+        {
+          "filename": "generated/optimized/home/home-atlas-mobile-480-v01.webp",
+          "width": 480,
+          "height": 600,
+          "bytes": 55020
+        },
+        {
+          "filename": "generated/optimized/home/home-atlas-mobile-960-v01.webp",
+          "width": 960,
+          "height": 1200,
+          "bytes": 226154
+        }
+      ],
+      "focal_point": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "alt_text": "",
+      "decorative": true,
+      "approved_by": null,
+      "reviewed_by": "Codex visual QA",
+      "license": "AI-generated project concept artwork; no third-party input image",
+      "purpose": "首页输入器之后的独立手机插画",
+      "usage": "首页输入器之后的独立手机插画",
+      "crop_rule": "preserve full subject; responsive source selection; no resolution enlargement",
+      "fallback": "中性纸色与品牌标记，文字、操作和数据继续可用",
+      "reviewed_at": "2026-11-15T16:03:20.688Z"
+    },
+    {
+      "id": "learning-empty-mobile",
+      "promptId": "LEARNING-01-mobile",
+      "module": "learning",
+      "ratio": "4:5",
+      "target": "1200x1500",
+      "prompt": "Use case: stylized-concept. A single finished project-bound raster illustration, not a collage or contact sheet. Series art direction: premium scientific atlas meets independent art-book publishing, refined digital atelier and museum research archive. Warm ivory #F3EFE6, restrained cobalt #3155C8, ink black, mineral green, occasional vermilion. Delicate printmaking, tactile fine paper, elegant asymmetry, quiet negative space. No readable text, letters, digits, logos, watermark, interface, controls, fake charts, fake formulas, robots, brains, gradients, neon or glassmorphism. Independently compose a portrait 4:5 mobile illustration, target 1200x1500; compact subject centered in the lower half, spacious ivory upper region, not a crop of a landscape. A learning-path metaphor made from a few carefully arranged blank paper fragments and one cobalt ribbon crossing them. Intellectual notebook craft, no formulas, diagrams or human character. Distinct from an open folio. Keep exactly the requested subject. No decorative plants, animals, mountain landscape or floral border. Clean contemporary ivory, not stained antique parchment. Background assets must remain almost blank and extremely low contrast.",
+      "status": "integrated; Codex visual review completed; no human approval recorded",
+      "source": "generated/originals/learning-empty-mobile-v01.png",
+      "asset_id": "LEARNING-01-mobile-v01",
+      "prompt_id": "LEARNING-01-mobile",
+      "prompt_text": "Use case: stylized-concept. A single finished project-bound raster illustration, not a collage or contact sheet. Series art direction: premium scientific atlas meets independent art-book publishing, refined digital atelier and museum research archive. Warm ivory #F3EFE6, restrained cobalt #3155C8, ink black, mineral green, occasional vermilion. Delicate printmaking, tactile fine paper, elegant asymmetry, quiet negative space. No readable text, letters, digits, logos, watermark, interface, controls, fake charts, fake formulas, robots, brains, gradients, neon or glassmorphism. Independently compose a portrait 4:5 mobile illustration, target 1200x1500; compact subject centered in the lower half, spacious ivory upper region, not a crop of a landscape. A learning-path metaphor made from a few carefully arranged blank paper fragments and one cobalt ribbon crossing them. Intellectual notebook craft, no formulas, diagrams or human character. Distinct from an open folio. Keep exactly the requested subject. No decorative plants, animals, mountain landscape or floral border. Clean contemporary ivory, not stained antique parchment. Background assets must remain almost blank and extremely low contrast.",
+      "filename": "generated/optimized/learning/learning-empty-mobile-960-v01.webp",
+      "tool": "built-in image_gen.imagegen",
+      "model": "tool-managed (not reported)",
+      "generated_at": "2026-11-15T15:50:16.743Z",
+      "version": "v01",
+      "dimensions": {
+        "width": 1122,
+        "height": 1402
+      },
+      "aspect_ratio": "4:5",
+      "target_dimensions": "1200x1500",
+      "variants": [
+        {
+          "filename": "generated/optimized/learning/learning-empty-mobile-480-v01.webp",
+          "width": 480,
+          "height": 600,
+          "bytes": 8084
+        },
+        {
+          "filename": "generated/optimized/learning/learning-empty-mobile-960-v01.webp",
+          "width": 960,
+          "height": 1200,
+          "bytes": 33296
+        }
+      ],
+      "focal_point": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "alt_text": "",
+      "decorative": true,
+      "approved_by": null,
+      "reviewed_by": "Codex visual QA",
+      "license": "AI-generated project concept artwork; no third-party input image",
+      "purpose": "学习页无目标状态的独立手机构图",
+      "usage": "学习页无目标状态的独立手机构图",
+      "crop_rule": "preserve full subject; responsive source selection; no resolution enlargement",
+      "fallback": "中性纸色与品牌标记，文字、操作和数据继续可用",
+      "reviewed_at": "2026-11-15T16:03:20.688Z"
+    },
+    {
+      "id": "learning-empty",
+      "promptId": "LEARNING-01",
+      "module": "learning",
+      "ratio": "4:3",
+      "target": "1200x900",
+      "prompt": "Use case: stylized-concept. A single finished project-bound raster illustration, not a collage or contact sheet. Series art direction: premium scientific atlas meets independent art-book publishing, refined digital atelier and museum research archive. Warm ivory #F3EFE6, restrained cobalt #3155C8, ink black, mineral green, occasional vermilion. Delicate printmaking, tactile fine paper, elegant asymmetry, quiet negative space. No readable text, letters, digits, logos, watermark, interface, controls, fake charts, fake formulas, robots, brains, gradients, neon or glassmorphism.  Asset ID learning-empty. Output composition 4:3, target 1200x900. A learning-path metaphor made from a few carefully arranged blank paper fragments and one cobalt ribbon crossing them. Intellectual notebook craft, no formulas, diagrams or human character. Distinct from an open folio. Keep exactly the requested subject. No decorative plants, animals, mountain landscape or floral border. Clean contemporary ivory, not stained antique parchment. Background assets must remain almost blank and extremely low contrast.",
+      "status": "integrated; Codex visual review completed; no human approval recorded",
+      "source": "generated/originals/learning-empty-v01.png",
+      "asset_id": "LEARNING-01-v01",
+      "prompt_id": "LEARNING-01",
+      "prompt_text": "Use case: stylized-concept. A single finished project-bound raster illustration, not a collage or contact sheet. Series art direction: premium scientific atlas meets independent art-book publishing, refined digital atelier and museum research archive. Warm ivory #F3EFE6, restrained cobalt #3155C8, ink black, mineral green, occasional vermilion. Delicate printmaking, tactile fine paper, elegant asymmetry, quiet negative space. No readable text, letters, digits, logos, watermark, interface, controls, fake charts, fake formulas, robots, brains, gradients, neon or glassmorphism.  Asset ID learning-empty. Output composition 4:3, target 1200x900. A learning-path metaphor made from a few carefully arranged blank paper fragments and one cobalt ribbon crossing them. Intellectual notebook craft, no formulas, diagrams or human character. Distinct from an open folio. Keep exactly the requested subject. No decorative plants, animals, mountain landscape or floral border. Clean contemporary ivory, not stained antique parchment. Background assets must remain almost blank and extremely low contrast.",
+      "filename": "generated/optimized/learning/learning-empty-960-v01.webp",
+      "tool": "built-in image_gen.imagegen",
+      "model": "tool-managed (not reported)",
+      "generated_at": "2026-11-15T15:37:06.271Z",
+      "version": "v01",
+      "dimensions": {
+        "width": 1448,
+        "height": 1086
+      },
+      "aspect_ratio": "4:3",
+      "target_dimensions": "1200x900",
+      "variants": [
+        {
+          "filename": "generated/optimized/learning/learning-empty-480-v01.webp",
+          "width": 480,
+          "height": 360,
+          "bytes": 6636
+        },
+        {
+          "filename": "generated/optimized/learning/learning-empty-960-v01.webp",
+          "width": 960,
+          "height": 720,
+          "bytes": 24930
+        }
+      ],
+      "focal_point": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "alt_text": "",
+      "decorative": true,
+      "approved_by": null,
+      "reviewed_by": "Codex visual QA",
+      "license": "AI-generated project concept artwork; no third-party input image",
+      "purpose": "学习页无目标状态",
+      "usage": "学习页无目标状态",
+      "crop_rule": "preserve full subject; responsive source selection; no resolution enlargement",
+      "fallback": "中性纸色与品牌标记，文字、操作和数据继续可用",
+      "reviewed_at": "2026-11-15T16:03:20.688Z"
+    },
+    {
+      "id": "learning-folio",
+      "promptId": "LEARNING-FOLIO-01",
+      "module": "learning",
+      "ratio": "3:2",
+      "target": "1800x1200",
+      "prompt": "Use case: stylized-concept. A single finished project-bound raster illustration, not a collage or contact sheet. Series art direction: premium scientific atlas meets independent art-book publishing, refined digital atelier and museum research archive. Warm ivory #F3EFE6, restrained cobalt #3155C8, ink black, mineral green, occasional vermilion. Delicate printmaking, tactile fine paper, elegant asymmetry, quiet negative space. No readable text, letters, digits, logos, watermark, interface, controls, fake charts, fake formulas, robots, brains, gradients, neon or glassmorphism.  Asset ID learning-folio. Output composition 3:2, target 1800x1200. Learning folio cover about learning methods and organizing knowledge: a precise sculptural arrangement of blank folded paper chapters like a quiet architectural stair, mineral green and cobalt edges. Intellectually rich but uncluttered. Quiet left for frontend topic title, no formulas or scientific diagram. Keep exactly the requested subject. No decorative plants, animals, mountain landscape or floral border. Clean contemporary ivory, not stained antique parchment. Background assets must remain almost blank and extremely low contrast.",
+      "status": "integrated; Codex visual review completed; no human approval recorded",
+      "source": "generated/originals/learning-folio-v01.png",
+      "asset_id": "LEARNING-FOLIO-01-v01",
+      "prompt_id": "LEARNING-FOLIO-01",
+      "prompt_text": "Use case: stylized-concept. A single finished project-bound raster illustration, not a collage or contact sheet. Series art direction: premium scientific atlas meets independent art-book publishing, refined digital atelier and museum research archive. Warm ivory #F3EFE6, restrained cobalt #3155C8, ink black, mineral green, occasional vermilion. Delicate printmaking, tactile fine paper, elegant asymmetry, quiet negative space. No readable text, letters, digits, logos, watermark, interface, controls, fake charts, fake formulas, robots, brains, gradients, neon or glassmorphism.  Asset ID learning-folio. Output composition 3:2, target 1800x1200. Learning folio cover about learning methods and organizing knowledge: a precise sculptural arrangement of blank folded paper chapters like a quiet architectural stair, mineral green and cobalt edges. Intellectually rich but uncluttered. Quiet left for frontend topic title, no formulas or scientific diagram. Keep exactly the requested subject. No decorative plants, animals, mountain landscape or floral border. Clean contemporary ivory, not stained antique parchment. Background assets must remain almost blank and extremely low contrast.",
+      "filename": "generated/optimized/learning/learning-folio-960-v01.webp",
+      "tool": "built-in image_gen.imagegen",
+      "model": "tool-managed (not reported)",
+      "generated_at": "2026-11-15T15:44:40.531Z",
+      "version": "v01",
+      "dimensions": {
+        "width": 1536,
+        "height": 1024
+      },
+      "aspect_ratio": "3:2",
+      "target_dimensions": "1800x1200",
+      "variants": [
+        {
+          "filename": "generated/optimized/learning/learning-folio-480-v01.webp",
+          "width": 480,
+          "height": 320,
+          "bytes": 8136
+        },
+        {
+          "filename": "generated/optimized/learning/learning-folio-960-v01.webp",
+          "width": 960,
+          "height": 640,
+          "bytes": 27400
+        }
+      ],
+      "focal_point": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "alt_text": "",
+      "decorative": true,
+      "approved_by": null,
+      "reviewed_by": "Codex visual QA",
+      "license": "AI-generated project concept artwork; no third-party input image",
+      "purpose": "learning_goal 产物教材封面",
+      "usage": "learning_goal 产物教材封面",
+      "crop_rule": "preserve full subject; responsive source selection; no resolution enlargement",
+      "fallback": "中性纸色与品牌标记，文字、操作和数据继续可用",
+      "reviewed_at": "2026-11-15T16:03:20.688Z"
+    },
+    {
+      "id": "mindmap-empty-mobile",
+      "promptId": "MINDMAP-EMPTY-01-mobile",
+      "module": "empty-states",
+      "ratio": "4:5",
+      "target": "1200x1500",
+      "prompt": "Use case: stylized-concept. A single finished project-bound raster illustration, not a collage or contact sheet. Series art direction: premium scientific atlas meets independent art-book publishing, refined digital atelier and museum research archive. Warm ivory #F3EFE6, restrained cobalt #3155C8, ink black, mineral green, occasional vermilion. Delicate printmaking, tactile fine paper, elegant asymmetry, quiet negative space. No readable text, letters, digits, logos, watermark, interface, controls, fake charts, fake formulas, robots, brains, gradients, neon or glassmorphism. Independently compose a portrait 4:5 mobile illustration, target 1200x1500; compact subject centered in the lower half, spacious ivory upper region, not a crop of a landscape. An open blank notebook with a few branching blank paper tabs physically folded from its edges and one cobalt index marker. Elegant organizing-ideas metaphor; no actual nodes, connected graph or drawn diagram. Keep exactly the requested subject. No decorative plants, animals, mountain landscape or floral border. Clean contemporary ivory, not stained antique parchment. Background assets must remain almost blank and extremely low contrast.",
+      "status": "integrated; Codex visual review completed; no human approval recorded",
+      "source": "generated/originals/mindmap-empty-mobile-v01.png",
+      "asset_id": "MINDMAP-EMPTY-01-mobile-v01",
+      "prompt_id": "MINDMAP-EMPTY-01-mobile",
+      "prompt_text": "Use case: stylized-concept. A single finished project-bound raster illustration, not a collage or contact sheet. Series art direction: premium scientific atlas meets independent art-book publishing, refined digital atelier and museum research archive. Warm ivory #F3EFE6, restrained cobalt #3155C8, ink black, mineral green, occasional vermilion. Delicate printmaking, tactile fine paper, elegant asymmetry, quiet negative space. No readable text, letters, digits, logos, watermark, interface, controls, fake charts, fake formulas, robots, brains, gradients, neon or glassmorphism. Independently compose a portrait 4:5 mobile illustration, target 1200x1500; compact subject centered in the lower half, spacious ivory upper region, not a crop of a landscape. An open blank notebook with a few branching blank paper tabs physically folded from its edges and one cobalt index marker. Elegant organizing-ideas metaphor; no actual nodes, connected graph or drawn diagram. Keep exactly the requested subject. No decorative plants, animals, mountain landscape or floral border. Clean contemporary ivory, not stained antique parchment. Background assets must remain almost blank and extremely low contrast.",
+      "filename": "generated/optimized/empty-states/mindmap-empty-mobile-960-v01.webp",
+      "tool": "built-in image_gen.imagegen",
+      "model": "tool-managed (not reported)",
+      "generated_at": "2026-11-15T15:52:20.277Z",
+      "version": "v01",
+      "dimensions": {
+        "width": 1122,
+        "height": 1402
+      },
+      "aspect_ratio": "4:5",
+      "target_dimensions": "1200x1500",
+      "variants": [
+        {
+          "filename": "generated/optimized/empty-states/mindmap-empty-mobile-480-v01.webp",
+          "width": 480,
+          "height": 600,
+          "bytes": 6790
+        },
+        {
+          "filename": "generated/optimized/empty-states/mindmap-empty-mobile-960-v01.webp",
+          "width": 960,
+          "height": 1200,
+          "bytes": 27940
+        }
+      ],
+      "focal_point": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "alt_text": "",
+      "decorative": true,
+      "approved_by": null,
+      "reviewed_by": "Codex visual QA",
+      "license": "AI-generated project concept artwork; no third-party input image",
+      "purpose": "思维导图无节点状态的独立手机构图",
+      "usage": "思维导图无节点状态的独立手机构图",
+      "crop_rule": "preserve full subject; responsive source selection; no resolution enlargement",
+      "fallback": "中性纸色与品牌标记，文字、操作和数据继续可用",
+      "reviewed_at": "2026-11-15T16:03:20.688Z"
+    },
+    {
+      "id": "mindmap-empty",
+      "promptId": "MINDMAP-EMPTY-01",
+      "module": "empty-states",
+      "ratio": "4:3",
+      "target": "1200x900",
+      "prompt": "Use case: stylized-concept. A single finished project-bound raster illustration, not a collage or contact sheet. Series art direction: premium scientific atlas meets independent art-book publishing, refined digital atelier and museum research archive. Warm ivory #F3EFE6, restrained cobalt #3155C8, ink black, mineral green, occasional vermilion. Delicate printmaking, tactile fine paper, elegant asymmetry, quiet negative space. No readable text, letters, digits, logos, watermark, interface, controls, fake charts, fake formulas, robots, brains, gradients, neon or glassmorphism.  Asset ID mindmap-empty. Output composition 4:3, target 1200x900. An open blank notebook with a few branching blank paper tabs physically folded from its edges and one cobalt index marker. Elegant organizing-ideas metaphor; no actual nodes, connected graph or drawn diagram. Keep exactly the requested subject. No decorative plants, animals, mountain landscape or floral border. Clean contemporary ivory, not stained antique parchment. Background assets must remain almost blank and extremely low contrast.",
+      "status": "integrated; Codex visual review completed; no human approval recorded",
+      "source": "generated/originals/mindmap-empty-v01.png",
+      "asset_id": "MINDMAP-EMPTY-01-v01",
+      "prompt_id": "MINDMAP-EMPTY-01",
+      "prompt_text": "Use case: stylized-concept. A single finished project-bound raster illustration, not a collage or contact sheet. Series art direction: premium scientific atlas meets independent art-book publishing, refined digital atelier and museum research archive. Warm ivory #F3EFE6, restrained cobalt #3155C8, ink black, mineral green, occasional vermilion. Delicate printmaking, tactile fine paper, elegant asymmetry, quiet negative space. No readable text, letters, digits, logos, watermark, interface, controls, fake charts, fake formulas, robots, brains, gradients, neon or glassmorphism.  Asset ID mindmap-empty. Output composition 4:3, target 1200x900. An open blank notebook with a few branching blank paper tabs physically folded from its edges and one cobalt index marker. Elegant organizing-ideas metaphor; no actual nodes, connected graph or drawn diagram. Keep exactly the requested subject. No decorative plants, animals, mountain landscape or floral border. Clean contemporary ivory, not stained antique parchment. Background assets must remain almost blank and extremely low contrast.",
+      "filename": "generated/optimized/empty-states/mindmap-empty-960-v01.webp",
+      "tool": "built-in image_gen.imagegen",
+      "model": "tool-managed (not reported)",
+      "generated_at": "2026-11-15T15:42:19.000Z",
+      "version": "v01",
+      "dimensions": {
+        "width": 1448,
+        "height": 1086
+      },
+      "aspect_ratio": "4:3",
+      "target_dimensions": "1200x900",
+      "variants": [
+        {
+          "filename": "generated/optimized/empty-states/mindmap-empty-480-v01.webp",
+          "width": 480,
+          "height": 360,
+          "bytes": 4824
+        },
+        {
+          "filename": "generated/optimized/empty-states/mindmap-empty-960-v01.webp",
+          "width": 960,
+          "height": 720,
+          "bytes": 17128
+        }
+      ],
+      "focal_point": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "alt_text": "",
+      "decorative": true,
+      "approved_by": null,
+      "reviewed_by": "Codex visual QA",
+      "license": "AI-generated project concept artwork; no third-party input image",
+      "purpose": "思维导图无节点状态",
+      "usage": "思维导图无节点状态",
+      "crop_rule": "preserve full subject; responsive source selection; no resolution enlargement",
+      "fallback": "中性纸色与品牌标记，文字、操作和数据继续可用",
+      "reviewed_at": "2026-11-15T16:03:20.688Z"
+    },
+    {
+      "id": "offline-preserved-mobile",
+      "promptId": "OFFLINE-01-mobile",
+      "module": "empty-states",
+      "ratio": "4:5",
+      "target": "1200x1500",
+      "prompt": "Use case: stylized-concept. A single finished project-bound raster illustration, not a collage or contact sheet. Series art direction: premium scientific atlas meets independent art-book publishing, refined digital atelier and museum research archive. Warm ivory #F3EFE6, restrained cobalt #3155C8, ink black, mineral green, occasional vermilion. Delicate printmaking, tactile fine paper, elegant asymmetry, quiet negative space. No readable text, letters, digits, logos, watermark, interface, controls, fake charts, fake formulas, robots, brains, gradients, neon or glassmorphism. Independently compose a portrait 4:5 mobile illustration, target 1200x1500; compact subject centered in the lower half, spacious ivory upper region, not a crop of a landscape. Offline preservation metaphor: a closed archival folio with a single cobalt preserved index marker, tactile ivory and dark ink book cloth. Dependable, compact still life. No cloud or WiFi icon. Keep exactly the requested subject. No decorative plants, animals, mountain landscape or floral border. Clean contemporary ivory, not stained antique parchment. Background assets must remain almost blank and extremely low contrast.",
+      "status": "integrated; Codex visual review completed; no human approval recorded",
+      "source": "generated/originals/offline-preserved-mobile-v01.png",
+      "asset_id": "OFFLINE-01-mobile-v01",
+      "prompt_id": "OFFLINE-01-mobile",
+      "prompt_text": "Use case: stylized-concept. A single finished project-bound raster illustration, not a collage or contact sheet. Series art direction: premium scientific atlas meets independent art-book publishing, refined digital atelier and museum research archive. Warm ivory #F3EFE6, restrained cobalt #3155C8, ink black, mineral green, occasional vermilion. Delicate printmaking, tactile fine paper, elegant asymmetry, quiet negative space. No readable text, letters, digits, logos, watermark, interface, controls, fake charts, fake formulas, robots, brains, gradients, neon or glassmorphism. Independently compose a portrait 4:5 mobile illustration, target 1200x1500; compact subject centered in the lower half, spacious ivory upper region, not a crop of a landscape. Offline preservation metaphor: a closed archival folio with a single cobalt preserved index marker, tactile ivory and dark ink book cloth. Dependable, compact still life. No cloud or WiFi icon. Keep exactly the requested subject. No decorative plants, animals, mountain landscape or floral border. Clean contemporary ivory, not stained antique parchment. Background assets must remain almost blank and extremely low contrast.",
+      "filename": "generated/optimized/empty-states/offline-preserved-mobile-960-v01.webp",
+      "tool": "built-in image_gen.imagegen",
+      "model": "tool-managed (not reported)",
+      "generated_at": "2026-11-15T15:51:59.159Z",
+      "version": "v01",
+      "dimensions": {
+        "width": 1122,
+        "height": 1402
+      },
+      "aspect_ratio": "4:5",
+      "target_dimensions": "1200x1500",
+      "variants": [
+        {
+          "filename": "generated/optimized/empty-states/offline-preserved-mobile-480-v01.webp",
+          "width": 480,
+          "height": 600,
+          "bytes": 15754
+        },
+        {
+          "filename": "generated/optimized/empty-states/offline-preserved-mobile-960-v01.webp",
+          "width": 960,
+          "height": 1200,
+          "bytes": 86252
+        }
+      ],
+      "focal_point": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "alt_text": "",
+      "decorative": true,
+      "approved_by": null,
+      "reviewed_by": "Codex visual QA",
+      "license": "AI-generated project concept artwork; no third-party input image",
+      "purpose": "离线保留提示／离线活动页的独立手机构图",
+      "usage": "离线保留提示／离线活动页的独立手机构图",
+      "crop_rule": "preserve full subject; responsive source selection; no resolution enlargement",
+      "fallback": "中性纸色与品牌标记，文字、操作和数据继续可用",
+      "reviewed_at": "2026-11-15T16:03:20.688Z"
+    },
+    {
+      "id": "offline-preserved",
+      "promptId": "OFFLINE-01",
+      "module": "empty-states",
+      "ratio": "4:3",
+      "target": "1200x900",
+      "prompt": "Use case: stylized-concept. A single finished project-bound raster illustration, not a collage or contact sheet. Series art direction: premium scientific atlas meets independent art-book publishing, refined digital atelier and museum research archive. Warm ivory #F3EFE6, restrained cobalt #3155C8, ink black, mineral green, occasional vermilion. Delicate printmaking, tactile fine paper, elegant asymmetry, quiet negative space. No readable text, letters, digits, logos, watermark, interface, controls, fake charts, fake formulas, robots, brains, gradients, neon or glassmorphism.  Asset ID offline-preserved. Output composition 4:3, target 1200x900. Offline preservation metaphor: a closed archival folio with a single cobalt preserved index marker, tactile ivory and dark ink book cloth. Dependable, compact still life. No cloud or WiFi icon. Keep exactly the requested subject. No decorative plants, animals, mountain landscape or floral border. Clean contemporary ivory, not stained antique parchment. Background assets must remain almost blank and extremely low contrast.",
+      "status": "integrated; Codex visual review completed; no human approval recorded",
+      "source": "generated/originals/offline-preserved-v01.png",
+      "asset_id": "OFFLINE-01-v01",
+      "prompt_id": "OFFLINE-01",
+      "prompt_text": "Use case: stylized-concept. A single finished project-bound raster illustration, not a collage or contact sheet. Series art direction: premium scientific atlas meets independent art-book publishing, refined digital atelier and museum research archive. Warm ivory #F3EFE6, restrained cobalt #3155C8, ink black, mineral green, occasional vermilion. Delicate printmaking, tactile fine paper, elegant asymmetry, quiet negative space. No readable text, letters, digits, logos, watermark, interface, controls, fake charts, fake formulas, robots, brains, gradients, neon or glassmorphism.  Asset ID offline-preserved. Output composition 4:3, target 1200x900. Offline preservation metaphor: a closed archival folio with a single cobalt preserved index marker, tactile ivory and dark ink book cloth. Dependable, compact still life. No cloud or WiFi icon. Keep exactly the requested subject. No decorative plants, animals, mountain landscape or floral border. Clean contemporary ivory, not stained antique parchment. Background assets must remain almost blank and extremely low contrast.",
+      "filename": "generated/optimized/empty-states/offline-preserved-960-v01.webp",
+      "tool": "built-in image_gen.imagegen",
+      "model": "tool-managed (not reported)",
+      "generated_at": "2026-11-15T15:38:08.828Z",
+      "version": "v01",
+      "dimensions": {
+        "width": 1448,
+        "height": 1086
+      },
+      "aspect_ratio": "4:3",
+      "target_dimensions": "1200x900",
+      "variants": [
+        {
+          "filename": "generated/optimized/empty-states/offline-preserved-480-v01.webp",
+          "width": 480,
+          "height": 360,
+          "bytes": 14660
+        },
+        {
+          "filename": "generated/optimized/empty-states/offline-preserved-960-v01.webp",
+          "width": 960,
+          "height": 720,
+          "bytes": 120226
+        }
+      ],
+      "focal_point": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "alt_text": "",
+      "decorative": true,
+      "approved_by": null,
+      "reviewed_by": "Codex visual QA",
+      "license": "AI-generated project concept artwork; no third-party input image",
+      "purpose": "离线保留提示／离线活动页",
+      "usage": "离线保留提示／离线活动页",
+      "crop_rule": "preserve full subject; responsive source selection; no resolution enlargement",
+      "fallback": "中性纸色与品牌标记，文字、操作和数据继续可用",
+      "reviewed_at": "2026-11-15T16:03:20.688Z"
+    },
+    {
+      "id": "project-discrete",
+      "promptId": "COVER-02",
+      "module": "projects",
+      "ratio": "3:2",
+      "target": "1800x1200",
+      "prompt": "Use case: stylized-concept. A single finished project-bound raster illustration, not a collage or contact sheet. Series art direction: premium scientific atlas meets independent art-book publishing, refined digital atelier and museum research archive. Warm ivory #F3EFE6, restrained cobalt #3155C8, ink black, mineral green, occasional vermilion. Delicate printmaking, tactile fine paper, elegant asymmetry, quiet negative space. No readable text, letters, digits, logos, watermark, interface, controls, fake charts, fake formulas, robots, brains, gradients, neon or glassmorphism.  Asset ID project-discrete. Output composition 3:2, target 1800x1200. Second cover in the same editorial series, topic discrete mathematics and graph structures. Conceptual folded geometric paper paths and precise intersecting abstract planes, restrained cobalt. No actual graph nodes, no equations or labeled diagram. Quiet space for a title.",
+      "status": "integrated; Codex visual review completed; no human approval recorded",
+      "source": "generated/originals/project-discrete-v01.png",
+      "asset_id": "COVER-02-v01",
+      "prompt_id": "COVER-02",
+      "prompt_text": "Use case: stylized-concept. A single finished project-bound raster illustration, not a collage or contact sheet. Series art direction: premium scientific atlas meets independent art-book publishing, refined digital atelier and museum research archive. Warm ivory #F3EFE6, restrained cobalt #3155C8, ink black, mineral green, occasional vermilion. Delicate printmaking, tactile fine paper, elegant asymmetry, quiet negative space. No readable text, letters, digits, logos, watermark, interface, controls, fake charts, fake formulas, robots, brains, gradients, neon or glassmorphism.  Asset ID project-discrete. Output composition 3:2, target 1800x1200. Second cover in the same editorial series, topic discrete mathematics and graph structures. Conceptual folded geometric paper paths and precise intersecting abstract planes, restrained cobalt. No actual graph nodes, no equations or labeled diagram. Quiet space for a title.",
+      "filename": "generated/optimized/projects/project-discrete-960-v01.webp",
+      "tool": "built-in image_gen.imagegen",
+      "model": "tool-managed (not reported)",
+      "generated_at": "2026-11-15T15:32:06.163Z",
+      "version": "v01",
+      "dimensions": {
+        "width": 1536,
+        "height": 1024
+      },
+      "aspect_ratio": "3:2",
+      "target_dimensions": "1800x1200",
+      "variants": [
+        {
+          "filename": "generated/optimized/projects/project-discrete-480-v01.webp",
+          "width": 480,
+          "height": 320,
+          "bytes": 20996
+        },
+        {
+          "filename": "generated/optimized/projects/project-discrete-960-v01.webp",
+          "width": 960,
+          "height": 640,
+          "bytes": 122958
+        }
+      ],
+      "focal_point": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "alt_text": "",
+      "decorative": true,
+      "approved_by": null,
+      "reviewed_by": "Codex visual QA",
+      "license": "AI-generated project concept artwork; no third-party input image",
+      "purpose": "项目封面系列第二主题；用户主动选择",
+      "usage": "项目封面系列第二主题；用户主动选择",
+      "crop_rule": "preserve full subject; responsive source selection; no resolution enlargement",
+      "fallback": "中性纸色与品牌标记，文字、操作和数据继续可用",
+      "reviewed_at": "2026-11-15T16:03:20.688Z"
+    },
+    {
+      "id": "project-mineral",
+      "promptId": "COVER-01",
+      "module": "projects",
+      "ratio": "3:2",
+      "target": "1800x1200",
+      "prompt": "Use case: stylized-concept. A single finished project-bound raster illustration, not a collage or contact sheet. Series art direction: premium scientific atlas meets independent art-book publishing, refined digital atelier and museum research archive. Warm ivory #F3EFE6, restrained cobalt #3155C8, ink black, mineral green, occasional vermilion. Delicate printmaking, tactile fine paper, elegant asymmetry, quiet negative space. No readable text, letters, digits, logos, watermark, interface, controls, fake charts, fake formulas, robots, brains, gradients, neon or glassmorphism.  Asset ID project-mineral. Output composition 3:2, target 1800x1200. Topic-specific project cover for spinel material research, a conceptual cluster of octahedral mineral facets and layered mineral specimen paper cutouts, refined cobalt and mineral green. Not a real crystal structure or experimental diagram. Composition to right, quiet left for frontend title.",
+      "status": "integrated; Codex visual review completed; no human approval recorded",
+      "source": "generated/originals/project-mineral-v01.png",
+      "asset_id": "COVER-01-v01",
+      "prompt_id": "COVER-01",
+      "prompt_text": "Use case: stylized-concept. A single finished project-bound raster illustration, not a collage or contact sheet. Series art direction: premium scientific atlas meets independent art-book publishing, refined digital atelier and museum research archive. Warm ivory #F3EFE6, restrained cobalt #3155C8, ink black, mineral green, occasional vermilion. Delicate printmaking, tactile fine paper, elegant asymmetry, quiet negative space. No readable text, letters, digits, logos, watermark, interface, controls, fake charts, fake formulas, robots, brains, gradients, neon or glassmorphism.  Asset ID project-mineral. Output composition 3:2, target 1800x1200. Topic-specific project cover for spinel material research, a conceptual cluster of octahedral mineral facets and layered mineral specimen paper cutouts, refined cobalt and mineral green. Not a real crystal structure or experimental diagram. Composition to right, quiet left for frontend title.",
+      "filename": "generated/optimized/projects/project-mineral-960-v01.webp",
+      "tool": "built-in image_gen.imagegen",
+      "model": "tool-managed (not reported)",
+      "generated_at": "2026-11-15T15:32:27.328Z",
+      "version": "v01",
+      "dimensions": {
+        "width": 1536,
+        "height": 1024
+      },
+      "aspect_ratio": "3:2",
+      "target_dimensions": "1800x1200",
+      "variants": [
+        {
+          "filename": "generated/optimized/projects/project-mineral-480-v01.webp",
+          "width": 480,
+          "height": 320,
+          "bytes": 23386
+        },
+        {
+          "filename": "generated/optimized/projects/project-mineral-960-v01.webp",
+          "width": 960,
+          "height": 640,
+          "bytes": 95598
+        }
+      ],
+      "focal_point": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "alt_text": "",
+      "decorative": true,
+      "approved_by": null,
+      "reviewed_by": "Codex visual QA",
+      "license": "AI-generated project concept artwork; no third-party input image",
+      "purpose": "项目封面库；用户主动选择后按项目 ID 保存本机偏好",
+      "usage": "项目封面库；用户主动选择后按项目 ID 保存本机偏好",
+      "crop_rule": "preserve full subject; responsive source selection; no resolution enlargement",
+      "fallback": "中性纸色与品牌标记，文字、操作和数据继续可用",
+      "reviewed_at": "2026-11-15T16:03:20.688Z"
+    },
+    {
+      "id": "research-process",
+      "promptId": "RESEARCH-01",
+      "module": "research",
+      "ratio": "16:9",
+      "target": "2400x1350",
+      "prompt": "Use case: stylized-concept. A single finished project-bound raster illustration, not a collage or contact sheet. Series art direction: premium scientific atlas meets independent art-book publishing, refined digital atelier and museum research archive. Warm ivory #F3EFE6, restrained cobalt #3155C8, ink black, mineral green, occasional vermilion. Delicate printmaking, tactile fine paper, elegant asymmetry, quiet negative space. No readable text, letters, digits, logos, watermark, interface, controls, fake charts, fake formulas, robots, brains, gradients, neon or glassmorphism.  Asset ID research-process. Output composition 16:9, target 2400x1350. Low-contrast research-process artwork: delicate translucent archival layers, nonsemantic short ink strokes, a very subtle cobalt route ornament and mineral green edge. Mostly empty ivory canvas. No process diagram, progress indicators, steps or real data. Keep exactly the requested subject. No decorative plants, animals, mountain landscape or floral border. Clean contemporary ivory, not stained antique parchment. Background assets must remain almost blank and extremely low contrast.",
+      "status": "integrated; Codex visual review completed; no human approval recorded",
+      "source": "generated/originals/research-process-v01.png",
+      "asset_id": "RESEARCH-01-v01",
+      "prompt_id": "RESEARCH-01",
+      "prompt_text": "Use case: stylized-concept. A single finished project-bound raster illustration, not a collage or contact sheet. Series art direction: premium scientific atlas meets independent art-book publishing, refined digital atelier and museum research archive. Warm ivory #F3EFE6, restrained cobalt #3155C8, ink black, mineral green, occasional vermilion. Delicate printmaking, tactile fine paper, elegant asymmetry, quiet negative space. No readable text, letters, digits, logos, watermark, interface, controls, fake charts, fake formulas, robots, brains, gradients, neon or glassmorphism.  Asset ID research-process. Output composition 16:9, target 2400x1350. Low-contrast research-process artwork: delicate translucent archival layers, nonsemantic short ink strokes, a very subtle cobalt route ornament and mineral green edge. Mostly empty ivory canvas. No process diagram, progress indicators, steps or real data. Keep exactly the requested subject. No decorative plants, animals, mountain landscape or floral border. Clean contemporary ivory, not stained antique parchment. Background assets must remain almost blank and extremely low contrast.",
+      "filename": "generated/optimized/research/research-process-1600-v01.webp",
+      "tool": "built-in image_gen.imagegen",
+      "model": "tool-managed (not reported)",
+      "generated_at": "2026-11-15T15:34:30.931Z",
+      "version": "v01",
+      "dimensions": {
+        "width": 1672,
+        "height": 941
+      },
+      "aspect_ratio": "16:9",
+      "target_dimensions": "2400x1350",
+      "variants": [
+        {
+          "filename": "generated/optimized/research/research-process-480-v01.webp",
+          "width": 480,
+          "height": 270,
+          "bytes": 2302
+        },
+        {
+          "filename": "generated/optimized/research/research-process-960-v01.webp",
+          "width": 960,
+          "height": 540,
+          "bytes": 7868
+        },
+        {
+          "filename": "generated/optimized/research/research-process-1600-v01.webp",
+          "width": 1600,
+          "height": 900,
+          "bytes": 20742
+        }
+      ],
+      "focal_point": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "alt_text": "",
+      "decorative": true,
+      "approved_by": null,
+      "reviewed_by": "Codex visual QA",
+      "license": "AI-generated project concept artwork; no third-party input image",
+      "purpose": "研究页主题背景",
+      "usage": "研究页主题背景",
+      "crop_rule": "preserve full subject; responsive source selection; no resolution enlargement",
+      "fallback": "中性纸色与品牌标记，文字、操作和数据继续可用",
+      "reviewed_at": "2026-11-15T16:03:20.688Z"
+    },
+    {
+      "id": "search-empty-mobile",
+      "promptId": "SEARCH-EMPTY-01-mobile",
+      "module": "empty-states",
+      "ratio": "4:5",
+      "target": "1200x1500",
+      "prompt": "Use case: stylized-concept. Premium contemporary Atelier Atlas palette: clean warm ivory, restrained cobalt and fine paper fibers. No readable text, numbers, logo, watermark, UI, gradients, neon, faux scientific data. Portrait 4:5. Independently composed mobile version: ONE blank rectangular ivory archival index sheet in the lower half of a clean ivory desk, one tiny cobalt tab and a single hairline cobalt route stopping at an unmarked blank point. The route has ZERO dots. Generous empty upper half. Do NOT depict books, maps, landscapes, mountains, plants, flowers, minerals, rock specimens, charts, graphs, words or labels.",
+      "status": "integrated; Codex visual review completed; no human approval recorded",
+      "source": "generated/originals/search-empty-mobile-v02.png",
+      "rejection_reason": "Initial composition was over-decorated with landscape/folio instead of a minimal index sheet.",
+      "revision": "v02",
+      "asset_id": "SEARCH-EMPTY-01-mobile-v02",
+      "prompt_id": "SEARCH-EMPTY-01-mobile",
+      "prompt_text": "Use case: stylized-concept. Premium contemporary Atelier Atlas palette: clean warm ivory, restrained cobalt and fine paper fibers. No readable text, numbers, logo, watermark, UI, gradients, neon, faux scientific data. Portrait 4:5. Independently composed mobile version: ONE blank rectangular ivory archival index sheet in the lower half of a clean ivory desk, one tiny cobalt tab and a single hairline cobalt route stopping at an unmarked blank point. The route has ZERO dots. Generous empty upper half. Do NOT depict books, maps, landscapes, mountains, plants, flowers, minerals, rock specimens, charts, graphs, words or labels.",
+      "filename": "generated/optimized/empty-states/search-empty-mobile-960-v02.webp",
+      "rejected": {
+        "source": "generated/rejected/search-empty-mobile-v01.png",
+        "reason": "Initial composition was over-decorated with landscape/folio instead of a minimal index sheet."
+      },
+      "tool": "built-in image_gen.imagegen",
+      "model": "tool-managed (not reported)",
+      "generated_at": "2026-11-15T15:55:04.258Z",
+      "version": "v02",
+      "dimensions": {
+        "width": 1122,
+        "height": 1402
+      },
+      "aspect_ratio": "4:5",
+      "target_dimensions": "1200x1500",
+      "variants": [
+        {
+          "filename": "generated/optimized/empty-states/search-empty-mobile-480-v02.webp",
+          "width": 480,
+          "height": 600,
+          "bytes": 5824
+        },
+        {
+          "filename": "generated/optimized/empty-states/search-empty-mobile-960-v02.webp",
+          "width": 960,
+          "height": 1200,
+          "bytes": 37326
+        }
+      ],
+      "focal_point": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "alt_text": "",
+      "decorative": true,
+      "approved_by": null,
+      "reviewed_by": "Codex visual QA",
+      "license": "AI-generated project concept artwork; no third-party input image",
+      "purpose": "搜索无结果／网页检索无结果的独立手机构图",
+      "usage": "搜索无结果／网页检索无结果的独立手机构图",
+      "crop_rule": "preserve full subject; responsive source selection; no resolution enlargement",
+      "fallback": "中性纸色与品牌标记，文字、操作和数据继续可用",
+      "reviewed_at": "2026-11-15T16:03:20.688Z"
+    },
+    {
+      "id": "search-empty",
+      "promptId": "SEARCH-EMPTY-01",
+      "module": "empty-states",
+      "ratio": "4:3",
+      "target": "1200x900",
+      "prompt": "Use case: stylized-concept. Premium contemporary Atelier Atlas palette: clean warm ivory, restrained cobalt and fine paper fibers. No readable text, numbers, logo, watermark, UI, gradients, neon, faux scientific data. Landscape 4:3. Only ONE blank rectangular ivory archival index sheet resting on a clean ivory desk, one tiny cobalt index tab and a single hairline cobalt route that stops at an unmarked blank point. The route must have ZERO dots or node markers. The sheet must be blank. Precise museum editorial still life. Very sparse. Do NOT depict an open book, map, landscape, mountains, plants, flowers, minerals, rock specimens, colored swatches, charts, graphs, words or labels.",
+      "status": "integrated; Codex visual review completed; no human approval recorded",
+      "source": "generated/originals/search-empty-v02.png",
+      "rejection_reason": "Initial composition was over-decorated with landscape/folio instead of a minimal index sheet.",
+      "revision": "v02",
+      "asset_id": "SEARCH-EMPTY-01-v02",
+      "prompt_id": "SEARCH-EMPTY-01",
+      "prompt_text": "Use case: stylized-concept. Premium contemporary Atelier Atlas palette: clean warm ivory, restrained cobalt and fine paper fibers. No readable text, numbers, logo, watermark, UI, gradients, neon, faux scientific data. Landscape 4:3. Only ONE blank rectangular ivory archival index sheet resting on a clean ivory desk, one tiny cobalt index tab and a single hairline cobalt route that stops at an unmarked blank point. The route must have ZERO dots or node markers. The sheet must be blank. Precise museum editorial still life. Very sparse. Do NOT depict an open book, map, landscape, mountains, plants, flowers, minerals, rock specimens, colored swatches, charts, graphs, words or labels.",
+      "filename": "generated/optimized/empty-states/search-empty-960-v02.webp",
+      "rejected": {
+        "source": "generated/rejected/search-empty-v01.png",
+        "reason": "Initial composition was over-decorated with landscape/folio instead of a minimal index sheet."
+      },
+      "tool": "built-in image_gen.imagegen",
+      "model": "tool-managed (not reported)",
+      "generated_at": "2026-11-15T15:54:40.333Z",
+      "version": "v02",
+      "dimensions": {
+        "width": 1448,
+        "height": 1086
+      },
+      "aspect_ratio": "4:3",
+      "target_dimensions": "1200x900",
+      "variants": [
+        {
+          "filename": "generated/optimized/empty-states/search-empty-480-v02.webp",
+          "width": 480,
+          "height": 360,
+          "bytes": 3264
+        },
+        {
+          "filename": "generated/optimized/empty-states/search-empty-960-v02.webp",
+          "width": 960,
+          "height": 720,
+          "bytes": 20202
+        }
+      ],
+      "focal_point": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "alt_text": "",
+      "decorative": true,
+      "approved_by": null,
+      "reviewed_by": "Codex visual QA",
+      "license": "AI-generated project concept artwork; no third-party input image",
+      "purpose": "搜索无结果／网页检索无结果",
+      "usage": "搜索无结果／网页检索无结果",
+      "crop_rule": "preserve full subject; responsive source selection; no resolution enlargement",
+      "fallback": "中性纸色与品牌标记，文字、操作和数据继续可用",
+      "reviewed_at": "2026-11-15T16:03:20.688Z"
+    },
+    {
+      "id": "timeline-chronicle-bg",
+      "promptId": "TIMELINE-CHRONICLE-BG",
+      "module": "backgrounds",
+      "ratio": "16:9",
+      "target": "2400x1350",
+      "prompt": "Use case: stylized-concept. A single finished project-bound raster illustration, not a collage or contact sheet. Series art direction: premium scientific atlas meets independent art-book publishing, refined digital atelier and museum research archive. Warm ivory #F3EFE6, restrained cobalt #3155C8, ink black, mineral green, occasional vermilion. Delicate printmaking, tactile fine paper, elegant asymmetry, quiet negative space. No readable text, letters, digits, logos, watermark, interface, controls, fake charts, fake formulas, robots, brains, gradients, neon or glassmorphism.  Asset ID timeline-chronicle-bg. Output composition 16:9, target 2400x1350. Almost blank ivory archival paper texture with extremely faint vertical guide lines and delicate unnumbered print registration dashes at the far margins. No dates, event markers, axes or actual timeline. Very low contrast to sit behind real text. Keep exactly the requested subject. No decorative plants, animals, mountain landscape or floral border. Clean contemporary ivory, not stained antique parchment. Background assets must remain almost blank and extremely low contrast.",
+      "status": "integrated; Codex visual review completed; no human approval recorded",
+      "source": "generated/originals/timeline-chronicle-bg-v01.png",
+      "asset_id": "TIMELINE-CHRONICLE-BG-v01",
+      "prompt_id": "TIMELINE-CHRONICLE-BG",
+      "prompt_text": "Use case: stylized-concept. A single finished project-bound raster illustration, not a collage or contact sheet. Series art direction: premium scientific atlas meets independent art-book publishing, refined digital atelier and museum research archive. Warm ivory #F3EFE6, restrained cobalt #3155C8, ink black, mineral green, occasional vermilion. Delicate printmaking, tactile fine paper, elegant asymmetry, quiet negative space. No readable text, letters, digits, logos, watermark, interface, controls, fake charts, fake formulas, robots, brains, gradients, neon or glassmorphism.  Asset ID timeline-chronicle-bg. Output composition 16:9, target 2400x1350. Almost blank ivory archival paper texture with extremely faint vertical guide lines and delicate unnumbered print registration dashes at the far margins. No dates, event markers, axes or actual timeline. Very low contrast to sit behind real text. Keep exactly the requested subject. No decorative plants, animals, mountain landscape or floral border. Clean contemporary ivory, not stained antique parchment. Background assets must remain almost blank and extremely low contrast.",
+      "filename": "generated/optimized/backgrounds/timeline-chronicle-bg-1600-v01.webp",
+      "tool": "built-in image_gen.imagegen",
+      "model": "tool-managed (not reported)",
+      "generated_at": "2026-11-15T15:41:21.124Z",
+      "version": "v01",
+      "dimensions": {
+        "width": 1672,
+        "height": 941
+      },
+      "aspect_ratio": "16:9",
+      "target_dimensions": "2400x1350",
+      "variants": [
+        {
+          "filename": "generated/optimized/backgrounds/timeline-chronicle-bg-480-v01.webp",
+          "width": 480,
+          "height": 270,
+          "bytes": 478
+        },
+        {
+          "filename": "generated/optimized/backgrounds/timeline-chronicle-bg-960-v01.webp",
+          "width": 960,
+          "height": 540,
+          "bytes": 1752
+        },
+        {
+          "filename": "generated/optimized/backgrounds/timeline-chronicle-bg-1600-v01.webp",
+          "width": 1600,
+          "height": 900,
+          "bytes": 6478
+        }
+      ],
+      "focal_point": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "alt_text": "",
+      "decorative": true,
+      "approved_by": null,
+      "reviewed_by": "Codex visual QA",
+      "license": "AI-generated project concept artwork; no third-party input image",
+      "purpose": "知识时间线底层纹理",
+      "usage": "知识时间线底层纹理",
+      "crop_rule": "cover at low opacity; no functional marks",
+      "fallback": "中性纸色与品牌标记，文字、操作和数据继续可用",
+      "reviewed_at": "2026-11-15T16:03:20.688Z"
+    },
+    {
+      "id": "timeline-empty-mobile",
+      "promptId": "TIMELINE-EMPTY-01-mobile",
+      "module": "empty-states",
+      "ratio": "4:5",
+      "target": "1200x1500",
+      "prompt": "Use case: stylized-concept. A single finished project-bound raster illustration, not a collage or contact sheet. Series art direction: premium scientific atlas meets independent art-book publishing, refined digital atelier and museum research archive. Warm ivory #F3EFE6, restrained cobalt #3155C8, ink black, mineral green, occasional vermilion. Delicate printmaking, tactile fine paper, elegant asymmetry, quiet negative space. No readable text, letters, digits, logos, watermark, interface, controls, fake charts, fake formulas, robots, brains, gradients, neon or glassmorphism. Independently compose a portrait 4:5 mobile illustration, target 1200x1500; compact subject centered in the lower half, spacious ivory upper region, not a crop of a landscape. An unfilled chronology metaphor: one long gently curved archival paper strip with several blank folded index tabs and one subtle cobalt ribbon. No dates, ticks, event markers or timeline data. Keep exactly the requested subject. No decorative plants, animals, mountain landscape or floral border. Clean contemporary ivory, not stained antique parchment. Background assets must remain almost blank and extremely low contrast.",
+      "status": "integrated; Codex visual review completed; no human approval recorded",
+      "source": "generated/originals/timeline-empty-mobile-v01.png",
+      "asset_id": "TIMELINE-EMPTY-01-mobile-v01",
+      "prompt_id": "TIMELINE-EMPTY-01-mobile",
+      "prompt_text": "Use case: stylized-concept. A single finished project-bound raster illustration, not a collage or contact sheet. Series art direction: premium scientific atlas meets independent art-book publishing, refined digital atelier and museum research archive. Warm ivory #F3EFE6, restrained cobalt #3155C8, ink black, mineral green, occasional vermilion. Delicate printmaking, tactile fine paper, elegant asymmetry, quiet negative space. No readable text, letters, digits, logos, watermark, interface, controls, fake charts, fake formulas, robots, brains, gradients, neon or glassmorphism. Independently compose a portrait 4:5 mobile illustration, target 1200x1500; compact subject centered in the lower half, spacious ivory upper region, not a crop of a landscape. An unfilled chronology metaphor: one long gently curved archival paper strip with several blank folded index tabs and one subtle cobalt ribbon. No dates, ticks, event markers or timeline data. Keep exactly the requested subject. No decorative plants, animals, mountain landscape or floral border. Clean contemporary ivory, not stained antique parchment. Background assets must remain almost blank and extremely low contrast.",
+      "filename": "generated/optimized/empty-states/timeline-empty-mobile-960-v01.webp",
+      "tool": "built-in image_gen.imagegen",
+      "model": "tool-managed (not reported)",
+      "generated_at": "2026-11-15T15:53:07.088Z",
+      "version": "v01",
+      "dimensions": {
+        "width": 1122,
+        "height": 1402
+      },
+      "aspect_ratio": "4:5",
+      "target_dimensions": "1200x1500",
+      "variants": [
+        {
+          "filename": "generated/optimized/empty-states/timeline-empty-mobile-480-v01.webp",
+          "width": 480,
+          "height": 600,
+          "bytes": 7742
+        },
+        {
+          "filename": "generated/optimized/empty-states/timeline-empty-mobile-960-v01.webp",
+          "width": 960,
+          "height": 1200,
+          "bytes": 33796
+        }
+      ],
+      "focal_point": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "alt_text": "",
+      "decorative": true,
+      "approved_by": null,
+      "reviewed_by": "Codex visual QA",
+      "license": "AI-generated project concept artwork; no third-party input image",
+      "purpose": "时间线无节点／无日期状态的独立手机构图",
+      "usage": "时间线无节点／无日期状态的独立手机构图",
+      "crop_rule": "preserve full subject; responsive source selection; no resolution enlargement",
+      "fallback": "中性纸色与品牌标记，文字、操作和数据继续可用",
+      "reviewed_at": "2026-11-15T16:03:20.688Z"
+    },
+    {
+      "id": "timeline-empty",
+      "promptId": "TIMELINE-EMPTY-01",
+      "module": "empty-states",
+      "ratio": "4:3",
+      "target": "1200x900",
+      "prompt": "Use case: stylized-concept. A single finished project-bound raster illustration, not a collage or contact sheet. Series art direction: premium scientific atlas meets independent art-book publishing, refined digital atelier and museum research archive. Warm ivory #F3EFE6, restrained cobalt #3155C8, ink black, mineral green, occasional vermilion. Delicate printmaking, tactile fine paper, elegant asymmetry, quiet negative space. No readable text, letters, digits, logos, watermark, interface, controls, fake charts, fake formulas, robots, brains, gradients, neon or glassmorphism.  Asset ID timeline-empty. Output composition 4:3, target 1200x900. An unfilled chronology metaphor: one long gently curved archival paper strip with several blank folded index tabs and one subtle cobalt ribbon. No dates, ticks, event markers or timeline data. Keep exactly the requested subject. No decorative plants, animals, mountain landscape or floral border. Clean contemporary ivory, not stained antique parchment. Background assets must remain almost blank and extremely low contrast.",
+      "status": "integrated; Codex visual review completed; no human approval recorded",
+      "source": "generated/originals/timeline-empty-v01.png",
+      "asset_id": "TIMELINE-EMPTY-01-v01",
+      "prompt_id": "TIMELINE-EMPTY-01",
+      "prompt_text": "Use case: stylized-concept. A single finished project-bound raster illustration, not a collage or contact sheet. Series art direction: premium scientific atlas meets independent art-book publishing, refined digital atelier and museum research archive. Warm ivory #F3EFE6, restrained cobalt #3155C8, ink black, mineral green, occasional vermilion. Delicate printmaking, tactile fine paper, elegant asymmetry, quiet negative space. No readable text, letters, digits, logos, watermark, interface, controls, fake charts, fake formulas, robots, brains, gradients, neon or glassmorphism.  Asset ID timeline-empty. Output composition 4:3, target 1200x900. An unfilled chronology metaphor: one long gently curved archival paper strip with several blank folded index tabs and one subtle cobalt ribbon. No dates, ticks, event markers or timeline data. Keep exactly the requested subject. No decorative plants, animals, mountain landscape or floral border. Clean contemporary ivory, not stained antique parchment. Background assets must remain almost blank and extremely low contrast.",
+      "filename": "generated/optimized/empty-states/timeline-empty-960-v01.webp",
+      "tool": "built-in image_gen.imagegen",
+      "model": "tool-managed (not reported)",
+      "generated_at": "2026-11-15T15:42:42.988Z",
+      "version": "v01",
+      "dimensions": {
+        "width": 1448,
+        "height": 1086
+      },
+      "aspect_ratio": "4:3",
+      "target_dimensions": "1200x900",
+      "variants": [
+        {
+          "filename": "generated/optimized/empty-states/timeline-empty-480-v01.webp",
+          "width": 480,
+          "height": 360,
+          "bytes": 4902
+        },
+        {
+          "filename": "generated/optimized/empty-states/timeline-empty-960-v01.webp",
+          "width": 960,
+          "height": 720,
+          "bytes": 15488
+        }
+      ],
+      "focal_point": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "alt_text": "",
+      "decorative": true,
+      "approved_by": null,
+      "reviewed_by": "Codex visual QA",
+      "license": "AI-generated project concept artwork; no third-party input image",
+      "purpose": "时间线无节点／无日期状态",
+      "usage": "时间线无节点／无日期状态",
+      "crop_rule": "preserve full subject; responsive source selection; no resolution enlargement",
+      "fallback": "中性纸色与品牌标记，文字、操作和数据继续可用",
+      "reviewed_at": "2026-11-15T16:03:20.688Z"
+    },
+    {
+      "id": "timeline-illustration",
+      "promptId": "TIMELINE-01",
+      "module": "editorial",
+      "ratio": "16:9",
+      "target": "2400x1350",
+      "prompt": "Use case: stylized-concept. A single finished project-bound raster illustration, not a collage or contact sheet. Series art direction: premium scientific atlas meets independent art-book publishing, refined digital atelier and museum research archive. Warm ivory #F3EFE6, restrained cobalt #3155C8, ink black, mineral green, occasional vermilion. Delicate printmaking, tactile fine paper, elegant asymmetry, quiet negative space. No readable text, letters, digits, logos, watermark, interface, controls, fake charts, fake formulas, robots, brains, gradients, neon or glassmorphism.  Asset ID timeline-illustration. Output composition 16:9, target 2400x1350. Editorial metaphor for accumulated knowledge and passage of time: layered archival paper strips and a thin restrained cobalt ribbon, no chronology ticks or dates. Narrow subject at the right with spacious ivory left. Concept art only. Keep exactly the requested subject. No decorative plants, animals, mountain landscape or floral border. Clean contemporary ivory, not stained antique parchment. Background assets must remain almost blank and extremely low contrast.",
+      "status": "integrated; Codex visual review completed; no human approval recorded",
+      "source": "generated/originals/timeline-illustration-v01.png",
+      "asset_id": "TIMELINE-01-v01",
+      "prompt_id": "TIMELINE-01",
+      "prompt_text": "Use case: stylized-concept. A single finished project-bound raster illustration, not a collage or contact sheet. Series art direction: premium scientific atlas meets independent art-book publishing, refined digital atelier and museum research archive. Warm ivory #F3EFE6, restrained cobalt #3155C8, ink black, mineral green, occasional vermilion. Delicate printmaking, tactile fine paper, elegant asymmetry, quiet negative space. No readable text, letters, digits, logos, watermark, interface, controls, fake charts, fake formulas, robots, brains, gradients, neon or glassmorphism.  Asset ID timeline-illustration. Output composition 16:9, target 2400x1350. Editorial metaphor for accumulated knowledge and passage of time: layered archival paper strips and a thin restrained cobalt ribbon, no chronology ticks or dates. Narrow subject at the right with spacious ivory left. Concept art only. Keep exactly the requested subject. No decorative plants, animals, mountain landscape or floral border. Clean contemporary ivory, not stained antique parchment. Background assets must remain almost blank and extremely low contrast.",
+      "filename": "generated/optimized/editorial/timeline-illustration-1600-v01.webp",
+      "tool": "built-in image_gen.imagegen",
+      "model": "tool-managed (not reported)",
+      "generated_at": "2026-11-15T15:36:37.856Z",
+      "version": "v01",
+      "dimensions": {
+        "width": 1672,
+        "height": 941
+      },
+      "aspect_ratio": "16:9",
+      "target_dimensions": "2400x1350",
+      "variants": [
+        {
+          "filename": "generated/optimized/editorial/timeline-illustration-480-v01.webp",
+          "width": 480,
+          "height": 270,
+          "bytes": 6088
+        },
+        {
+          "filename": "generated/optimized/editorial/timeline-illustration-960-v01.webp",
+          "width": 960,
+          "height": 540,
+          "bytes": 21358
+        },
+        {
+          "filename": "generated/optimized/editorial/timeline-illustration-1600-v01.webp",
+          "width": 1600,
+          "height": 900,
+          "bytes": 54864
+        }
+      ],
+      "focal_point": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "alt_text": "",
+      "decorative": true,
+      "approved_by": null,
+      "reviewed_by": "Codex visual QA",
+      "license": "AI-generated project concept artwork; no third-party input image",
+      "purpose": "时间脉络的主题条带",
+      "usage": "时间脉络的主题条带",
+      "crop_rule": "preserve full subject; responsive source selection; no resolution enlargement",
+      "fallback": "中性纸色与品牌标记，文字、操作和数据继续可用",
+      "reviewed_at": "2026-11-15T16:03:20.688Z"
+    },
+    {
+      "asset_id": "HOME-02-v01",
+      "filename": "home-folio-desktop-v01.webp",
+      "module": "home",
+      "purpose": "首页静物选项，保留上一轮素材",
+      "prompt_id": "HOME-02",
+      "prompt_text": "Premium editorial still life of an open archival folio, translucent tracing sheets, blank index tabs, small cobalt route marker and nonsemantic contours on warm ivory paper. Overhead three-quarter view, subject on the right, quiet space left, museum catalogue craft. No text, labels, formulas, UI, logos, fake charts, gradients or robots.",
+      "tool": "built-in image_gen.imagegen",
+      "generated_at": "2026-11-15",
+      "version": "v01",
+      "source": "generated/originals/home-folio-desktop-v01.png",
+      "license": "AI-generated project artwork; no third-party source image",
+      "optimized_width": 1200,
+      "format": "webp",
+      "crop": "center cover, desktop only; omitted on narrow layouts to prioritize composer",
+      "focal_point": {
+        "x": 0.67,
+        "y": 0.55
+      },
+      "alt": "开放图册与描图纸组成的知识工作室概念插画",
+      "fallback": "中性纸色与品牌标记，文字、操作和数据继续可用",
+      "id": "home-folio",
+      "dimensions": {
+        "width": 1672,
+        "height": 941
+      },
+      "aspect_ratio": "16:9",
+      "variants": [
+        {
+          "filename": "home-folio-desktop-v01.webp",
+          "width": 1200,
+          "height": 675,
+          "bytes": 64604
+        }
+      ],
+      "decorative": true,
+      "alt_text": "",
+      "approved_by": null,
+      "reviewed_by": "Codex visual QA",
+      "status": "integrated; Codex visual review completed; no human approval recorded",
+      "usage": "首页静物选项，保留上一轮素材",
+      "crop_rule": "preserve full subject; responsive source selection; no resolution enlargement",
+      "reviewed_at": "2026-11-15T16:03:20.688Z"
+    }
+  ]
+}

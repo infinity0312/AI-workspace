@@ -1,0 +1,22 @@
+{
+  "started_at": "2026-11-16T09:54:29.890Z",
+  "parent_pid": 43612,
+  "api_pid": 6012,
+  "port": 4114,
+  "business_writes_before_preflight": false,
+  "preflight": {
+    "type": "preflight",
+    "backend": "local_pglite",
+    "objects": "local_files",
+    "root": "C:\\Users\\Lenovo\\Documents\\Codex\\2026-11-15\\du\\work\\v21\\verified-local-runtime",
+    "database": "C:\\Users\\Lenovo\\Documents\\Codex\\2026-11-15\\du\\work\\v21\\verified-local-runtime\\data\\postgres",
+    "object_path": "C:\\Users\\Lenovo\\Documents\\Codex\\2026-11-15\\du\\work\\v21\\verified-local-runtime\\data\\objects",
+    "inherited_external_configuration": false,
+    "root_dotenv_present": false
+  },
+  "empty_local_workspace_verified": true,
+  "methods_before_verified": [
+    "GET /v1/health",
+    "GET /v1/workspaces"
+  ]
+}

@@ -1,0 +1,33 @@
+{
+  "date": "2026-11-16",
+  "environment": "verified isolated local synthetic workspace",
+  "document_save": {
+    "from_revision": 1,
+    "to_revision": 2,
+    "reload_retained": true,
+    "evidence": "final-screenshots/document-saved-light-390.jpg"
+  },
+  "mobile_content_navigation": {
+    "focused_block": "block-2260528c-ff30-41b2-a040-8555038023d9",
+    "title_y_after_fix": 89.89583587646484,
+    "open_dialogs_after": 0,
+    "evidence": "final-screenshots/document-content-jump-dark-390.jpg"
+  },
+  "source_handoff": {
+    "evidence_to_source_reader": true,
+    "source_title": "合成演示资料 · 研究对象与来源",
+    "evidence": "final-screenshots/source-handoff-dark-390.jpg"
+  },
+  "timeline_modes": {
+    "periods": 2,
+    "type_tracks": 1,
+    "period_art": "aa_timeline_strata_01"
+  },
+  "checks": {
+    "four_platform_typecheck": 0,
+    "lint": 0,
+    "unit_passed": 10,
+    "unit_failed": 0,
+    "cli_playwright_executed": false
+  }
+}

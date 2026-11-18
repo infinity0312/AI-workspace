@@ -89,11 +89,11 @@ export function BlockProperties({ block,editable,onChange,onClose }:{ block:Bloc
 export type PanelLayout = { left:number;right:number;leftOpen:boolean;rightOpen:boolean };
 const layoutKey='akw-workspace-panels-v1';
 export function readPanels():PanelLayout {
-  const defaults={ left:218,right:312,leftOpen:true,rightOpen:true };
+  const defaults={ left:218,right:312,leftOpen:true,rightOpen:false };
   try {
     const data=JSON.parse(localStorage.getItem(layoutKey) ?? '{}') as Partial<PanelLayout>;
     const width=(value:number|undefined,base:number,min:number,max:number) => Number.isFinite(value) ? Math.min(max,Math.max(min,value!)) : base;
-    return { left:width(data.left,218,180,340),right:width(data.right,312,250,500),leftOpen:data.leftOpen!==false,rightOpen:data.rightOpen!==false };
+    return { left:width(data.left,218,180,340),right:width(data.right,312,250,500),leftOpen:data.leftOpen!==false,rightOpen:data.rightOpen===true };
   } catch { return defaults; }
 }
 export function savePanels(layout:PanelLayout) { localStorage.setItem(layoutKey,JSON.stringify(layout)); }

@@ -1,3 +1,5 @@
+import {AtlasArt} from './atlas-art';
+import {ActiveFilterTokens,EmptyFilterResult,FacetBar,FacetPopover,ContextSelector,PrimarySearch,ResultSummary} from './explorer-controls';
 import { useEffect, useState, type FormEvent } from 'react';
 import { assetMimeForName,type RunSummary } from '@akw/contracts';
 import { getPlatform,type NativeFile } from '../lib/platform';
@@ -7,6 +9,7 @@ import { lifecycleLabel } from './library-pages';
 import { DownloadLink,ExternalLink,NativeImportQueue,sourcePageLabel,supportedFileTypes } from './native-actions';
 import { SourceManagement } from './source-management';
 import { activeRun,statusLabel } from './workflow-status';
+import { EditorialEmpty } from './editorial-image';
 
 type DesktopSources = { files: NativeFile[]; skipped: number; pick: (directory: boolean) => void; remove: (id: string) => void };
 export function Sources({ ws, projects, sources, refresh, report, desktop, capture, initialSource, openArtifact, openClaimDraft, editable }: { report:(message:string)=>void;
@@ -21,6 +24,7 @@ export function Sources({ ws, projects, sources, refresh, report, desktop, captu
   const [file,setFile] = useState<File | null>(null);
   const [rights,setRights] = useState('unknown');
   const [detail,setDetail] = useState<SourceDetail | null>(null);
+  const [listProject,setListProject]=useState('');
   const [sourceFilter,setSourceFilter] = useState('');
   const [listMode,setListMode] = useState('active');
   const [pending,setPending] = useState<Job[]>([]);
@@ -70,6 +74,7 @@ export function Sources({ ws, projects, sources, refresh, report, desktop, captu
     const timer = window.setInterval(() => void check(),1800);
     return () => { mounted = false; window.clearInterval(timer); };
   },[pending,refresh,report]);
+  function sourceKind(item:Source){const mime='mime' in item&&typeof item.mime==='string'?item.mime:'';return mime.startsWith('image/')?'图像':mime==='application/pdf'?'PDF资料':item.canonical_url?'网页来源':mime.startsWith('video/')?'视频':mime.startsWith('audio/')?'音频':item.metadata.doi?'DOI资料':item.asset_id?'上传资料':'正文资料';}
   function appendJobs(jobs: Job[]) { if (jobs.length) setPending(previous => [...previous,...jobs]); }
   async function paste() {
     if (!clipboard) return;
@@ -97,11 +102,13 @@ export function Sources({ ws, projects, sources, refresh, report, desktop, captu
   async function open(id: string) {
     try { setDetail(await api<SourceDetail>('/sources/' + id)); } catch (error) { report(errorText(error)); }
   }
+  const scopedSources=sources.filter(item=>!listProject||(listProject==='shared'?!item.project_id:item.project_id===listProject));
+  const sourceMatches=(item:Source)=>[item.title,item.metadata.author,item.metadata.doi,item.metadata.published,item.canonical_url].filter(Boolean).join(' ').toLocaleLowerCase().includes(sourceFilter.toLocaleLowerCase().trim());
   return <div className="workflow">
-    <header className="page-heading"><h1>来源</h1><p>导入资料，查看解析质量与原文段落。</p></header>
+    <header className="page-heading atlas-page-heading"><div><p className="eyebrow">KNOWLEDGE ARCHIVE / SOURCES</p><h1>来源</h1><p>导入资料，查看解析质量与原文段落。</p></div><figure><AtlasArt asset="aa_sources_book_spine_01"/><figcaption>概念插画</figcaption></figure></header>
     {editable && desktop && <NativeImportQueue workspace={ws} projects={projects} files={desktop.files} skipped={desktop.skipped}
       select={desktop.pick} remove={desktop.remove} refresh={refresh} report={report} onQueued={appendJobs} />}
-    {editable && <form className="panel stack" onSubmit={event => void create(event)}>
+    {editable && <details className="task-form-disclosure"><summary>导入新资料</summary><form className="panel stack" onSubmit={event => void create(event)}>
       <div className="field-grid">
         <label>来源类型<select value={type} onChange={event => setType(event.target.value)}>
           <option value="text">粘贴正文</option><option value="url">公开网页</option>{!desktop && <option value="file">上传文件</option>}
@@ -118,15 +125,15 @@ export function Sources({ ws, projects, sources, refresh, report, desktop, captu
           {desktop && clipboard && <div><button type="button" onClick={() => void paste()}>粘贴剪贴板</button></div>}</>}
       <label>资料权利<select value={rights} onChange={event => setRights(event.target.value)}><option value="unknown">未确认</option><option value="user_owned">本人拥有内容</option><option value="public_license">公开许可</option><option value="restricted">限制再分发</option></select></label>
       <div className="button-row"><button className="primary" disabled={busy}>添加来源</button>{pending.length > 0 && <span role="status">后台解析 {pending.length} 项</span>}</div>
-    </form>}
-    <div className="panel stack"><h2>来源列表</h2>
-      <div className="field-grid"><label>筛选来源<input value={sourceFilter} onChange={event => setSourceFilter(event.target.value)} /></label>
-      <label>来源范围<select value={listMode} onChange={event => setListMode(event.target.value)}><option value="active">使用中</option><option value="archived">已归档</option><option value="all">全部</option></select></label></div>
-      {!sources.length && <p className="muted">还没有来源。</p>}
-      {sources.filter(item => (listMode === 'all' || (listMode === 'archived') === (item.lifecycle === 'archived')) &&
-        item.title.toLocaleLowerCase().includes(sourceFilter.toLocaleLowerCase().trim())).map(item =>
-        <div key={item.id} className="list-item"><button onClick={() => void open(item.id)}>{item.title}</button>
-          <span>{item.lifecycle === 'active' ? statusLabel(item.status) : lifecycleLabel(item.lifecycle)}</span></div>)}
+    </form></details>}
+    <div className="panel stack"><div className="section-heading"><h2>来源列表</h2><ContextSelector label="来源项目范围" value={listProject} onChange={setListProject} options={[{value:'',label:'全部项目'},{value:'shared',label:'工作空间共享'},...projects.map(item=>({value:item.id,label:item.name}))]}/></div>
+      <PrimarySearch label="筛选来源" value={sourceFilter} onChange={setSourceFilter} /><FacetBar><FacetPopover multiple={false} label="来源范围" values={listMode==='all'?[]:[listMode]} onChange={values=>setListMode(values.at(-1)||'all')} options={[{value:'active',label:'使用中'},{value:'archived',label:'已归档'}]}/></FacetBar><ActiveFilterTokens tokens={[...(sourceFilter?[{key:'q',label:'搜索：'+sourceFilter,remove:()=>setSourceFilter('')}]:[]),...(listMode!=='all'?[{key:'scope',label:'范围：'+(listMode==='active'?'使用中':'已归档'),remove:()=>setListMode('all')}]:[])]} onClear={()=>{setSourceFilter('');setListMode('all');}} /><ResultSummary>{scopedSources.filter(item=>(listMode==='all'||(listMode==='archived')===(item.lifecycle==='archived'))&&sourceMatches(item)).length} / {scopedSources.length} 个来源</ResultSummary>
+      {!scopedSources.length && <EditorialEmpty asset="collection-empty" title="还没有来源。"><p className="muted">粘贴正文、导入网页或上传文件，建立你的资料选集。</p></EditorialEmpty>}
+      {scopedSources.length>0 && !scopedSources.some(item=>(listMode==='all'||(listMode==='archived')===(item.lifecycle==='archived'))&&sourceMatches(item)) && <EmptyFilterResult empty={false} subject="来源" onClear={()=>{setSourceFilter('');setListMode('all');}} />}
+      {scopedSources.filter(item => (listMode === 'all' || (listMode === 'archived') === (item.lifecycle === 'archived')) &&
+        sourceMatches(item)).map(item =>
+        <article key={item.id} className="list-item atlas-source-entry" data-source-kind={sourceKind(item)}><span className="atlas-source-kind">{sourceKind(item)}</span><div className="atlas-source-description"><button onClick={() => void open(item.id)}>{item.title}</button>
+          <small>{[item.metadata.author,item.metadata.published,item.metadata.doi&&'DOI '+item.metadata.doi,item.canonical_url].filter(Boolean).join(' · ')||'来源元信息尚未提供'}</small></div><span className="atlas-source-status">{item.lifecycle === 'active' ? statusLabel(item.status) : lifecycleLabel(item.lifecycle)}</span></article>)}
       {detail && <div className="detail stack">
         <div className="section-heading"><h3>{detail.title}</h3><button onClick={() => setDetail(null)}>关闭</button></div>
         <div className="button-row">

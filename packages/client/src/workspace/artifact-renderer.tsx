@@ -1,4 +1,4 @@
-import { Component, createContext, useContext, useState, type ComponentType, type ReactNode } from 'react';
+import { Component, createContext, useContext, useEffect, useState, type ComponentType, type ReactNode } from 'react';
 import Markdown from 'react-markdown';
 import remarkGfm from 'remark-gfm';
 import { ChartBlock } from './chart-block';
@@ -9,10 +9,11 @@ import { ExternalLink } from './native-actions';
 import { taskWarnings,WeatherView } from './task-experience';
 import { LearningPractice,LessonMath } from './learning-experience';
 import { ProjectionBlock, type ProjectionState } from './projection-views';
+import { ComparisonSheet } from './comparison-sheet';
 
 export type TextSelection = { block_id:string; inline_index:number; start_utf16:number; end_utf16:number };
 export type RendererContext = {
-  mode:'document'|'proposal'|'history'; onEvidence:(id:string)=>void;
+  workspaceId?:string;mode:'document'|'proposal'|'history'; onEvidence:(id:string)=>void;
   learning?:{ artifact:import('@akw/contracts').ArtifactDetail;editable:boolean;mastery:import('@akw/contracts').LearningMastery;
     onGraded:(id:string,score:import('@akw/contracts').LearningAssessmentResult)=>void };
   onSelection?:(value:TextSelection)=>void; projection?:ProjectionState; blocks?:Block[];
@@ -82,7 +83,7 @@ function Heading(props:BlockRendererProps) {
 }
 const projectionRenderer = ({ block,context }:BlockRendererProps) =>
   <ProjectionBlock block={block} projection={context.projection} onEvidence={context.onEvidence}
-    onNode={context.onNode} onSource={context.onSource} onBlock={context.onBlock} />;
+    onNode={context.onNode} onSource={context.onSource} onBlock={context.onBlock} workspace={context.workspaceId} editable={Boolean(context.onUpdate)} onUpdate={context.onUpdate} />;
 
 function CitationCard({ block,context }:BlockRendererProps) {
   const { references,nodes } = context.projection?.graph ?? {};
@@ -126,7 +127,7 @@ const builtIn:BlockRendererRegistry = {
   markdown: ({ block }) => <div className="rendered-markdown"><Markdown skipHtml disallowedElements={['img','iframe']} remarkPlugins={[remarkGfm]}>{
     String(block.attrs?.markdown ?? block.children?.map(node => node.text ?? '').join('') ?? '')}</Markdown></div>,
   bullet_list:ListBlock,ordered_list:ListBlock,list_item:props => <p><Inlines {...props} /></p>,
-  chart:({ block,context }) => <ChartBlock block={block} blocks={context.blocks} />,
+  chart:props => <><ChartBlock block={props.block} blocks={props.context.blocks} onEvidence={props.context.onEvidence} /><p className="chart-source-notes"><Inlines {...props} /></p></>,
   source_embed:CitationCard,artifact_embed:CitationCard,knowledge_embed:CitationCard,
   paragraph: props => <p><Inlines {...props} /></p>,
   heading: Heading,
@@ -138,7 +139,7 @@ const builtIn:BlockRendererRegistry = {
     <small className="muted">{props.block.attrs.language}</small>}<pre><code><Inlines {...props} /></code></pre></div>,
   task_gap:({ block })=>{
     const gap=taskGapAttrs.safeParse(block.attrs);
-    return gap.success ? <aside className="detail"><strong>{gap.data.goal}</strong><p>{
+    return gap.success ? <aside className="task-gap"><strong>{gap.data.goal}</strong><p>{
       taskWarnings[gap.data.code] ?? '仅保留本部分已核对的资料。'}</p></aside> : null;
   },
   weather_forecast:props=><WeatherView attrs={props.block.attrs} evidence={<Inlines {...props} />} />,
@@ -150,8 +151,8 @@ const builtIn:BlockRendererRegistry = {
   },
   guide_step:props=>{
     const details=guideStepAttrs.safeParse(props.block.attrs);
-    return details.success ? <section className="stack" aria-label={'第 '+details.data.number+' 步'}>
-      <h3>{details.data.number}. {details.data.title}</h3><p><Inlines {...props} /></p>
+    return details.success ? <section className="guide-step" aria-label={'第 '+details.data.number+' 步'}>
+      <span className="guide-number" aria-hidden="true">{String(details.data.number).padStart(2,'0')}</span><div><h3>{details.data.title}</h3><p><Inlines {...props} /></p></div>
     </section> : null;
   },
   learning_goal:()=>null,
@@ -159,8 +160,8 @@ const builtIn:BlockRendererRegistry = {
     const details=learningLessonAttrs.safeParse(block.attrs);
     if (!details.success) return null;
     const learning=context.learning;
-    return <section className="stack" aria-label={details.data.title}>
-      <h2>{details.data.title}</h2><strong>{details.data.objective}</strong>
+    return <section className="learning-folio" aria-label={details.data.title}>
+      <p className="eyebrow">LEARNING FOLIO</p><h2>{details.data.title}</h2><strong className="learning-objective">{details.data.objective}</strong>
       {details.data.prerequisites.length>0 && <div className="button-row">
         {details.data.prerequisites.map(id=>{
           const title=context.blocks?.find(block=>block.id===id)?.attrs?.title;
@@ -177,10 +178,7 @@ const builtIn:BlockRendererRegistry = {
   divider: () => <hr />,
   evidence_reference: ({ block,context }) => typeof block.attrs?.evidence_id === 'string'
     ? <button className="citation" onClick={() => context.onEvidence(String(block.attrs?.evidence_id))}>查看证据</button> : <p className="muted">证据不可用。</p>,
-  table: ({ block }) => Array.isArray(block.attrs?.rows)
-    ? <div className="table-wrap"><table>{block.attrs.title && <caption>{String(block.attrs.title)}</caption>}<tbody>{block.attrs.rows.filter(Array.isArray).map((row,i) => <tr key={i}>{row.map((cell,j) =>
-      <td key={j}>{formulaSegments(String(cell)).map((item,k) => item.kind === 'math' ? <Latex key={k} source={item.value} display={item.display} /> : item.value)}</td>)}</tr>)}</tbody></table></div>
-    : <p className="muted">表格数据不可用。</p>,
+  table:props=><><ComparisonSheet block={props.block} onEvidence={props.context.onEvidence} /><p className="table-source-notes"><Inlines {...props} /></p></>,
   mindmap:projectionRenderer,timeline:projectionRenderer,graph_embed:projectionRenderer,
   dependency_graph:projectionRenderer,evidence_network:projectionRenderer,
 };
@@ -200,6 +198,9 @@ class RenderBoundary extends Component<{ children:ReactNode },{ failed:boolean }
 }
 export function ArtifactBlockView({ block,context,registry }: BlockRendererProps & { registry?:BlockRendererRegistry }) {
   const inherited = useContext(ArtifactRenderers);
+  const [enabled,setEnabled]=useState(true);
+  useEffect(()=>{try{setEnabled(JSON.parse(localStorage.getItem('akw-renderer-flags')||'{}')[block.type]!==false);}catch{setEnabled(true);}},[block.type]);
+  if(!enabled&&['graph_embed','mindmap','timeline','dependency_graph','evidence_network','table','chart','learning_lesson','guide_step'].includes(block.type))return <section className="renderer-fallback"><h4>专业视图暂时关闭 · {block.type}</h4><p>原始结构与来源引用保留，可在本机重新启用。</p><details><summary>读取原始结构化内容</summary><pre>{JSON.stringify(block.attrs,null,2)}</pre></details><Inlines block={block} context={context}/></section>;
   const active = registry ?? inherited;
   const Renderer = Object.hasOwn(active,block.type) ? active[block.type] : undefined;
   return <RenderBoundary key={block.id + ':' + block.type}>{Renderer ? <Renderer block={block} context={context} />

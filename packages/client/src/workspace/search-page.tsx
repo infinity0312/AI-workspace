@@ -1,6 +1,8 @@
+import {AtlasArt} from './atlas-art';
 import { useState, type FormEvent } from 'react';
 import type { SearchHit } from '@akw/contracts';
 import { api, errorText, type WorkspaceView } from '../lib/api';
+import { EditorialEmpty } from './editorial-image';
 
 const labels = { artifact:'文档',source:'来源',claim:'结论',node:'知识节点',capture:'收件箱' };
 export function SearchPage({ workspace,view,online,onOpen }:{
@@ -32,7 +34,7 @@ export function SearchPage({ workspace,view,online,onOpen }:{
     finally { setBusy(false); }
   }
   return <div className="workflow">
-    <header className="page-heading"><h1>搜索</h1><p>{online ? '搜索当前工作空间的文档、原文、结论和待整理资料。' : '离线时可搜索已缓存的文档和来源标题。'}</p></header>
+    <header className="page-heading atlas-page-heading"><div><h1>搜索</h1><p>{online ? '搜索当前工作空间的文档、原文、结论和待整理资料。' : '离线时可搜索已缓存的文档和来源标题。'}</p></div><figure><AtlasArt asset="aa_global_cartographic_ornament_01"/><figcaption>概念插画</figcaption></figure></header>
     <form className="panel stack" onSubmit={event => void search(event)} role="search">
       <label>搜索内容<input type="search" required maxLength={150} autoFocus value={query} onChange={event => setQuery(event.target.value)} /></label>
       <div><button className="primary" disabled={busy}>搜索</button></div>
@@ -40,7 +42,7 @@ export function SearchPage({ workspace,view,online,onOpen }:{
     {busy && <p role="status">正在搜索…</p>}
     {message && <p role="status">{message}</p>}
     {hits && <section className="panel stack" aria-label="搜索结果">
-      {!hits.length && <p className="muted">没有匹配项。</p>}
+      {!hits.length && <EditorialEmpty asset="search-empty" title="没有匹配项。"><p className="muted">换一组关键词，继续寻找资料。</p></EditorialEmpty>}
       {hits.map(hit => <article className="detail stack" key={hit.kind + hit.id}>
         <div className="section-heading"><button onClick={() => onOpen(hit)}>{hit.title}</button><span className="muted">{labels[hit.kind]}</span></div>
         {hit.excerpt && <p className="excerpt">{hit.excerpt}</p>}
